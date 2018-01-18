@@ -12,6 +12,7 @@
 		B8D0A0AC2010FE25003778CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8D0A0AA2010FE25003778CB /* Main.storyboard */; };
 		B8D0A0AE2010FE25003778CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8D0A0AD2010FE25003778CB /* Assets.xcassets */; };
 		B8D0A0B12010FE25003778CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8D0A0AF2010FE25003778CB /* LaunchScreen.storyboard */; };
+		B8D0A0BE2010FF2D003778CB /* Mqtt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D0A0BD2010FF2D003778CB /* Mqtt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		B8D0A0AD2010FE25003778CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8D0A0B02010FE25003778CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B8D0A0B22010FE25003778CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8D0A0BD2010FF2D003778CB /* Mqtt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mqtt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,10 @@
 		B8D0A0A52010FE25003778CB /* Smart-Home_IoT-GP */ = {
 			isa = PBXGroup;
 			children = (
+				B8D0A0BA2010FEDD003778CB /* Model */,
+				B8D0A0B92010FED5003778CB /* View */,
+				B8D0A0B82010FEC9003778CB /* Controller */,
+				B8D0A0BC2010FEEC003778CB /* Resources */,
 				B8D0A0A62010FE25003778CB /* AppDelegate.swift */,
 				B8D0A0A82010FE25003778CB /* ViewController.swift */,
 				B8D0A0AA2010FE25003778CB /* Main.storyboard */,
@@ -62,6 +68,35 @@
 				B8D0A0B22010FE25003778CB /* Info.plist */,
 			);
 			path = "Smart-Home_IoT-GP";
+			sourceTree = "<group>";
+		};
+		B8D0A0B82010FEC9003778CB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		B8D0A0B92010FED5003778CB /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		B8D0A0BA2010FEDD003778CB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B8D0A0BD2010FF2D003778CB /* Mqtt.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		B8D0A0BC2010FEEC003778CB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +173,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8D0A0A92010FE25003778CB /* ViewController.swift in Sources */,
+				B8D0A0BE2010FF2D003778CB /* Mqtt.swift in Sources */,
 				B8D0A0A72010FE25003778CB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,6 +338,7 @@
 				B8D0A0B72010FE25003778CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
