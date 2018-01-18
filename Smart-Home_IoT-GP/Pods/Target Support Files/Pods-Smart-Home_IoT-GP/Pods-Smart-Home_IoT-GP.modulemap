@@ -1,0 +1,6 @@
+framework module Pods_Smart_Home_IoT_GP {
+  umbrella header "Pods-Smart-Home_IoT-GP-umbrella.h"
+
+  export *
+  module * { export * }
+}
