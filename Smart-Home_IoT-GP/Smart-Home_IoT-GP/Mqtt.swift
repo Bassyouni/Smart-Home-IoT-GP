@@ -13,21 +13,25 @@ import CocoaMQTT
 class Mqtt
 {
     //MARK:- variables
-    private var _mqtt: CocoaMQTT!
+    private static var _mqtt: CocoaMQTT!
     private var _delegate: CocoaMQTTDelegate!
     
     
     //MARK:- Constructors & destructors
     private func constructor(url:String , port:UInt16)
     {
-        let clientID = "CocoaMQTT-" + String(ProcessInfo().processIdentifier)
-        _mqtt = CocoaMQTT(clientID: clientID, host: url, port: port)
+        if Mqtt._mqtt == nil
+        {
+            let clientID = "CocoaMQTT-" + String(ProcessInfo().processIdentifier)
+            Mqtt._mqtt = CocoaMQTT(clientID: clientID, host: url, port: port)
+        }
+        
 
     }
     
     init()
     {
-        let url = "192.168.1.17"
+        let url = "192.168.1.10"
         constructor(url: url, port: 1883)
     }
     
@@ -43,28 +47,28 @@ class Mqtt
     
     deinit
     {
-        _mqtt.disconnect()
+        Mqtt._mqtt.disconnect()
     }
     
     //MARK:- public Varibales
     
     var delegate: CocoaMQTTDelegate {
-        set { _mqtt.delegate = newValue }
-        get { return _mqtt.delegate! }
+        set { Mqtt._mqtt.delegate = newValue }
+        get { return Mqtt._mqtt.delegate! }
     }
 
     
     //MARK:- public functions
     public func connect() -> Bool
     {
-        return _mqtt.connect()
+        return Mqtt._mqtt.connect()
     }
     
     public func subscribe(toTopic:String) -> Bool
     {
         if toTopic  != ""
         {
-            _mqtt.subscribe(toTopic)
+            Mqtt._mqtt.subscribe(toTopic)
             return true
         }
         else
@@ -77,7 +81,7 @@ class Mqtt
     {
         if  toTopic != ""
         {
-            _mqtt.unsubscribe(toTopic)
+            Mqtt._mqtt.unsubscribe(toTopic)
             return true
         }
         else
@@ -90,13 +94,18 @@ class Mqtt
     {
         if  message != "" && topic  != ""
         {
-            _mqtt.publish(topic, withString: message)
+            Mqtt._mqtt.publish(topic, withString: message)
             return true
         }
         else
         {
             return false
         }
+    }
+    
+    public func disconnect()
+    {
+        Mqtt._mqtt.disconnect()
     }
     
 

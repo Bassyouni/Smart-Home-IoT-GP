@@ -11,6 +11,7 @@
 		B82BBAF02011191F0090BBE3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BBAEF2011191F0090BBE3 /* User.swift */; };
 		B82BBAF2201119350090BBE3 /* Deveice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BBAF1201119350090BBE3 /* Deveice.swift */; };
 		B82BBAF4201119350090BBE3 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BBAF3201119350090BBE3 /* Home.swift */; };
+		B84E64482017AE6A009198EE /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84E64472017AE6A009198EE /* HomeVC.swift */; };
 		B8D0A0A72010FE25003778CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D0A0A62010FE25003778CB /* AppDelegate.swift */; };
 		B8D0A0A92010FE25003778CB /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D0A0A82010FE25003778CB /* Login.swift */; };
 		B8D0A0AC2010FE25003778CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8D0A0AA2010FE25003778CB /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 		B82BBAF3201119350090BBE3 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		B83250C62013585800A0FD0E /* rick.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rick.ttf; sourceTree = "<group>"; };
 		B83250C72013585800A0FD0E /* morty.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = morty.ttf; sourceTree = "<group>"; };
+		B84E64472017AE6A009198EE /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		B8D0A0A32010FE25003778CB /* Smart-Home_IoT-GP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Smart-Home_IoT-GP.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8D0A0A62010FE25003778CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8D0A0A82010FE25003778CB /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				B8D0A0A82010FE25003778CB /* Login.swift */,
+				B84E64472017AE6A009198EE /* HomeVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -224,12 +227,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Smart-Home_IoT-GP/Pods-Smart-Home_IoT-GP-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaMQTT/CocoaMQTT.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyTimer/SwiftyTimer.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaMQTT.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyTimer.framework",
@@ -280,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B82BBAF02011191F0090BBE3 /* User.swift in Sources */,
+				B84E64482017AE6A009198EE /* HomeVC.swift in Sources */,
 				B8D0A0A92010FE25003778CB /* Login.swift in Sources */,
 				B8D0A0BE2010FF2D003778CB /* Mqtt.swift in Sources */,
 				B8D0A0A72010FE25003778CB /* AppDelegate.swift in Sources */,
