@@ -27,11 +27,11 @@ class UsersController extends Controller
             $user->birthDate = $request->birthDate;
             $user->password = Hash::make($request->password);
             $user->save();
-            return $user;
+            return response()->json(["response" => $user, "status" => "success"]);
           }
-          return "Error: Passwords don't match";
+          return response()->json(["status" => "failure", "error" => "Passwords don't match"]);
       }
-      return "Error: Parameters are missing or Invalid paramter names.";
+      return response()->json(["status" => "failure", "error" => "Parameters are missing or Invalid Parameter names."]);
     }
 
 
@@ -44,12 +44,12 @@ class UsersController extends Controller
         {
           if(Hash::check($request->password, $user->password))
           {
-            return $user;
+            return response()->json(["response" => $user, "status" => "success"]);
           }
         }
-        return "Error: Invalid email/password";
+        return response()->json(["status" => "failure", "error" => "Invalid email/password"]);
       }
-      return "Error: Invalid email/password";
+      return response()->json(["status" => "failure", "error" => "Invalid email/password"]);
     }
 
 
@@ -60,7 +60,7 @@ class UsersController extends Controller
       $user->name = $request->name;
       $user->email = $request->email;
       $user->save();
-      return $user;
+      return response()->json(["response" => $user, "status" => "success"]);
     }
 
     public function addHome(Request $request)
@@ -76,18 +76,36 @@ class UsersController extends Controller
             $newHome->save();
             $newHome->topic = Hash::make($newHome->id);
             $user->homes()->attach($newHome->id);
-            return $newHome;
+            return response()->json(["response" => $newHome, "status" => "success"]);
           }
-          return "Error: Parameters are missing or Invalid paramter names.";
+          return response()->json(["status" => "failure", "error" => "Parameters are missing or Invalid Parameter names."]);
         }
         catch (ModelNotFoundException $e)
         {
-          return "Error: Can't find User with given id";
+          return response()->json(["status" => "failure", "error" => "Can't find User with given id"]);
         }
+    }
 
 
+    public function getUserById($userId)
+    {
+      try
+      {
+        $user = User::findOrFail($userId);
+        return response()->json(["response" => $user, "status" => "success"]);
+      }
+      catch (ModelNotFoundException $e)
+      {
+        return response()->json(["status" => "failure", "error" => "Can't find User with given id"]);
+      }
 
     }
+
+
+
+
+
+
 
 
 }
