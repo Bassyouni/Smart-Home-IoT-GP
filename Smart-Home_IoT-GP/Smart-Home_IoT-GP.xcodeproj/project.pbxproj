@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0D12F7A1E11317AA67970F01 /* Pods_Smart_Home_IoT_GP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B43EA72AFFC1471E5F2DF18A /* Pods_Smart_Home_IoT_GP.framework */; };
+		B81E06CA20193227003C057C /* rick.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B83250C62013585800A0FD0E /* rick.ttf */; };
+		B81E06CB2019322B003C057C /* morty.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B83250C72013585800A0FD0E /* morty.ttf */; };
 		B82BBAF02011191F0090BBE3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BBAEF2011191F0090BBE3 /* User.swift */; };
 		B82BBAF2201119350090BBE3 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BBAF1201119350090BBE3 /* Device.swift */; };
 		B82BBAF4201119350090BBE3 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BBAF3201119350090BBE3 /* Home.swift */; };
@@ -272,6 +274,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8D0A0B12010FE25003778CB /* LaunchScreen.storyboard in Resources */,
+				B81E06CA20193227003C057C /* rick.ttf in Resources */,
+				B81E06CB2019322B003C057C /* morty.ttf in Resources */,
 				B8D0A0AE2010FE25003778CB /* Assets.xcassets in Resources */,
 				B8D0A0AC2010FE25003778CB /* Main.storyboard in Resources */,
 			);

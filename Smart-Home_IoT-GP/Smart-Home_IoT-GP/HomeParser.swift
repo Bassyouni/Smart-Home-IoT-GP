@@ -10,11 +10,15 @@ import Foundation
 
 class HomeParser : JsonParserWarapper
 {
-    func getOneObject() {
+    static func getOneObject<T>(dictionary: Dictionary<String, AnyObject>) -> T {
+        let user = User()
+        
+        return user as! T
         
     }
     
-    func getArrayOfObjects() {
-        
+    public static func getArrayOfObjects<T>(dictionary: Dictionary<String, AnyObject>) -> T {
+        let array = [User]()
+        return array as! T
     }
 }

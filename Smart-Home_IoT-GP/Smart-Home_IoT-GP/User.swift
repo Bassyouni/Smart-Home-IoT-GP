@@ -18,7 +18,7 @@ class User
     
     
     //MARK:- constructors
-    init()
+    public init()
     {
         _id = ""
         _name = ""

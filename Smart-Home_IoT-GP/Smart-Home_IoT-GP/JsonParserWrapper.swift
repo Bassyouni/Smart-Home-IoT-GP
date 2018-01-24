@@ -9,6 +9,6 @@
 import Foundation
 
 protocol JsonParserWarapper {
-    func getArrayOfObjects()
-    func getOneObject()
+    static func getArrayOfObjects<T>(dictionary: Dictionary<String,AnyObject>) -> [T]
+    static func getOneObject<T>(dictionary: Dictionary<String,AnyObject>) -> T
 }

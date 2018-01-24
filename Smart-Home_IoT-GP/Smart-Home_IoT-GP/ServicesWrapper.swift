@@ -10,5 +10,5 @@ import Foundation
 
 class ServicesWrapper
 {
-    public typealias DownloadCompleted = () -> ()
+    public typealias DownloadCompleted = (String , User) -> ()
 }

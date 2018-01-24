@@ -212,8 +212,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Welcome" translatesAutoresizingMaskIntoConstraints="NO" id="oVt-qh-KRQ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="znJ-xB-7HV">
-                                <rect key="frame" x="285" y="0.0" width="85" height="60"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="znJ-xB-7HV">
+                                <rect key="frame" x="246" y="0.0" width="124" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Rick_and_Morty" family="Rick_and_Morty" pointSize="54"/>
                                 <state key="normal" title="Back">
                                     <color key="titleColor" red="0.031404290350000003" green="0.63689678910000003" blue="0.81644409890000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -447,8 +448,6 @@
                             <constraint firstItem="nRL-lq-sac" firstAttribute="top" secondItem="cdC-H5-bu6" secondAttribute="bottom" constant="26.5" id="e8l-cy-akF"/>
                             <constraint firstItem="jOk-xB-q1Z" firstAttribute="leading" secondItem="fiI-xf-XFb" secondAttribute="leading" constant="50" id="eIo-bC-yED"/>
                             <constraint firstItem="MiH-Lz-eE0" firstAttribute="leading" secondItem="fiI-xf-XFb" secondAttribute="leading" constant="23" id="gTT-72-RwC"/>
-                            <constraint firstAttribute="trailing" secondItem="znJ-xB-7HV" secondAttribute="trailing" constant="5" id="h1Y-EO-nXB"/>
-                            <constraint firstItem="znJ-xB-7HV" firstAttribute="top" secondItem="fiI-xf-XFb" secondAttribute="top" id="hRV-qh-NPf"/>
                             <constraint firstAttribute="trailing" secondItem="jOk-xB-q1Z" secondAttribute="trailing" constant="20" id="lo0-4Q-iTI"/>
                             <constraint firstItem="cdC-H5-bu6" firstAttribute="centerX" secondItem="fiI-xf-XFb" secondAttribute="centerX" id="n2E-ha-Cyz"/>
                             <constraint firstItem="jOk-xB-q1Z" firstAttribute="top" secondItem="cdC-H5-bu6" secondAttribute="bottom" constant="-50" id="pAo-IB-hwV"/>

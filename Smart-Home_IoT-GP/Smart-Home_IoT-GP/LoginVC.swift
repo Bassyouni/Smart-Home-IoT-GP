@@ -21,6 +21,9 @@ class LoginVC: UIViewController  {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    //MARK:- variables
+    var isFirstTime: Bool = true
+    
     //MARK:- view methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,27 +40,35 @@ class LoginVC: UIViewController  {
     }
     
     
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        emailView.center.y -= view.bounds.height
-        passwordView.center.y += view.bounds.height
-        
-        emailTextField.center.x += view.bounds.width
-        passwordTextField.center.x += view.bounds.width
-        
-        UIView.animate(withDuration: 1.0) {
+        if isFirstTime
+        {
+            emailView.center.y -= view.bounds.height
+            passwordView.center.y += view.bounds.height
             
-            self.emailView.center.y += self.view.bounds.height
-            self.passwordView.center.y -= self.view.bounds.height
+            emailTextField.center.x += view.bounds.width
+            passwordTextField.center.x += view.bounds.width
+            
 
+            
+            UIView.animate(withDuration: 1.0) {
+                
+                self.emailView.center.y += self.view.bounds.height
+                self.passwordView.center.y -= self.view.bounds.height
+                
+            }
+            
+            UIView.animate(withDuration: 2.0, delay: 0.5, options: [], animations: {
+                
+                self.emailTextField.center.x -= self.view.bounds.width
+                self.passwordTextField.center.x -= self.view.bounds.width
+                
+            }, completion: nil)
+            isFirstTime = false
         }
         
-        UIView.animate(withDuration: 2.0, delay: 0.5, options: [], animations: {
-            
-            self.emailTextField.center.x -= self.view.bounds.width
-            self.passwordTextField.center.x -= self.view.bounds.width
-            
-        }, completion: nil)
         
     }
     
@@ -123,8 +134,7 @@ extension LoginVC: UITextFieldDelegate
             textField.text = ""
             isEmailEditingFirstTime = false
         }
-        
-        if textField.tag == 2 && isPasswordEditingFirstTime
+        else if textField.tag == 2 && isPasswordEditingFirstTime
         {
             textField.text = ""
             isPasswordEditingFirstTime = false
