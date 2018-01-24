@@ -19,6 +19,7 @@ Route::get("users/get", "UsersController@getAllUsers");
 Route::post("users/create", "UsersController@createUser");
 Route::post("users/add-home", "UsersController@addHome");
 Route::post("users/auth/signup", "UsersController@signUp");
+Route::post("users/auth/login", "UsersController@login");
 
 
 

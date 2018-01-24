@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Home;
 use App\Device;
 use App\User;
@@ -16,9 +17,18 @@ class HomesController extends Controller
 
     public function getAllHomesByUserId($userId)
     {
-      $user = User::findOrFail($userId);
-      $homes = $user->homes()->get();
-      return response()->json($homes);
+      try
+      {
+          $user = User::findOrFail($userId);
+          $homes = $user->homes()->get();
+          return response()->json($homes);
+      }
+      catch (ModelNotFoundException $e)
+      {
+        return "Error: Can't find User with given id";
+      }
+
+
 
     }
 
