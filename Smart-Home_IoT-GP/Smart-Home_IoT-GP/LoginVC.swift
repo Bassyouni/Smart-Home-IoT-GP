@@ -1,5 +1,5 @@
 //
-//  Login.swift
+//  LoginVC.swift
 //  Smart-Home_IoT-GP
 //
 //  Created by Bassyouni on 1/18/18.
@@ -10,7 +10,7 @@ import UIKit
 import CocoaMQTT
 import Alamofire
 
-class Login: UIViewController  {
+class LoginVC: UIViewController  {
     
     //MARK:- variables
     var isEmailEditingFirstTime = true
@@ -27,6 +27,8 @@ class Login: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
         emailTextField.tag = 1
         passwordTextField.tag = 2
         
@@ -127,7 +129,7 @@ class Login: UIViewController  {
 }
 
 //MARK:- mqtt delegate
-extension Login : CocoaMQTTDelegate
+extension LoginVC : CocoaMQTTDelegate
 {
     func mqtt(_ mqtt: CocoaMQTT, didConnect host: String, port: Int)
         {
@@ -205,7 +207,7 @@ extension Login : CocoaMQTTDelegate
 
 
 //MARK:- keyboard delegates
-extension Login: UITextFieldDelegate
+extension LoginVC: UITextFieldDelegate
 {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)

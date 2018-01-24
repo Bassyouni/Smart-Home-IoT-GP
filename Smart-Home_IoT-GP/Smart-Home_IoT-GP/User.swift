@@ -10,4 +10,8 @@ import Foundation
 
 class User
 {
+    private var _id: String!
+    private var _name: String!
+    private var _birthDate: Date!
+    private var _homes: [Home]!
 }
