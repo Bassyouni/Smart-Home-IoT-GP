@@ -49,13 +49,6 @@ class Mqtt
     {
         Mqtt._mqtt.disconnect()
     }
-    
-    //MARK:- public Varibales
-    
-    var delegate: CocoaMQTTDelegate {
-        set { Mqtt._mqtt.delegate = newValue }
-        get { return Mqtt._mqtt.delegate! }
-    }
 
     
     //MARK:- public functions
@@ -108,5 +101,12 @@ class Mqtt
         Mqtt._mqtt.disconnect()
     }
     
+    
+    //MARK:- public Varibales
+    
+    var delegate: CocoaMQTTDelegate {
+        set { Mqtt._mqtt.delegate = newValue }
+        get { return Mqtt._mqtt.delegate! }
+    }
 
 }

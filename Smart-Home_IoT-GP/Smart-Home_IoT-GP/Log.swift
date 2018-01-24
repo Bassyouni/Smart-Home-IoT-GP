@@ -10,7 +10,43 @@ import Foundation
 
 class Log
 {
+    //MARK:- private variables
     private var _id: String!
     private var _timeStamp: String!
     private var _device: Device!
+    
+    
+    //MARK:- constructors
+    init()
+    {
+        _id = ""
+        _timeStamp = ""
+        _device = Device()
+    }
+    
+    init(id: String, timesStamp: String, device: Device)
+    {
+        _id = id
+        _timeStamp = timesStamp
+        _device = device
+    }
+    
+    //MARK:- public functions
+    
+    
+    //MARK:- public variables
+    var id: String {
+        set { _id = newValue }
+        get { return _id }
+    }
+    
+    var timeStamp: String {
+        set { _timeStamp = newValue }
+        get { return _timeStamp }
+    }
+    
+    var device: Device {
+        set { _device = newValue }
+        get { return _device }
+    }
 }

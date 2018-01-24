@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CocoaMQTT
 import Alamofire
 
 class LoginVC: UIViewController  {
@@ -15,7 +14,6 @@ class LoginVC: UIViewController  {
     //MARK:- variables
     var isEmailEditingFirstTime = true
     var isPasswordEditingFirstTime = true
-    let mqtt = Mqtt()
     
     //MARK:- iboutlets
     @IBOutlet weak var passwordView: UIView!
@@ -31,15 +29,7 @@ class LoginVC: UIViewController  {
         passwordTextField.delegate = self
         emailTextField.tag = 1
         passwordTextField.tag = 2
-        
-        
-        
-        mqtt.delegate = self
-        _ = mqtt.connect()
-        
-        
-        
-        
+  
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         self.view.addGestureRecognizer(tap)
         
@@ -72,18 +62,11 @@ class LoginVC: UIViewController  {
     }
     
     
+
+
     //MARK:- ibactions
-    @IBAction func loginPressed(_ sender: Any) {
-        //test\
-        
-        if let message = emailTextField.text
-        {
-            mqtt.publish(message: message, topic: "bass")
-            return
-        }
-        
-        //end of test
-        
+    @IBAction func loginPressed(_ sender: Any)
+    {
         
         if emailTextField.text == "" || passwordTextField.text == ""
         {
@@ -122,86 +105,6 @@ class LoginVC: UIViewController  {
     {
        self.view.endEditing(true)
     }
-
-    @IBAction func goAwayPressed(_ sender: Any) {
-        mqtt.disconnect()
-    }
-}
-
-//MARK:- mqtt delegate
-extension LoginVC : CocoaMQTTDelegate
-{
-    func mqtt(_ mqtt: CocoaMQTT, didConnect host: String, port: Int)
-        {
-            print("xxx: " ,"connected")
-    //        myLabel.text = "Connected form did connect"
-    
-        }
-    
-        func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck)
-        {
-            //subscribe after acknwledgment
-            print("connection Acknloedged")
-            print(mqtt.subscribe("bass"))
-        }
-    
-        func mqtt(_ mqtt: CocoaMQTT, didPublishMessage message: CocoaMQTTMessage, id: UInt16)
-        {
-    //        let topic = message.topic
-    //        if let message = message.string
-    //        {
-    //            print("xxx: " ,"message Published: \(message)")
-    //            myLabel.text = "message Published: \(message)\nin topic \(topic)"
-    //
-    //        }
-    
-        }
-    
-        func mqtt(_ mqtt: CocoaMQTT, didPublishAck id: UInt16)
-        {
-            print("publish Acknloedged")
-        }
-    
-        func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16 )
-        {
-            let topic = message.topic
-            if let message = message.string
-            {
-                print("xxx: " ,"message received from topic:\(topic) and message: \(message)")
-    //            myLabel.text = "\(message).\nfrom topic: \(topic)"
-            }
-    
-        }
-    
-        func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopic topic: String)
-        {
-            print("xxx: " ,"subscribed")
-    //        myLabel.text = "subscribed to \(topic)"
-        }
-    
-        func mqtt(_ mqtt: CocoaMQTT, didUnsubscribeTopic topic: String)
-        {
-    
-        }
-    
-        func mqttDidPing(_ mqtt: CocoaMQTT)
-        {
-    
-        }
-    
-        func mqttDidReceivePong(_ mqtt: CocoaMQTT)
-        {
-    
-        }
-    
-        func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?)
-        {
-            print("xxx: " ,"dissconnenected")
-            print(err.debugDescription)
-    //        myLabel.text = "disconnected\n\(err.debugDescription)"
-            mqtt.connect()
-            
-        }
 
 }
 

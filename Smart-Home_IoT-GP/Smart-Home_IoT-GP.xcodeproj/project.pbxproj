@@ -22,6 +22,7 @@
 		B84E30172018BCA00095B74F /* HomeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84E30162018BCA00095B74F /* HomeParser.swift */; };
 		B84E30192018BCB60095B74F /* UserParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84E30182018BCB60095B74F /* UserParser.swift */; };
 		B84E301B2018BCC30095B74F /* LogParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84E301A2018BCC30095B74F /* LogParser.swift */; };
+		B84E301F20190D3B0095B74F /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84E301E20190D3B0095B74F /* SignupVC.swift */; };
 		B84E64482017AE6A009198EE /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84E64472017AE6A009198EE /* HomeVC.swift */; };
 		B8D0A0A72010FE25003778CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D0A0A62010FE25003778CB /* AppDelegate.swift */; };
 		B8D0A0A92010FE25003778CB /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D0A0A82010FE25003778CB /* LoginVC.swift */; };
@@ -51,6 +52,7 @@
 		B84E30162018BCA00095B74F /* HomeParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeParser.swift; sourceTree = "<group>"; };
 		B84E30182018BCB60095B74F /* UserParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserParser.swift; sourceTree = "<group>"; };
 		B84E301A2018BCC30095B74F /* LogParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogParser.swift; sourceTree = "<group>"; };
+		B84E301E20190D3B0095B74F /* SignupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
 		B84E64472017AE6A009198EE /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		B8D0A0A32010FE25003778CB /* Smart-Home_IoT-GP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Smart-Home_IoT-GP.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8D0A0A62010FE25003778CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			children = (
 				B8D0A0A82010FE25003778CB /* LoginVC.swift */,
 				B84E64472017AE6A009198EE /* HomeVC.swift */,
+				B84E301E20190D3B0095B74F /* SignupVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				B84E30112018BC650095B74F /* LogServices.swift in Sources */,
 				B82BBAF4201119350090BBE3 /* Home.swift in Sources */,
 				B84E300B2018BC230095B74F /* DeviceServices.swift in Sources */,
+				B84E301F20190D3B0095B74F /* SignupVC.swift in Sources */,
 				B84E30152018BC8F0095B74F /* DeviceParser.swift in Sources */,
 				B84E30072018BB400095B74F /* Log.swift in Sources */,
 				B82BBAF2201119350090BBE3 /* Device.swift in Sources */,

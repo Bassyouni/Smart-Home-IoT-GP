@@ -85,6 +85,18 @@ class Device
     }
     
     
+    //MARK:- public functions
+    public func addLog(log: Log)
+    {
+        _logs.append(log)
+    }
+    
+    public func getAllLogs() -> [Log]
+    {
+        return _logs
+    }
+    
+    
     //MARK:- public varibales
     public var id: String {
         set {_id = newValue}
@@ -114,18 +126,6 @@ class Device
     public var home: Home {
         set {_home = newValue}
         get {return _home}
-    }
-    
-    
-    //MARK:- public functions
-    public func addLog(log: Log)
-    {
-        _logs.append(log)
-    }
-    
-    public func getAllLogs() -> [Log]
-    {
-        return _logs
     }
     
 }

@@ -47,23 +47,6 @@ class Home
     }
    
     
-    //MARK:- public varibales
-    public var id: String {
-        set {_id = newValue}
-        get {return _id}
-    }
-    
-    public var name: String {
-        set {_name = newValue}
-        get {return _name}
-    }
-    
-    public var address: String {
-        set {_address = newValue}
-        get {return _address}
-    }
-    
-    
     //MARK:- public functions
     public func addDevice(device: Device)
     {
@@ -84,6 +67,22 @@ class Home
     {
         return _users
     }
-
     
+    
+    //MARK:- public varibales
+    public var id: String {
+        set {_id = newValue}
+        get {return _id}
+    }
+    
+    public var name: String {
+        set {_name = newValue}
+        get {return _name}
+    }
+    
+    public var address: String {
+        set {_address = newValue}
+        get {return _address}
+    }
+
 }
