@@ -13,7 +13,10 @@ class Device extends Eloquent
   ];
 
 
-
+  public function logs()
+  {
+    return $this->embedsMany("App\Log");
+  }
 
 
 }

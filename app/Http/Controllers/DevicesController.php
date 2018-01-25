@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Device;
+use App\Home;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class DevicesController extends Controller
@@ -39,6 +40,11 @@ class DevicesController extends Controller
     }
 
   }
+
+
+
+
+
 
 
 

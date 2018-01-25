@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Home;
 use App\Device;
+use App\Log;
 use App\User;
 
 class HomesController extends Controller
@@ -199,6 +200,69 @@ class HomesController extends Controller
         return response()->json(["status" => "failure", "error" =>  "Can't find Home with given id"]);
       }
     }
+
+
+
+    public function addLogToDevice($homeId, $deviceId, $command)
+    {
+      try
+      {
+        $home = Home::findOrFail($homeId);
+        $device = $home->devices()->where("id", "=", $deviceId)->first();
+        if($device)
+        {
+          $log = new Log();
+          $log->command = $command;
+          $device->logs()->save($log);
+          return response()->json(["status" => "success"]);
+        }
+        return response()->json(["status" => "failure", "error" =>  "Can't find Device with given id"]);
+
+      }
+      catch (ModelNotFoundException $e)
+      {
+        return response()->json(["status" => "failure", "error" =>  "Can't find Home with given id"]);
+      }
+    }
+
+
+
+    public function getDeviceLogs($homeId, $deviceId)
+    {
+      try
+      {
+        $home = Home::findOrFail($homeId);
+        $device = $home->devices()->where("id", "=", $deviceId)->first();
+        if($device)
+        {
+          $logs = $device->logs()->get();
+
+          return response()->json(["response" => $logs, "status" => "success"]);
+        }
+        return response()->json(["status" => "failure", "error" =>  "Can't find Device with given id"]);
+
+      }
+      catch (ModelNotFoundException $e)
+      {
+        return response()->json(["status" => "failure", "error" =>  "Can't find Home with given id"]);
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

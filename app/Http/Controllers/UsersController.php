@@ -63,11 +63,11 @@ class UsersController extends Controller
       return response()->json(["response" => $user, "status" => "success"]);
     }
 
-    public function addHome(Request $request)
+    public function addHome($userId, Request $request)
     {
         try
         {
-          $user = User::findOrFail($request->userId);
+          $user = User::findOrFail($userId);
           if($request->has("homeName") && $request->has("homeAddress"))
           {
             $newHome = new Home();
@@ -75,6 +75,7 @@ class UsersController extends Controller
             $newHome->address = $request->homeAddress;
             $newHome->save();
             $newHome->topic = Hash::make($newHome->id);
+            $newHome->save();
             $user->homes()->attach($newHome->id);
             return response()->json(["response" => $newHome, "status" => "success"]);
           }
@@ -101,6 +102,51 @@ class UsersController extends Controller
 
     }
 
+    public function updateUser($userId, Request $request)
+    {
+      try
+      {
+
+        if($request->has("name") || $request->has("birthDate") || $request->has("password") || $request->has("confirmPassword"))
+        {
+          $user = User::findOrFail($userId);
+          if($request->has("name"))
+          {
+            $user->name = $request->name;
+          }
+
+          if($request->has("birthDate"))
+          {
+            $user->birthDate = $request->birthDate;
+          }
+
+          if($request->has("password") && $request->has("confirmPassword"))
+          {
+            if($request->password == $request->confirmPassword)
+            {
+              $user->password = Hash::make($request->password);
+            }
+            else
+            {
+                return response()->json(["status" => "failure", "error" => "Password and Confirm password don't match"]);
+            }
+          }
+          else
+          {
+            return response()->json(["status" => "failure", "error" => "Password and Confirm password don't match"]);
+          }
+          $user->save();
+          return response()->json(["response" => $user, "status" => "success"]);
+
+        }
+
+        return response()->json(["status" => "failure", "error" => "Parameters are missing or Invalid Parameter names."]);
+      }
+      catch (ModelNotFoundException $e)
+      {
+        return response()->json(["status" => "failure", "error" => "Can't find User with given id"]);
+      }
+    }
 
 
 

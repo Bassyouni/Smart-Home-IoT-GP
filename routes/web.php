@@ -18,9 +18,10 @@ Route::prefix('api')->group(function () {
 Route::get("users/get", "UsersController@getAllUsers");
 Route::get("users/get/{userId}", "UsersController@getUserById");
 Route::post("users/create", "UsersController@createUser");
-Route::post("users/add-home", "UsersController@addHome");
+Route::post("users/add-home/{userId}", "UsersController@addHome");
 Route::post("users/auth/signup", "UsersController@signUp");
 Route::post("users/auth/login", "UsersController@login");
+Route::post("users/update/{userId}", "UsersController@updateUser");
 
 
 
@@ -31,6 +32,9 @@ Route::get("homes/remove-device/{homeId}/{deviceId}", "HomesController@removeDev
 Route::get("homes/add-user/{homeId}/{userId}", "HomesController@addUser");
 Route::get("homes/remove-user/{homeId}/{userId}", "HomesController@removeUser");
 Route::get("homes/delete/{homeId}", "HomesController@deleteHome");
+Route::get("homes/add-log-to-device/{homeId}/{deviceId}/{command}", "HomesController@addLogToDevice");
+Route::get("homes/get-device-logs/{homeId}/{deviceId}", "HomesController@getDeviceLogs");
+
 Route::post("homes/create", "HomesController@createHome");
 Route::post("homes/add-device/{homeId}", "HomesController@addDevice");
 Route::post("homes/update/{homeId}", "HomesController@updateHome");
@@ -39,7 +43,7 @@ Route::post("homes/update-device/{homeId}/{deviceId}", "HomesController@updateDe
 
 //................. Devices Functions .....................//
 Route::get("devices/delete/{deviceId}", "DevicesController@deleteDevice");
-
+Route::get("devices/get/{deviceId}", "DevicesController@getDeviceById");
 
 
 
