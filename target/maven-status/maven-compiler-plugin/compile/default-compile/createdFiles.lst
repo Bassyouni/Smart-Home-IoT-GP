@@ -1,0 +1,8 @@
+Controllers\HomeController.class
+com\smarthomesiot\desktop\UserParser.class
+com\smarthomesiot\desktop\ParameterStringBuilder.class
+Controllers\FXMLLoginController.class
+com\smarthomesiot\desktop\JSONParser.class
+com\smarthomesiot\desktop\User.class
+com\smarthomesiot\desktop\UsersService.class
+com\smarthomesiot\desktop\MainApp.class
