@@ -1,4 +1,4 @@
-package com.smarthomesiot.desktop;
+package models;
 
 
 public class User 

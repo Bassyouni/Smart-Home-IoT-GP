@@ -8,7 +8,7 @@ package Controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import com.smarthomesiot.desktop.UsersService;
+import services.UsersService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;

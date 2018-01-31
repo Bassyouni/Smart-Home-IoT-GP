@@ -2,6 +2,7 @@ package com.smarthomesiot.desktop;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Map;
  * @author Mahmoud Mokhtar
  */
 public class ParameterStringBuilder 
-{
+{   
     public static String getParamsString(Map<String, String> params) 
       throws UnsupportedEncodingException{
         StringBuilder result = new StringBuilder();
