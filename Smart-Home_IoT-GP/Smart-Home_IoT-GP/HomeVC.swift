@@ -14,26 +14,13 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let mqtt = Mqtt()
+        let mqtt = Mqtt(url: "54.244.99.193", port: 1883)
         mqtt.delegate = self
-        mqtt.connect()
+        mqtt.keepAlive = 90
+        _ = mqtt.connect()
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -94,12 +81,12 @@ extension HomeVC : CocoaMQTTDelegate
     
     func mqttDidPing(_ mqtt: CocoaMQTT)
     {
-        
+        print("ping")
     }
     
     func mqttDidReceivePong(_ mqtt: CocoaMQTT)
     {
-        
+        print("pong")
     }
     
     func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?)

@@ -88,23 +88,20 @@ class LoginVC: UIViewController  {
         }
         else if let email = emailTextField.text , let password = passwordTextField.text
         {
-            let url = URL(string: "")
-            
-            let parameters = ["email" : email , "password" : password]
-            
-            Alamofire.request(url!, method: .post, parameters: parameters).responseJSON { response in
-                if let dic = response.result.value as? Dictionary<String ,AnyObject>
+            UserServices.login(email: email, password: password, downloadCompleted: { (status, user) in
+                if status == "success"
                 {
-                    if let sucsess = dic["sucsess"] as? Bool , sucsess == true
-                    {
-                        print("woohooo")
-                    }
-                    else
-                    {
-                        print("damn braaaah")
-                    }
+                    print("success")
+                    print(user.name)
+                    print(user.birthDate)
+                    
                 }
-            }
+                else
+                {
+                    print("error in login")
+                }
+            })
+            
         }
         
         
@@ -115,6 +112,18 @@ class LoginVC: UIViewController  {
     @objc private func handleTap()
     {
        self.view.endEditing(true)
+    }
+    
+    private func goToMainVC()
+    {
+        view.endEditing(true)
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        let mainVCNav = storyboard?.instantiateViewController(withIdentifier: "MainVC")
+        let sideMenuVC = storyboard?.instantiateViewController(withIdentifier: "SideVC")
+        
+        let containerVC = MFSideMenuContainerViewController.container(withCenter: mainVCNav , leftMenuViewController: sideMenuVC, rightMenuViewController: nil)
+        
+        delegate?.window?.rootViewController = containerVC
     }
 
 }

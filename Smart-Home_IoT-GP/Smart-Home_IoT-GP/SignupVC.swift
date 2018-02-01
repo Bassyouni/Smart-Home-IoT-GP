@@ -53,6 +53,16 @@ class SignupVC: UIViewController {
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         self.view.addGestureRecognizer(tap)
+        
+        datePicker.datePickerMode = .date
+        datePicker.maximumDate = Date()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat =  "dd-mm-yyy"
+        
+        let date = dateFormatter.date(from: "13-02-1996")
+        
+        datePicker.date = date!
        
     }
 
@@ -79,12 +89,23 @@ class SignupVC: UIViewController {
         let name = nameTextField.text!
         let email = emailTextField.text!
         let password = passwordTextField.text!
-        let confrimPassword = confirmPasswordTextField.text!
-        let dateofBirth = dateBtn.titleLabel?.text
-        
-        UserServices.signUp(name: name, email: email, password: password, confirmPassword: confrimPassword, dateOfBirth: dateofBirth!){ status,user in
-            //Todo if sucsessful go somewere
-            //Todo else show error
+        let confirmPassword = confirmPasswordTextField.text!
+        var dateOfBirth = dateBtn.titleLabel?.text!
+        dateOfBirth = dateOfBirth?.replacingOccurrences(of: " ", with: "-")
+
+        SignUpBtn.isEnabled = false
+        UserServices.signUp(name: name, email: email, password: password, confirmPassword: confirmPassword, dateOfBirth: dateOfBirth!){ status,user in
+            if status == "success"
+            {
+                print("success signup")
+                print(user.name)
+                print(user.birthDate)
+            }
+            else
+            {
+                print("error signup")
+                self.SignUpBtn.isEnabled = true
+            }
         
         }
     }
@@ -93,7 +114,7 @@ class SignupVC: UIViewController {
     {
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MM yyyy"
+        dateFormatter.dateFormat = "dd-MM-yyyy"
         let selectedDate = dateFormatter.string(from: datePicker.date)
         print(selectedDate)
         

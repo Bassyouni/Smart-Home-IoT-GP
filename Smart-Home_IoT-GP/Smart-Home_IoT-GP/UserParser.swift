@@ -14,15 +14,19 @@ class UserParser : JsonParserWarapper
     static func getOneObject<T>(dictionary: Dictionary<String, AnyObject>) -> T {
         let user = User()
         
-        if let id = dictionary["id"] as? String
+        if let name = dictionary["name"] as? String
+        {
+            user.name = name
+        }
+        if let id = dictionary["_id"] as? String
         {
             user.id = id
         }
-        
         if let birthDate = dictionary["birthDate"] as? String
         {
             user.birthDate = birthDate
         }
+        
         
         return user as! T
         

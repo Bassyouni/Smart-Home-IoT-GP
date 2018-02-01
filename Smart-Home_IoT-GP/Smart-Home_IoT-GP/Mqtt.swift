@@ -24,6 +24,7 @@ class Mqtt
         {
             let clientID = "CocoaMQTT-" + String(ProcessInfo().processIdentifier)
             Mqtt._mqtt = CocoaMQTT(clientID: clientID, host: url, port: port)
+            Mqtt._mqtt.allowUntrustCACertificate = true
         }
         
 
@@ -107,6 +108,11 @@ class Mqtt
     var delegate: CocoaMQTTDelegate {
         set { Mqtt._mqtt.delegate = newValue }
         get { return Mqtt._mqtt.delegate! }
+    }
+    
+    var keepAlive: UInt16 {
+        set { Mqtt._mqtt.keepAlive = newValue }
+        get { return Mqtt._mqtt.keepAlive }
     }
 
 }
