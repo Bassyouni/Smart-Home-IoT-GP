@@ -7,96 +7,75 @@
 //
 
 import UIKit
-import CocoaMQTT
 
 class HomeVC: UIViewController {
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    var homes = [Home]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let mqtt = Mqtt(url: "54.244.99.193", port: 1883)
-        mqtt.delegate = self
-        mqtt.keepAlive = 90
-        _ = mqtt.connect()
+        
+        print(Date(timeIntervalSince1970: 1516912324000))
+        print(Date(timeIntervalSinceNow: 1516912324000))
+        print(Date(timeIntervalSinceReferenceDate: 1516912324000))
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        let user  = User()
+        user.id = "5a6867fe90786547d40078e2"
+        
+        HomeServices.getAllHomes(for: user)
+        { (status, homes) in
+            
+            if status == "success"
+            {
+                self.homes = homes
+                self.tableView.reloadData()
+            }
+            else
+            {
+                let alert = UIAlertController(title: "Error", message: status, preferredStyle: .alert)
+                let action = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
+            }
+            
+        }
         
     }
 
 
 }
 
-extension HomeVC : CocoaMQTTDelegate
+extension HomeVC: UITableViewDelegate , UITableViewDataSource
 {
-    func mqtt(_ mqtt: CocoaMQTT, didConnect host: String, port: Int)
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        print("yyy: " ,"connected")
-        //        myLabel.text = "Connected form did connect"
-        
+        return homes.count
     }
     
-    func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        //subscribe after acknwledgment
-        print("connection Acknloedged")
-        print(mqtt.subscribe("bass"))
-    }
-    
-    func mqtt(_ mqtt: CocoaMQTT, didPublishMessage message: CocoaMQTTMessage, id: UInt16)
-    {
-        //        let topic = message.topic
-        //        if let message = message.string
-        //        {
-        //            print("xxx: " ,"message Published: \(message)")
-        //            myLabel.text = "message Published: \(message)\nin topic \(topic)"
-        //
-        //        }
-        
-    }
-    
-    func mqtt(_ mqtt: CocoaMQTT, didPublishAck id: UInt16)
-    {
-        print("publish Acknloedged")
-    }
-    
-    func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16 )
-    {
-        let topic = message.topic
-        if let message = message.string
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "HomeVCTableViewCell") as? HomeVCTableViewCell
         {
-            print("yyy: " ,"message received from topic:\(topic) and message: \(message)")
-            //            myLabel.text = "\(message).\nfrom topic: \(topic)"
+            cell.configureCell(home: homes[indexPath.row], imageNum: indexPath.row % 3)
+            return cell
+        }
+        else
+        {
+            return UITableViewCell()
         }
         
     }
     
-    func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopic topic: String)
-    {
-        print("yyy: " ,"subscribed")
-        //        myLabel.text = "subscribed to \(topic)"
-    }
-    
-    func mqtt(_ mqtt: CocoaMQTT, didUnsubscribeTopic topic: String)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         
     }
     
-    func mqttDidPing(_ mqtt: CocoaMQTT)
-    {
-        print("ping")
-    }
-    
-    func mqttDidReceivePong(_ mqtt: CocoaMQTT)
-    {
-        print("pong")
-    }
-    
-    func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?)
-    {
-        print("yyy: " ,"dissconnenected")
-        print(err.debugDescription)
-        //        myLabel.text = "disconnected\n\(err.debugDescription)"
-        mqtt.connect()
-        
-    }
     
 }
 

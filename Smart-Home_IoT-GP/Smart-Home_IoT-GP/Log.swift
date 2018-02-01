@@ -13,6 +13,7 @@ class Log
     //MARK:- private variables
     private var _id: String!
     private var _timeStamp: String!
+    private var _command: String!
     private var _device: Device!
     
     
@@ -21,6 +22,7 @@ class Log
     {
         _id = ""
         _timeStamp = ""
+        _command = ""
         _device = Device()
     }
     
@@ -48,5 +50,10 @@ class Log
     var device: Device {
         set { _device = newValue }
         get { return _device }
+    }
+    
+    var command: String {
+        set { _command = newValue }
+        get { return _command }
     }
 }

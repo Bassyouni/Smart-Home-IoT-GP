@@ -49,10 +49,16 @@ class User
         _homes.append(home)
     }
     
+    public func addHomes(homes: [Home])
+    {
+        _homes.append(contentsOf: homes)
+    }
+    
     public func getAllHomes() -> [Home]
     {
         return _homes
     }
+    
     
     
     //MARK:- public varibles

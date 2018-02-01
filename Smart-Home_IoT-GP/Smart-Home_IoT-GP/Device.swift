@@ -91,6 +91,11 @@ class Device
         _logs.append(log)
     }
     
+    public func addLogs(logs: [Log])
+    {
+        _logs.append(contentsOf: logs)
+    }
+    
     public func getAllLogs() -> [Log]
     {
         return _logs

@@ -14,6 +14,7 @@ class Home
     private var _id: String!
     private var _name: String!
     private var _address: String!
+    private var _topic: String!
     private var _users: [User]!
     private var _devices: [Device]!
  
@@ -26,6 +27,7 @@ class Home
         _address = ""
         _users = [User]()
         _devices = [Device]()
+        _topic = ""
     }
     
     init(id: String, name: String, address: String)
@@ -83,6 +85,11 @@ class Home
     public var address: String {
         set {_address = newValue}
         get {return _address}
+    }
+    
+    public var topic: String {
+        set { _topic = newValue }
+        get { return _topic }
     }
 
 }

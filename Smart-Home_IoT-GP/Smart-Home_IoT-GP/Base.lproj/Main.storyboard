@@ -18,7 +18,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--HomeVC-->
+        <!--Homes-->
         <scene sceneID="IYE-Ha-u8f">
             <objects>
                 <viewController id="ih2-Pj-tiM" customClass="HomeVC" customModule="Smart_Home_IoT_GP" customModuleProvider="target" sceneMemberID="viewController">
@@ -29,12 +29,61 @@
                     <view key="view" contentMode="scaleToFill" id="Gfr-Nb-mD1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zhi-ut-JWT">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeVCTableViewCell" rowHeight="150" id="2Hg-Ug-rd9" customClass="HomeVCTableViewCell" customModule="Smart_Home_IoT_GP" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="150"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Hg-Ug-rd9" id="YR1-Td-CAA">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8MD-da-Lth">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tagmo3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GmD-kh-pUb">
+                                                    <rect key="frame" x="133" y="46" width="109.5" height="58.5"/>
+                                                    <fontDescription key="fontDescription" name="SavoyeLetPlain" family="Savoye LET" pointSize="49"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="GmD-kh-pUb" firstAttribute="centerX" secondItem="YR1-Td-CAA" secondAttribute="centerX" id="4fk-eI-Mbk"/>
+                                                <constraint firstItem="GmD-kh-pUb" firstAttribute="centerY" secondItem="YR1-Td-CAA" secondAttribute="centerY" id="ErN-Jf-J1X"/>
+                                                <constraint firstAttribute="trailing" secondItem="8MD-da-Lth" secondAttribute="trailing" id="MSR-b9-Po9"/>
+                                                <constraint firstAttribute="bottom" secondItem="8MD-da-Lth" secondAttribute="bottom" id="ZOR-45-9rp"/>
+                                                <constraint firstItem="8MD-da-Lth" firstAttribute="leading" secondItem="YR1-Td-CAA" secondAttribute="leading" id="rNX-Di-zZl"/>
+                                                <constraint firstItem="8MD-da-Lth" firstAttribute="top" secondItem="YR1-Td-CAA" secondAttribute="top" id="sPv-2C-Ho9"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="homeImage" destination="8MD-da-Lth" id="vNZ-kc-Ivv"/>
+                                            <outlet property="homeNameLabel" destination="GmD-kh-pUb" id="Lni-5Z-vyb"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Hsm-en-Ahl" firstAttribute="top" secondItem="zhi-ut-JWT" secondAttribute="bottom" id="NeF-xy-O77"/>
+                            <constraint firstItem="zhi-ut-JWT" firstAttribute="top" secondItem="Gfr-Nb-mD1" secondAttribute="top" id="VY1-Vk-72B"/>
+                            <constraint firstItem="zhi-ut-JWT" firstAttribute="leading" secondItem="Gfr-Nb-mD1" secondAttribute="leading" id="mzN-fw-FJf"/>
+                            <constraint firstAttribute="trailing" secondItem="zhi-ut-JWT" secondAttribute="trailing" id="r7h-KH-bUs"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Homes" id="5ac-d0-65y"/>
+                    <connections>
+                        <outlet property="tableView" destination="zhi-ut-JWT" id="Xcs-cD-5Fw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J43-JZ-AyV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-923" y="104"/>
+            <point key="canvasLocation" x="2581.5999999999999" y="172.26386806596702"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="tne-QT-ifu">
@@ -479,10 +528,26 @@
             </objects>
             <point key="canvasLocation" x="768.79999999999995" y="121.88905547226388"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qPH-fz-M00">
+            <objects>
+                <navigationController storyboardIdentifier="HomeVC" id="1yL-QI-QRE" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Je4-A5-U6e">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ih2-Pj-tiM" kind="relationship" relationship="rootViewController" id="3b0-Fa-PJ4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mtR-Ha-sEy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1565" y="146"/>
+        </scene>
         <!--Side MenuVC-->
         <scene sceneID="WKx-hP-gqd">
             <objects>
-                <viewController storyboardIdentifier="SideViewController" id="dSb-0s-hFe" customClass="SideMenuVC" customModule="Smart_Home_IoT_GP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SideVC" id="dSb-0s-hFe" customClass="SideMenuVC" customModule="Smart_Home_IoT_GP" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rnq-DU-V6f"/>
                         <viewControllerLayoutGuide type="bottom" id="2Ra-uK-4mO"/>
@@ -587,7 +652,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="imgProfile" destination="cxU-Hq-gFG" id="0gK-BU-Og6"/>
                         <outlet property="lblName" destination="ZaU-VB-IIp" id="9Tx-7I-JMx"/>
                         <outlet property="lblWelcome" destination="2ce-hp-tkV" id="4Sa-r6-rxR"/>
                         <outlet property="tableMenu" destination="Tnm-Ft-WMG" id="DNQ-vV-IGx"/>

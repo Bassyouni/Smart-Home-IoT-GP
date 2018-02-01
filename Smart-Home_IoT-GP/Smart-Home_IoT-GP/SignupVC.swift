@@ -97,14 +97,12 @@ class SignupVC: UIViewController {
         UserServices.signUp(name: name, email: email, password: password, confirmPassword: confirmPassword, dateOfBirth: dateOfBirth!){ status,user in
             if status == "success"
             {
-                print("success signup")
-                print(user.name)
-                print(user.birthDate)
+                currentUser = user
+                self.goToHomeVC()
             }
             else
             {
-                print("error signup")
-                self.SignUpBtn.isEnabled = true
+                self.showErrorAlert(message: status)
             }
         
         }
@@ -140,12 +138,24 @@ class SignupVC: UIViewController {
         self.view.endEditing(true)
     }
     
-    private func showAlert(message: String)
+    func showErrorAlert(message: String)
     {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.alert)
         let action = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil)
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func goToHomeVC()
+    {
+        view.endEditing(true)
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        let mainVCNav = storyboard?.instantiateViewController(withIdentifier: "HomeVC")
+        let sideMenuVC = storyboard?.instantiateViewController(withIdentifier: "SideVC")
+        
+        let containerVC = MFSideMenuContainerViewController.container(withCenter: mainVCNav , leftMenuViewController: sideMenuVC, rightMenuViewController: nil)
+        
+        delegate?.window?.rootViewController = containerVC
     }
     
     
@@ -154,42 +164,42 @@ class SignupVC: UIViewController {
     {
         if isNameEditingFirstTime && isEmailEditingFirstTime && isPasswordEditingFirstTime && isConfirmPasswordEditingFirstTime
         {
-            showAlert(message: "please fill in your information")
+            showErrorAlert(message: "please fill in your information")
             return false
         }
         if nameTextField.text == ""
         {
-            showAlert(message: "please fill in your name")
+            showErrorAlert(message: "please fill in your name")
             return false
         }
         if emailTextField.text == ""
         {
-            showAlert(message: "please fill in your email")
+            showErrorAlert(message: "please fill in your email")
             return false
         }
         if passwordTextField.text == ""
         {
-            showAlert(message: "please fill in your password")
+            showErrorAlert(message: "please fill in your password")
             return false
         }
         if confirmPasswordTextField.text == ""
         {
-            showAlert(message: "please fill in confrim password")
+            showErrorAlert(message: "please fill in confrim password")
             return false
         }
         if !isValidEmail(testStr: emailTextField.text!)
         {
-            showAlert(message: "email is not valid")
+            showErrorAlert(message: "email is not valid")
             return false
         }
         if !isvalidPassword(value: passwordTextField.text!)
         {
-            showAlert(message: "please make sure the password is more than 7 characters")
+            showErrorAlert(message: "please make sure the password is more than 7 characters")
             return false
         }
         if !isPasswordSame(password: passwordTextField.text!, confirmPassword: confirmPasswordTextField.text!)
         {
-            showAlert(message: "Passwords don't match")
+            showErrorAlert(message: "Passwords don't match")
             return false
         }
         

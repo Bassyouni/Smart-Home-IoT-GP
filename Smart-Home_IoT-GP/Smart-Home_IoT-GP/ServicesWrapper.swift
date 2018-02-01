@@ -10,5 +10,9 @@ import Foundation
 
 class ServicesWrapper
 {
-    public typealias DownloadCompleted = (String , User) -> ()
+    public static let baseURL = "http://192.168.1.8:8000"
+    
+    public typealias DownloadCompletedForUser = (String , User) -> ()
+    public typealias DownloadCompletedForHome = (String , Home) -> ()
+    public typealias DownloadCompletedForHomes = (String , [Home]) -> ()
 }

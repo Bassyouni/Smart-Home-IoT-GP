@@ -79,6 +79,8 @@ class LoginVC: UIViewController  {
     @IBAction func loginPressed(_ sender: Any)
     {
         
+        goToHomeVC()
+        
         if emailTextField.text == "" || passwordTextField.text == ""
         {
             let alert = UIAlertController(title: "Error", message: "please Fill Both Fields", preferredStyle: .alert)
@@ -91,14 +93,12 @@ class LoginVC: UIViewController  {
             UserServices.login(email: email, password: password, downloadCompleted: { (status, user) in
                 if status == "success"
                 {
-                    print("success")
-                    print(user.name)
-                    print(user.birthDate)
-                    
+                    currentUser = user
+                    self.goToHomeVC()
                 }
                 else
                 {
-                    print("error in login")
+                    self.present(showAlert(message: status), animated: true, completion: nil)
                 }
             })
             
@@ -114,11 +114,11 @@ class LoginVC: UIViewController  {
        self.view.endEditing(true)
     }
     
-    private func goToMainVC()
+    private func goToHomeVC()
     {
         view.endEditing(true)
         let delegate = UIApplication.shared.delegate as? AppDelegate
-        let mainVCNav = storyboard?.instantiateViewController(withIdentifier: "MainVC")
+        let mainVCNav = storyboard?.instantiateViewController(withIdentifier: "HomeVC")
         let sideMenuVC = storyboard?.instantiateViewController(withIdentifier: "SideVC")
         
         let containerVC = MFSideMenuContainerViewController.container(withCenter: mainVCNav , leftMenuViewController: sideMenuVC, rightMenuViewController: nil)

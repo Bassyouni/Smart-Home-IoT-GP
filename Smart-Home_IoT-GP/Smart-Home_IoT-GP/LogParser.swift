@@ -17,8 +17,24 @@ class LogParser : JsonParserWarapper
         
     }
     
-    public static func getArrayOfObjects<T>(dictionary: Dictionary<String, AnyObject>) -> T {
-        let array = [User]()
-        return array as! T
+    public static func getArrayOfObjects<T>(array: [AnyObject]) -> T {
+        var returnedArray = [Log]()
+        
+        for object in array
+        {
+            var log = Log()
+            
+            if let dictionary = object as? Dictionary<String , AnyObject>
+            {
+                if let command = dictionary["command"] as? String
+                {
+                    log.command = command
+                }
+            }
+            
+            returnedArray.append(log)
+        }
+        
+        return returnedArray as! T
     }
 }

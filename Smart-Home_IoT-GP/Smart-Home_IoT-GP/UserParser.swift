@@ -32,8 +32,31 @@ class UserParser : JsonParserWarapper
         
     }
     
-    public static func getArrayOfObjects<T>(dictionary: Dictionary<String, AnyObject>) -> T {
+    public static func getArrayOfObjects<T>(array: [AnyObject]) -> T {
         let array = [User]()
         return array as! T
+    }
+    
+    public static func getHome(dictionary: Dictionary<String, AnyObject>) -> Home
+    {
+        let home = Home()
+        
+        if let name = dictionary["name"] as? String
+        {
+            home.name = name
+        }
+        if let address = dictionary["address"] as? String
+        {
+            home.address = address
+        }
+        if let id = dictionary["_id"] as? String
+        {
+            home.id = id
+        }
+        if let topic = dictionary["topic"] as? String
+        {
+            home.topic = topic
+        }
+        return home
     }
 }
