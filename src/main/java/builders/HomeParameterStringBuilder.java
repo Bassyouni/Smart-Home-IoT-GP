@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.smarthomesiot.desktop;
+package builders;
 
 import java.util.HashMap;
 
@@ -12,8 +12,9 @@ import java.util.HashMap;
  * @author cdc
  */
 public class HomeParameterStringBuilder {
-    private static final String HOME_NAME = "";
-    private static final String HOME_ADDRESS = "";
+    private static final String HOME_NAME = "name";
+    private static final String HOME_ADDRESS = "adress";
+    private static final String TOPIC = "topic";
     
     public static HashMap<String, String> setupAddHomeRequestParameters(String homeName, String homeAddress){
         HashMap<String, String> parameters = new HashMap<>();

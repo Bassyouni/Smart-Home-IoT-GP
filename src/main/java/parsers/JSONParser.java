@@ -5,6 +5,7 @@
  */
 package parsers;
 
+import com.google.gson.Gson;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +15,8 @@ import java.util.ArrayList;
  */
 public interface JSONParser<T> 
 {
- 
+    static final Gson gson = new Gson();
+    
     public  ArrayList<T> getArrayOfObjects(String jsonText);
     public T getObject(String jsonText);
     

@@ -1,28 +1,43 @@
 package models;
 
+import java.util.ArrayList;
+
 
 public class User 
 {
-    private String _id;
+    private String id;
     private String name;
     private String birthDate;
+    private ArrayList<Home> homes;
     
+    public User(){
+        this.id = null;
+        this.birthDate = null;
+        this.name = null;
+        homes = new ArrayList<>();
+    }
+
+    public User(String name, String birthDate) {
+        this.id = null;
+        this.name = name;
+        this.birthDate = birthDate;
+        this.homes = new ArrayList<>();
+    }
    
     public User(String id, String name, String birthDate)
     {
-        this._id = id;
+        this.id = id;
         this.birthDate = birthDate;
         this.name = name;
+        homes = new ArrayList<>();
     }
-    
-    public User(){};
 
     public String getId() {
-        return _id;
+        return id;
     }
 
     public void setId(String _id) {
-        this._id = _id;
+        this.id = _id;
     }
 
     public String getName() {
@@ -45,7 +60,7 @@ public class User
 
     @Override
     public String toString() {
-        return "User{" + "_id=" + _id + ", name=" + name + ", birthDate=" + birthDate + '}';
+        return "User{" + "_id=" + id + ", name=" + name + ", birthDate=" + birthDate + '}';
     }
     
     

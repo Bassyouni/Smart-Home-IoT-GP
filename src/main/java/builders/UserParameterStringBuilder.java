@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.smarthomesiot.desktop;
+package builders;
 
 import java.util.HashMap;
 
@@ -11,12 +11,12 @@ import java.util.HashMap;
  *
  * @author cdc
  */
-public class UserParameterStringBuilder extends ParameterStringBuilder{
-    private static final String NAME = "";
-    private static final String EMAIL = "";
-    private static final String BIRTH_DATE = "";
-    private static final String PASSWORD = "";
-    private static final String PASSWORD_CONFIRMATION = "";
+public class UserParameterStringBuilder {
+    private static final String NAME = "name";
+    private static final String EMAIL = "email";
+    private static final String BIRTH_DATE = "birth_date";
+    private static final String PASSWORD = "password";
+    private static final String PASSWORD_CONFIRMATION = "";// check with database creator
     
     public static  HashMap<String, String> setupUserLoginRequestParameters(String email, String password){
         // Create a map of paramters, keys must match the APIs documentation.

@@ -30,7 +30,6 @@ public class UserParser implements JSONParser<User>
     @Override
     public ArrayList<User> getArrayOfObjects(String jsonText) 
     {
-        Gson gson = new Gson();
         return null;
         
     }
@@ -38,7 +37,6 @@ public class UserParser implements JSONParser<User>
     @Override
     public User getObject(String jsonText) 
     {
-        Gson gson = new Gson();
         User user = gson.fromJson(jsonText, User.class);
         return user;
     }

@@ -28,12 +28,14 @@ public class HomeParser implements JSONParser<Home>{
     
     @Override
     public ArrayList<Home> getArrayOfObjects(String jsonText) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        ArrayList<Home> homes = new ArrayList<>();
+        homes = gson.fromJson(jsonText, homes.getClass());
+        return homes;
     }
 
     @Override
     public Home getObject(String jsonText) {
-        Gson gson = new Gson();
         Home home = gson.fromJson(jsonText, Home.class);
         return home;
     }
