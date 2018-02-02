@@ -24,6 +24,7 @@ class Mqtt
         {
             let clientID = "CocoaMQTT-" + String(ProcessInfo().processIdentifier)
             Mqtt._mqtt = CocoaMQTT(clientID: clientID, host: url, port: port)
+            Mqtt._mqtt.willMessage = CocoaMQTTWill(topic: "/will", message: "dieout")
             Mqtt._mqtt.allowUntrustCACertificate = true
         }
         

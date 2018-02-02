@@ -38,7 +38,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Hg-Ug-rd9" id="YR1-Td-CAA">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8MD-da-Lth">
@@ -84,6 +84,88 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J43-JZ-AyV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2581.5999999999999" y="172.26386806596702"/>
+        </scene>
+        <!--DevicesVC-->
+        <scene sceneID="PmN-ed-b2g">
+            <objects>
+                <viewController storyboardIdentifier="DevicesVC" id="T9D-Wl-ijb" customClass="DevicesVC" customModule="Smart_Home_IoT_GP" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uNm-hs-WHp"/>
+                        <viewControllerLayoutGuide type="bottom" id="9Ei-mu-cXq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0Jj-CE-sb9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="127" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nKD-FJ-pg9">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DeviceTableViewCell" rowHeight="127" id="EJ6-tT-c6d" customClass="DeviceTableViewCell" customModule="Smart_Home_IoT_GP" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="127"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EJ6-tT-c6d" id="JrC-vh-Y8p">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="127"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZ1-ry-44k">
+                                                    <rect key="frame" x="15" y="34.5" width="108" height="58.5"/>
+                                                    <fontDescription key="fontDescription" name="SavoyeLetPlain" family="Savoye LET" pointSize="49"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TZL-TN-KZY">
+                                                    <rect key="frame" x="298" y="48" width="51" height="31"/>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cZ1-ry-44k" firstAttribute="leading" secondItem="JrC-vh-Y8p" secondAttribute="leading" constant="15" id="1Sn-Gi-8mx"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="TZL-TN-KZY" secondAttribute="trailing" constant="20" id="OCn-JB-ubm"/>
+                                                <constraint firstItem="cZ1-ry-44k" firstAttribute="centerY" secondItem="JrC-vh-Y8p" secondAttribute="centerY" id="UxF-bL-B5a"/>
+                                                <constraint firstItem="TZL-TN-KZY" firstAttribute="centerY" secondItem="JrC-vh-Y8p" secondAttribute="centerY" id="quv-5H-rTC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="deviceNameLabel" destination="cZ1-ry-44k" id="fLD-NW-9lo"/>
+                                            <outlet property="toggleSwitch" destination="TZL-TN-KZY" id="2m5-m0-qFn"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nKD-FJ-pg9" firstAttribute="leading" secondItem="0Jj-CE-sb9" secondAttribute="leading" id="EOm-e6-3TE"/>
+                            <constraint firstItem="9Ei-mu-cXq" firstAttribute="top" secondItem="nKD-FJ-pg9" secondAttribute="bottom" id="Ell-oB-Dvg"/>
+                            <constraint firstAttribute="trailing" secondItem="nKD-FJ-pg9" secondAttribute="trailing" id="P8h-Fp-rWA"/>
+                            <constraint firstItem="nKD-FJ-pg9" firstAttribute="top" secondItem="0Jj-CE-sb9" secondAttribute="top" id="dyW-CK-NWt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="nKD-FJ-pg9" id="jFE-Bu-FlU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Stk-QG-tOM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3461.5999999999999" y="145.27736131934034"/>
+        </scene>
+        <!--Mqtt TestVC-->
+        <scene sceneID="UOW-8M-uxY">
+            <objects>
+                <viewController id="Mna-8F-H9A" customClass="MqttTestVC" customModule="Smart_Home_IoT_GP" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5AW-eh-jGG"/>
+                        <viewControllerLayoutGuide type="bottom" id="evd-bb-7lO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mQD-Z2-7cx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Z4-AU-fcg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1186" y="-746"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="tne-QT-ifu">

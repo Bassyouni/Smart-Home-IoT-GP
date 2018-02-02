@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0D12F7A1E11317AA67970F01 /* Pods_Smart_Home_IoT_GP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B43EA72AFFC1471E5F2DF18A /* Pods_Smart_Home_IoT_GP.framework */; };
+		5239BE4020248B1C002F7582 /* MqttTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239BE3F20248B1C002F7582 /* MqttTestVC.swift */; };
+		5239BE422024A22A002F7582 /* DevicesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239BE412024A22A002F7582 /* DevicesVC.swift */; };
+		5239BE442024ACEC002F7582 /* DeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239BE432024ACEC002F7582 /* DeviceTableViewCell.swift */; };
 		52D1F95A20237CAA007E5F0F /* MFSideMenuContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D1F95620237CAA007E5F0F /* MFSideMenuContainerViewController.m */; };
 		52D1F95B20237CAA007E5F0F /* MFSideMenuShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D1F95720237CAA007E5F0F /* MFSideMenuShadow.m */; };
 		52D1F95C20237CAA007E5F0F /* UIViewController+MFSideMenuAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D1F95920237CAA007E5F0F /* UIViewController+MFSideMenuAdditions.m */; };
@@ -46,6 +49,9 @@
 /* Begin PBXFileReference section */
 		2DD9C0D1489294849D2647FB /* Pods-Smart-Home_IoT-GP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smart-Home_IoT-GP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Smart-Home_IoT-GP/Pods-Smart-Home_IoT-GP.debug.xcconfig"; sourceTree = "<group>"; };
 		3AA2A727148146D47C7C289A /* Pods-Smart-Home_IoT-GP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smart-Home_IoT-GP.release.xcconfig"; path = "Pods/Target Support Files/Pods-Smart-Home_IoT-GP/Pods-Smart-Home_IoT-GP.release.xcconfig"; sourceTree = "<group>"; };
+		5239BE3F20248B1C002F7582 /* MqttTestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MqttTestVC.swift; sourceTree = "<group>"; };
+		5239BE412024A22A002F7582 /* DevicesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesVC.swift; sourceTree = "<group>"; };
+		5239BE432024ACEC002F7582 /* DeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTableViewCell.swift; sourceTree = "<group>"; };
 		52D1F95220237CA9007E5F0F /* Smart-Home_IoT-GP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Smart-Home_IoT-GP-Bridging-Header.h"; sourceTree = "<group>"; };
 		52D1F95320237CAA007E5F0F /* MFSideMenuShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSideMenuShadow.h; sourceTree = "<group>"; };
 		52D1F95420237CAA007E5F0F /* MFSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSideMenu.h; sourceTree = "<group>"; };
@@ -236,6 +242,8 @@
 				B8D0A0A82010FE25003778CB /* LoginVC.swift */,
 				B84E64472017AE6A009198EE /* HomeVC.swift */,
 				B84E301E20190D3B0095B74F /* SignupVC.swift */,
+				5239BE3F20248B1C002F7582 /* MqttTestVC.swift */,
+				5239BE412024A22A002F7582 /* DevicesVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -245,6 +253,7 @@
 			children = (
 				52D1F96620237E73007E5F0F /* SideMenuTableViewCell.swift */,
 				52D1F9692023C463007E5F0F /* HomeVCTableViewCell.swift */,
+				5239BE432024ACEC002F7582 /* DeviceTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -423,7 +432,9 @@
 				B8D0A0BE2010FF2D003778CB /* Mqtt.swift in Sources */,
 				52D1F95A20237CAA007E5F0F /* MFSideMenuContainerViewController.m in Sources */,
 				52D1F96C2023CAE1007E5F0F /* Constants.swift in Sources */,
+				5239BE422024A22A002F7582 /* DevicesVC.swift in Sources */,
 				52D1F96720237E73007E5F0F /* SideMenuTableViewCell.swift in Sources */,
+				5239BE4020248B1C002F7582 /* MqttTestVC.swift in Sources */,
 				B84E30132018BC7B0095B74F /* JsonParserWrapper.swift in Sources */,
 				B8D0A0A72010FE25003778CB /* AppDelegate.swift in Sources */,
 				B84E30092018BC090095B74F /* ServicesWrapper.swift in Sources */,
@@ -438,6 +449,7 @@
 				52D1F96A2023C463007E5F0F /* HomeVCTableViewCell.swift in Sources */,
 				B84E30152018BC8F0095B74F /* DeviceParser.swift in Sources */,
 				B84E30072018BB400095B74F /* Log.swift in Sources */,
+				5239BE442024ACEC002F7582 /* DeviceTableViewCell.swift in Sources */,
 				B82BBAF2201119350090BBE3 /* Device.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
