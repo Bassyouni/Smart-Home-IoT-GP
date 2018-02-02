@@ -1,5 +1,10 @@
 package com.smarthomesiot.desktop;
 
+import database.DatabaseManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +43,18 @@ public class MainApp extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
+        //System.out.println(DatabaseManager.connect());
+        DatabaseManager.constructDatabase();
+        /*ResultSet rs = DatabaseManager.executeQuery("select * from User");
+        try {
+            rs.next();
+            System.out.println(rs.getString("name"));
+        } catch (SQLException ex) {
+            Logger.getLogger(MainApp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        DatabaseManager.closeConnection();
+*/
     }
 
 }
