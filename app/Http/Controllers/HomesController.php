@@ -13,7 +13,7 @@ class HomesController extends Controller
 {
     public function getAllHomes()
     {
-      return response()->json(Home::all());
+      return response()->json(Home::with("devices.logs")->get());
     }
 
     public function getAllHomesByUserId($userId)
@@ -21,7 +21,8 @@ class HomesController extends Controller
       try
       {
           $user = User::findOrFail($userId);
-          $homes = $user->homes()->get();
+          $homes = $user->homes()->with("devices")->get();
+
           return response()->json(["response" => $homes, "status" => "success"]);
       }
       catch (ModelNotFoundException $e)

@@ -12,8 +12,21 @@ class Home extends Eloquent
       "name", "address", "topic"
     ];
 
+
+
     public function devices()
     {
         return $this->embedsMany('App\Device');
     }
+
+    
+
+
+
+
+
+
+
+
+
 }
