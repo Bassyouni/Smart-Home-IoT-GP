@@ -31,6 +31,7 @@ class HomeVC: UIViewController {
         user.id = "5a6867fe90786547d40078e2"
         let home = Home(id: "1", name: "Malibue", address: "Maadi")
         home.addDevice(device: Device(id: "1", name: "Lamp", pinNumber: 1, description: "nothing"))
+        home.addDevice(device: Device(id: "2", name: "Takif", pinNumber: 2, description: "nothing"))
         homes.append(home)
         tableView.reloadData()
             

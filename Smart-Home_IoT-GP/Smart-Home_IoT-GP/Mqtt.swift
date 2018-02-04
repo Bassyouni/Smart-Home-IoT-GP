@@ -23,9 +23,14 @@ class Mqtt
         if Mqtt._mqtt == nil
         {
             let clientID = "CocoaMQTT-" + String(ProcessInfo().processIdentifier)
+            
             Mqtt._mqtt = CocoaMQTT(clientID: clientID, host: url, port: port)
+//            Mqtt._mqtt.username = "ubunto"
+//            Mqtt._mqtt.password = ""
             Mqtt._mqtt.willMessage = CocoaMQTTWill(topic: "/will", message: "dieout")
-            Mqtt._mqtt.allowUntrustCACertificate = true
+//            Mqtt._mqtt.allowUntrustCACertificate = true
+            
+            
         }
         
 
@@ -54,48 +59,35 @@ class Mqtt
 
     
     //MARK:- public functions
-    public func connect() -> Bool
+    public func connect()
     {
-        return Mqtt._mqtt.connect()
+        Mqtt._mqtt.connect()
     }
     
-    public func subscribe(toTopic:String) -> Bool
+    public func subscribe(toTopic:String)
     {
-        if toTopic  != ""
-        {
-            Mqtt._mqtt.subscribe(toTopic)
-            return true
-        }
-        else
-        {
-            return false
-        }
+
+        Mqtt._mqtt.subscribe(toTopic)
+
     }
     
-    public func unSuscribe(toTopic:String) -> Bool
+    public func unSuscribe(toTopic:String)
     {
-        if  toTopic != ""
-        {
-            Mqtt._mqtt.unsubscribe(toTopic)
-            return true
-        }
-        else
-        {
-            return false
-        }
+
+        Mqtt._mqtt.unsubscribe(toTopic)
+
     }
     
-    public func publish(message:String , topic:String) -> Bool
+    public func publish(message:String , topic:String)
     {
-        if  message != "" && topic  != ""
-        {
-            Mqtt._mqtt.publish(topic, withString: message)
-            return true
-        }
-        else
-        {
-            return false
-        }
+
+        Mqtt._mqtt.publish(topic, withString: message)
+ 
+    }
+    
+    public func ping()
+    {
+        Mqtt._mqtt.ping()
     }
     
     public func disconnect()
@@ -114,6 +106,11 @@ class Mqtt
     var keepAlive: UInt16 {
         set { Mqtt._mqtt.keepAlive = newValue }
         get { return Mqtt._mqtt.keepAlive }
+    }
+    
+    var cleanSession: Bool {
+        set { Mqtt._mqtt.cleanSession = newValue }
+        get { return Mqtt._mqtt.cleanSession }
     }
 
 }

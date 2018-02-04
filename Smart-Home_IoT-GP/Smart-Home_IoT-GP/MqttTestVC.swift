@@ -17,15 +17,24 @@ class MqttTestVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         mqtt = Mqtt(url: "54.244.99.193", port: 1883)
         mqtt.keepAlive = 60
+        mqtt.cleanSession = true
         mqtt.delegate = self
-        _ = mqtt.connect()
+        mqtt.connect()
+
         
         
     }
 
+    @IBAction func subscribeBtnPressed(_ sender: Any) {
+        mqtt.subscribe(toTopic: "/fci")
+    }
 
+    @IBAction func publishBtnPressed(_ sender: Any) {
+        mqtt.publish(message: "Hello", topic: "/fci")
+    }
 }
 
 extension MqttTestVC: CocoaMQTTDelegate
@@ -41,7 +50,7 @@ extension MqttTestVC: CocoaMQTTDelegate
     }
     func mqtt(_ mqtt: CocoaMQTT, didPublishMessage message: CocoaMQTTMessage, id: UInt16)
     {
-        print("published")
+        print("published: \(String(describing: message.string))")
     }
     func mqtt(_ mqtt: CocoaMQTT, didPublishAck id: UInt16)
     {
