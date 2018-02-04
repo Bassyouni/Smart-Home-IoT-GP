@@ -12,9 +12,11 @@ import java.util.ArrayList;
  * @author cdc
  */
 public class Log {
-    ArrayList<String> commands;
+    private String command;
+    private String created_at;
+    private String updated_at;
     
     public Log(){
-        commands = new ArrayList<>();
+        
     }
 }
