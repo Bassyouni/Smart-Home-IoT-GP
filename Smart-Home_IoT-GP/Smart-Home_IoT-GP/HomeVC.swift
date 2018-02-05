@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeVC: UIViewController {
+class HomeVC: ParentViewController {
     
     //MARK:- iboutlets
     @IBOutlet weak var tableView: UITableView!
@@ -20,40 +20,43 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(Date(timeIntervalSince1970: 1516912324000))
-        print(Date(timeIntervalSinceNow: 1516912324000))
-        print(Date(timeIntervalSinceReferenceDate: 1516912324000))
-        
         tableView.delegate = self
         tableView.dataSource = self
+    
+//        Test DATA
         
-        let user  = User()
-        user.id = "5a6867fe90786547d40078e2"
-        let home = Home(id: "1", name: "Malibue", address: "Maadi")
-        home.addDevice(device: Device(id: "1", name: "Lamp", pinNumber: 1, description: "nothing"))
-        home.addDevice(device: Device(id: "2", name: "Takif", pinNumber: 2, description: "nothing"))
-        homes.append(home)
-        tableView.reloadData()
+//        let home = Home(id: "1", name: "Malibue", address: "Maadi")
+//        home.addDevice(device: Device(id: "1", name: "Lamp", pinNumber: 1, description: "nothing"))
+//        home.addDevice(device: Device(id: "2", name: "Takif", pinNumber: 2, description: "nothing"))
+//        homes.append(home)
+//        tableView.reloadData()
+        
+//        currentUser.addHome(home:home)
+        showLoading()
+        HomeServices.getAllHomes(for: currentUser)
+        { (status, homes) in
             
-        user.addHome(home:home)
-//        HomeServices.getAllHomes(for: user)
-//        { (status, homes) in
-//            
-//            if status == "success"
-//            {
-//                self.homes = homes
-//                self.tableView.reloadData()
-//            }
-//            else
-//            {
-//                let alert = UIAlertController(title: "Error", message: status, preferredStyle: .alert)
-//                let action = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
-//                alert.addAction(action)
-//                self.present(alert, animated: true, completion: nil)
-//            }
-//            
-//        }
+            if status == "success"
+            {
+                self.homes = homes
+                currentUser.addHomes(homes: homes)
+                self.tableView.reloadData()
+            }
+            else
+            {
+                let alert = UIAlertController(title: "Error", message: status, preferredStyle: .alert)
+                let action = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
+            }
+            self.hideLoading()
+            
+        }
         
+    }
+    
+    @IBAction func menuBtnPressed(_ sender: Any) {
+        self.menuContainerViewController.toggleLeftSideMenuCompletion(nil)
     }
 
 }
@@ -86,6 +89,7 @@ extension HomeVC: UITableViewDelegate , UITableViewDataSource
             devicesVC.title = "Devices"
             devicesVC.view.backgroundColor = UIColor.blue
             devicesVC.devices = homes[indexPath.row].getAllDevices()
+            devicesVC.home = homes[indexPath.row]
             
             self.navigationController?.pushViewController(devicesVC, animated: true)
         }

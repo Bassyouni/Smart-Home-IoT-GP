@@ -21,6 +21,7 @@
 		52D1F96A2023C463007E5F0F /* HomeVCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1F9692023C463007E5F0F /* HomeVCTableViewCell.swift */; };
 		52D1F96C2023CAE1007E5F0F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1F96B2023CAE1007E5F0F /* Constants.swift */; };
 		52D7D25320273CD7000E02E3 /* DeviceSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D7D25220273CD7000E02E3 /* DeviceSettingsVC.swift */; };
+		52D7D255202754CE000E02E3 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D7D254202754CE000E02E3 /* ProfileVC.swift */; };
 		B81E06CA20193227003C057C /* rick.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B83250C62013585800A0FD0E /* rick.ttf */; };
 		B81E06CB2019322B003C057C /* morty.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B83250C72013585800A0FD0E /* morty.ttf */; };
 		B82BBAF02011191F0090BBE3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BBAEF2011191F0090BBE3 /* User.swift */; };
@@ -69,6 +70,7 @@
 		52D1F9692023C463007E5F0F /* HomeVCTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVCTableViewCell.swift; sourceTree = "<group>"; };
 		52D1F96B2023CAE1007E5F0F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		52D7D25220273CD7000E02E3 /* DeviceSettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceSettingsVC.swift; sourceTree = "<group>"; };
+		52D7D254202754CE000E02E3 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		B43EA72AFFC1471E5F2DF18A /* Pods_Smart_Home_IoT_GP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Smart_Home_IoT_GP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B82BBAEF2011191F0090BBE3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B82BBAF1201119350090BBE3 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				5239BE3F20248B1C002F7582 /* MqttTestVC.swift */,
 				5239BE412024A22A002F7582 /* DevicesVC.swift */,
 				52D7D25220273CD7000E02E3 /* DeviceSettingsVC.swift */,
+				52D7D254202754CE000E02E3 /* ProfileVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				B84E64482017AE6A009198EE /* HomeVC.swift in Sources */,
 				B8D0A0A92010FE25003778CB /* LoginVC.swift in Sources */,
 				B84E300F2018BC500095B74F /* UserServices.swift in Sources */,
+				52D7D255202754CE000E02E3 /* ProfileVC.swift in Sources */,
 				B8D0A0BE2010FF2D003778CB /* Mqtt.swift in Sources */,
 				52D1F95A20237CAA007E5F0F /* MFSideMenuContainerViewController.m in Sources */,
 				52D7D25320273CD7000E02E3 /* DeviceSettingsVC.swift in Sources */,

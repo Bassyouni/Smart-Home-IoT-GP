@@ -38,7 +38,7 @@ class Mqtt
     
     init()
     {
-        let url = "192.168.1.10"
+        let url = "35.167.95.42"
         constructor(url: url, port: 1883)
     }
     
@@ -78,11 +78,18 @@ class Mqtt
 
     }
     
-    public func publish(message:String , topic:String)
+    public func publish(deviceId:String, command: String , topic:String)
     {
+        let message = "{\"deviceId\":\"\(deviceId)\", \"command\":\"\(command)\" , \"platform\":\"ios\", \"userId\":\"\(currentUser.id)\"}"
+        print(message)
 
         Mqtt._mqtt.publish(topic, withString: message)
  
+    }
+    
+    public func publish(message: String, topic: String)
+    {
+        Mqtt._mqtt.publish(topic, withString: message)
     }
     
     public func ping()

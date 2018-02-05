@@ -58,7 +58,7 @@ class SignupVC: UIViewController {
         datePicker.maximumDate = Date()
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat =  "dd-mm-yyy"
+        dateFormatter.dateFormat =  "dd-MM-yyy"
         
         let date = dateFormatter.date(from: "13-02-1996")
         
@@ -98,6 +98,14 @@ class SignupVC: UIViewController {
             if status == "success"
             {
                 currentUser = user
+                
+                // saving session
+                UserDefaults.standard.set(user.id, forKey: userId)
+                
+                UserDefaults.standard.set(user.name, forKey: userName)
+                
+                UserDefaults.standard.set(user.birthDate, forKey: userBirthDate)
+                
                 self.goToHomeVC()
             }
             else

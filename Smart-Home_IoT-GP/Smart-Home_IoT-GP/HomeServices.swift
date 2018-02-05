@@ -19,7 +19,7 @@ class HomeServices: ServicesWrapper
     public static func getAllHomes(for user: User , downloadCompleted: @escaping DownloadCompletedForHomes)
     {
         let url = URL(string: "\(baseURL)/api/homes/get/\(user.id)")!
-        var homes: [Home]!
+        var homes = [Home]()
         Alamofire.request(url, method: .get).responseJSON { response in
             var returnStatment = "failure"
             

@@ -30,24 +30,9 @@ class DeviceParser : JsonParserWarapper
         {
             device.description = description
         }
-        if let idDic = dictionary["_id"] as? Dictionary<String,String>
+        if let id = dictionary["_id"] as? String
         {
-            if let id = idDic["$oid"]
-            {
-                device.id = id
-            }
-            
-        }
-        
-        if let logs = dictionary["logs"] as? [AnyObject]
-        {
-            let returnedLogs: [Log] = LogParser.getArrayOfObjects(array: logs)
-            
-            returnedLogs.forEach({ (log) in
-                log.device = device
-            })
-            
-            device.addLogs(logs: returnedLogs)
+            device.id = id
         }
         
         return device as! T

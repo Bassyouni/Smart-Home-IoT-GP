@@ -18,9 +18,8 @@ class SideMenuVC: UIViewController , UITableViewDelegate , UITableViewDataSource
 //    @IBOutlet var imgProfile : AsyncImageView!
 //
     //MARK: - variables
-//    var arrMenuTxt : [String] = ["Home" , "Check List" , "Budget List" , "Guest List" , "Settings"]
-//    var arrMenuImg : [String] = ["IconHome" , "IconCheckList" , "IconBudgetList" , "IconGuestList" , "IconSettings"]
-    var arrMenuTxt : [String] = ["DRESSES" , "RINGS" , "WEDDING PLANNING" , "HONEY MOONS" , "INSPIRATIONS" , "MY FAVOURITES" , "SETTINGS"]
+
+    var arrMenuTxt : [String] = ["Homes", "Profile" , "Help" , "Logout"]
     var indexSelected : Int? = 0
     
     //MARK: - view
@@ -31,20 +30,11 @@ class SideMenuVC: UIViewController , UITableViewDelegate , UITableViewDataSource
         
         // set name
         self.lblWelcome.text = NSLocalizedString("welcome", comment: "")
-//        self.lblName.text = userFName + " " + userLName
-//        
-//        if userImage == ""
-//        {
-//            self.imgProfile.image = UIImage(named: "IconDefault")
-//        }
-//        
+        self.lblName.text = currentUser.name.capitalized
+      
         
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     //MARK: - table
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -55,8 +45,9 @@ class SideMenuVC: UIViewController , UITableViewDelegate , UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell") as! SideMenuTableViewCell
+        
         cell.lblMenu.text = self.arrMenuTxt[indexPath.row]
-//        cell.imgMenu.image = UIImage(named: self.arrMenuImg[indexPath.row])
+
         if (self.indexSelected == indexPath.row)
         {
             UIView.animate(withDuration: 0.5, animations: {
@@ -79,7 +70,38 @@ class SideMenuVC: UIViewController , UITableViewDelegate , UITableViewDataSource
         }, completion: {_ in
             self.indexSelected = indexPath.row
             self.tableMenu.reloadData()
-        })    }
+        })
+        
+        if indexPath.row == 0
+        {
+            let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeVC")
+            menuContainerViewController.centerViewController = homeVC
+        }
+        else if indexPath.row == 1
+        {
+            let profileVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC")
+            menuContainerViewController.centerViewController = profileVC
+        }
+        else if indexPath.row == 2
+        {
+            let helpVC = self.storyboard?.instantiateViewController(withIdentifier: "HelpVC")
+            menuContainerViewController.centerViewController = helpVC
+        }
+        else if indexPath.row == 3
+        {
+            //TODO: Logout options
+            UserDefaults.standard.removeObject(forKey: userId)
+            UserDefaults.standard.removeObject(forKey: userName)
+            UserDefaults.standard.removeObject(forKey: userBirthDate)
+            
+            let delegate = UIApplication.shared.delegate as? AppDelegate
+            let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC")
+            delegate?.window?.rootViewController = loginVC
+        }
+        
+        self.menuContainerViewController.toggleLeftSideMenuCompletion(nil)
+        
+    }
 
     /*
     // MARK: - Navigation

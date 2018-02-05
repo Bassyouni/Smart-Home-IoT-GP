@@ -79,7 +79,7 @@ class LoginVC: UIViewController  {
     @IBAction func loginPressed(_ sender: Any)
     {
         
-        goToHomeVC()
+        //goToHomeVC()
         
         if emailTextField.text == "" || passwordTextField.text == ""
         {
@@ -94,6 +94,15 @@ class LoginVC: UIViewController  {
                 if status == "success"
                 {
                     currentUser = user
+                    
+                    //Saving seassion
+                    UserDefaults.standard.set(user.id, forKey: userId)
+                    
+                    UserDefaults.standard.set(user.name, forKey: userName)
+                    
+                    UserDefaults.standard.set(user.birthDate, forKey: userBirthDate)
+                    
+                    
                     self.goToHomeVC()
                 }
                 else

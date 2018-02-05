@@ -21,7 +21,7 @@ class UserServices: ServicesWrapper
     ///   - downloadCompleted: closure with status and returned user
     public static func login(email: String, password: String,downloadCompleted: @escaping DownloadCompletedForUser)
     {
-        let url = URL(string: "\(baseURL))/api/users/auth/login")!
+        let url = URL(string: "\(baseURL)/api/users/auth/login")!
         
         let parameters: Dictionary<String ,String> = ["email": email, "password": password ]
         var user = User()

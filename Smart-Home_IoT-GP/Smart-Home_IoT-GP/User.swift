@@ -8,7 +8,7 @@
 
 import Foundation
 
-class User
+class User : NSObject
 {
     //MARK:- private varibales
     private var _id: String!
@@ -18,7 +18,7 @@ class User
     
     
     //MARK:- constructors
-    public init()
+    public override init()
     {
         _id = ""
         _name = ""

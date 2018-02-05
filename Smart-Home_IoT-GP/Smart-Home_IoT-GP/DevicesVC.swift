@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CocoaMQTT
 
 class DevicesVC: UIViewController {
 
@@ -15,6 +16,8 @@ class DevicesVC: UIViewController {
     
     //MARK:- variables
     var devices: [Device]?
+    var home: Home?
+    var mqtt: Mqtt!
     
     //MARK:- view functions
     override func viewDidLoad() {
@@ -23,6 +26,13 @@ class DevicesVC: UIViewController {
         tableView.dataSource = self
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         self.editButtonItem.title = "Reorder"
+        
+        mqtt = Mqtt()
+        mqtt.keepAlive = 60
+        mqtt.cleanSession = true
+        mqtt.delegate = self
+        mqtt.connect()
+        
     
     }
     
@@ -50,14 +60,20 @@ class DevicesVC: UIViewController {
     func switchToggled(_ sender: UISwitch)
     {
         print("toggle tag: \(sender.tag)")
-        if sender.isOn
+        let device = devices?[sender.tag]
+        
+        if let topic = home?.topic
         {
-            print("baaam ON")
+            if sender.isOn
+            {
+                mqtt.publish(deviceId:(device?.id)! , command: "on", topic: topic)
+            }
+            else
+            {
+                mqtt.publish(deviceId:(device?.id)! , command: "off", topic: topic)
+            }
         }
-        else
-        {
-            print("baaam OFF")
-        }
+        
     }
     
 
@@ -130,6 +146,58 @@ extension DevicesVC: UITableViewDelegate , UITableViewDataSource
         }
     }
     
+}
+
+//MARK:- MQTT
+extension DevicesVC: CocoaMQTTDelegate
+{
+    func mqtt(_ mqtt: CocoaMQTT, didConnect host: String, port: Int)
+    {
+        print("connected to host: \(host) on port: \(port)")
+    }
+    
+    func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck)
+    {
+        print("connection ack")
+//        self.mqtt.subscribe(toTopic: (home?.topic)!)
+    }
+    func mqtt(_ mqtt: CocoaMQTT, didPublishMessage message: CocoaMQTTMessage, id: UInt16)
+    {
+        print("published: \( message.string!)")
+    }
+    func mqtt(_ mqtt: CocoaMQTT, didPublishAck id: UInt16)
+    {
+        print("publish ack")
+    }
+    func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16 )
+    {
+        print("recived message: \(message.string ?? message.topic)")
+
+    }
+    func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopic topic: String)
+    {
+        print("subscribed")
+    }
+    func mqtt(_ mqtt: CocoaMQTT, didUnsubscribeTopic topic: String)
+    {
+        print("unsuscribed")
+    }
+    func mqttDidPing(_ mqtt: CocoaMQTT)
+    {
+        print("ping")
+    }
+    func mqttDidReceivePong(_ mqtt: CocoaMQTT)
+    {
+        print("pong")
+    }
+    func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?)
+    {
+        print("disconnected: \(err.debugDescription)")
+        Timer.after(5.seconds) {
+            _ = self.mqtt.connect()
+        }
+    }
+
 }
 
 
