@@ -18,12 +18,11 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
         
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("/styles/Styles.css");
-
         stage.setScene(scene);
+        scene.getStylesheets().add("/styles/Styles.css");
         stage.setResizable(false);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
@@ -44,7 +43,7 @@ public class MainApp extends Application {
      */
     public static void main(String[] args) {
         //System.out.println(DatabaseManager.connect());
-        DatabaseManager.constructDatabase();
+        //DatabaseManager.constructDatabase();
         /*ResultSet rs = DatabaseManager.executeQuery("select * from User");
         try {
             rs.next();
@@ -54,7 +53,9 @@ public class MainApp extends Application {
         }
         
         DatabaseManager.closeConnection();
+        
 */
+        launch(args);
     }
 
 }

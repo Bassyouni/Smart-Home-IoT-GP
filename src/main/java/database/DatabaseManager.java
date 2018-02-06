@@ -6,12 +6,14 @@
 package database;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,59 +36,73 @@ public class DatabaseManager {
         
     }
     
-    private static ArrayList<String> getDatabaseScriptFromFile(){
-        ArrayList<String> dataDefenitionLanguage = new ArrayList<>();
+    private static ArrayList<String> getDatabaseScriptFromFile() throws FileNotFoundException{
         final String FILE_PATH = "database-construction-DDL.txt";
-        // this should retrun a list of DDL Strings for the table construction
-        // process from file: "database-construction-DDL"
+        ArrayList<String> dataDefenitionLanguage = new ArrayList<>();
+        File ddlScript = new File(FILE_PATH);
+        Scanner in = new Scanner(ddlScript);
+        while(in.hasNext())
+            dataDefenitionLanguage.add(in.nextLine());
+        in.close();
         return dataDefenitionLanguage;
     }
     
-    private static void buildDatabaseTables(){
+    private static void buildDatabaseTables() throws FileNotFoundException{
         ArrayList<String> dataDefenitionLanguage = getDatabaseScriptFromFile();
-        // builds the table from the DDL list
+        for(int i = 0; i < dataDefenitionLanguage.size(); i++){
+            executeUpdate( dataDefenitionLanguage.get(i) );
+        }
     }
     
     public static void constructDatabase(){
         if(!databaseExists())
         {
             connect();
-            buildDatabaseTables();
+            try {
+                buildDatabaseTables();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
             closeConnection();
         }
         else
             System.out.println("Database is already constructes...");
     }
     
-    public static boolean connect(){
-        boolean success = false;
+    public static void connect(){
         try {
             connection = DriverManager.getConnection(URL);
             statement = connection.createStatement();
-            success = true;
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return success;
     }
     
-    public static boolean closeConnection(){
-        boolean success = false;
+    private static boolean isConnected(){
+        try {
+            return connection.isValid(2);
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    public static void closeConnection(){
         try {
             statement.close();
             connection.close();
-            success =  true;
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return success;
     }
     
     public static int executeUpdate(String sqlQuery){
         int rowsAffected = -1;
-        if(!connect())// connection failed
+        connect();
+        if(!isConnected())// connection failed
             return rowsAffected;
         try {
+            System.out.println(sqlQuery);
             rowsAffected = statement.executeUpdate(sqlQuery);
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -96,10 +112,10 @@ public class DatabaseManager {
     
     public static ResultSet executeQuery(String sqlQuery){
         ResultSet rs = null;
-        if(!connect())
-            return rs; // connection failed
+        connect();
+        if(!isConnected())// connection failed
+            return rs; 
         try {
-            System.out.println(sqlQuery);
             rs = statement.executeQuery(sqlQuery);
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
