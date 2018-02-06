@@ -13,7 +13,7 @@ import java.util.HashMap;
  */
 public class HomeParameterStringBuilder {
     private static final String HOME_NAME = "name";
-    private static final String HOME_ADDRESS = "adress";
+    private static final String HOME_ADDRESS = "address";
     private static final String TOPIC = "topic";
     
     public static HashMap<String, String> setupAddHomeRequestParameters(String homeName, String homeAddress){

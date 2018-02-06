@@ -5,6 +5,8 @@
  */
 package parsers;
 
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import models.Device;
 
@@ -26,8 +28,10 @@ public class DeviceParser implements JSONParser{
 
     @Override
     public ArrayList getArrayOfObjects(String jsonText) {
-        ArrayList<Device> devices = new ArrayList<>();
-        devices = gson.fromJson(jsonText, devices.getClass());
+        
+        Type listType = new TypeToken<ArrayList<Device>>(){}.getType();
+        ArrayList<Device> devices;
+        devices = gson.fromJson(jsonText, listType);
         return devices;
     }
 

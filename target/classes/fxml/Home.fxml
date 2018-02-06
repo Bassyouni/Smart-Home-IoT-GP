@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="750.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="Controllers.HomeController">
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeController">
    <children>
-      <Label layoutX="115.0" layoutY="23.0" prefHeight="240.0" prefWidth="412.0" text="WELCOME ASSHOLE">
-         <font>
-            <Font size="34.0" />
-         </font>
-      </Label>
+      <JFXHamburger fx:id="hamburger" layoutX="706.0" layoutY="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="190.0" layoutY="2.0" prefHeight="500.0" prefWidth="100.0" />
    </children>
 </AnchorPane>

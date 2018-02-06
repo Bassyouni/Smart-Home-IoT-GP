@@ -161,7 +161,7 @@ public abstract class ServiceSkeleton {
         }
         else if(parseAs == 3)// as ArrayList<Home>
         {
-            ArrayList<Home> homes = HomeParser.getInstance().getArrayOfObjects( jsonResponse.get("response").getAsJsonObject().toString() );
+            ArrayList<Home> homes = HomeParser.getInstance().getArrayOfObjects( jsonResponse.get("response").getAsJsonArray().toString() );
             responseMap.put("response", homes);
         }
         else if(parseAs == 4)// as device
@@ -175,12 +175,29 @@ public abstract class ServiceSkeleton {
             ArrayList<Log> logs = LogParser.getInstance().getArrayOfObjects( jsonResponse.get("response").getAsJsonObject().toString() );
             responseMap.put("response", logs);
         }
+        else if(parseAs == 6)// as ArrayList<Log>
+        {
+            ArrayList<Device> devices = DeviceParser.getInstance().getArrayOfObjects( jsonResponse.get("response").getAsJsonArray().toString() );
+            responseMap.put("response", devices);
+        }
         return responseMap;
     }
     protected static HashMap<String, Object> fetchData(String path, String requestMethod, HashMap<String, String> requestParameters, int parseAs){
         HashMap<String, Object> responseMap;
         HttpURLConnection connection = createConnection(path, requestMethod);
         constructOutputStream(connection, requestParameters);//  actually sending the request
+        responseMap = checkConnection(connection);//checking if the connection is established: null if valid else a map;
+        if( responseMap != null)
+            return responseMap;
+        String response = handleResponse(connection);
+        responseMap = parseResponse(response, parseAs);
+        return responseMap;
+    }
+    
+    protected static HashMap<String, Object> fetchData(String path, String requestMethod, int parseAs)
+    {
+        HashMap<String, Object> responseMap;
+        HttpURLConnection connection = createConnection(path, requestMethod);
         responseMap = checkConnection(connection);//checking if the connection is established: null if valid else a map;
         if( responseMap != null)
             return responseMap;

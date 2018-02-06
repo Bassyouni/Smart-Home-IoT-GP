@@ -12,61 +12,119 @@ import java.util.ArrayList;
  * @author cdc
  */
 public class Home {
-    String id;
-    String homeName;
-    String homeAdress;
+    String _id;
+    String name;
+    String address;
     String topic;
-    ArrayList<Device> devices;
+    transient ArrayList<Device> devices;
+    
+    private static Home chosenHome;
+    
+    public static boolean isHomeChosen()
+    {
+        return chosenHome != null;
+    }
+    
+    public static void setChosenHome(Home home)
+    {
+        chosenHome = home;
+    }
+    public static Home getChosenHome()
+    {
+        return chosenHome;
+    }
+    
+ 
+    
+    public Device searchForDevice(Device searchedFor)
+    {
+        int index = this.devices.indexOf(searchedFor);
+        if(index == -1)
+        {
+            return null;
+        }
+        return this.devices.get(index);
+    }
+    
+    public Device searchForDevice(String searchedForId)
+    {
+        
+        for(int i = 0; i < this.devices.size(); i++)
+        {
+            if(this.devices.get(i).getId().equals(searchedForId))
+            {
+                
+                return this.devices.get(i);
+            }
+        }
+        return null;
+    }
+         
+            
+
+    @Override
+    public String toString() {
+        return name;
+    }
     
     public Home(){
-        this.id = null;
-        this.homeName = null;
-        this.homeAdress = null;
+        this._id = null;
+        this.name = null;
+        this.address = null;
         this.topic = null;
         this.devices = new ArrayList<>();
     }
 
     public Home(String homeName, String homeAdress, String topic) {
-        this.id = null;
-        this.homeName = homeName;
-        this.homeAdress = homeAdress;
+        this._id = null;
+        this.name = homeName;
+        this.address = homeAdress;
         this.topic = topic;
         devices = new ArrayList<>();
     }
 
     
     public Home(String id, String homeName, String homeAdress, String topic) {
-        this.id = id;
-        this.homeName = homeName;
-        this.homeAdress = homeAdress;
+        this._id = id;
+        this.name = homeName;
+        this.address = homeAdress;
         this.topic = topic;
         this.devices = new ArrayList<>();
     }
 
     public String getId() {
-        return id;
+        return _id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public ArrayList<Device> getDevices() {
+        return devices;
+    }
+
+    public void setDevices(ArrayList<Device> devices) {
+        this.devices = devices;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this._id = id;
     }
 
-    public String getHomeName() {
-        return homeName;
-    }
-
-    public void setHomeName(String homeName) {
-        this.homeName = homeName;
-    }
-
-    public String getHomeAdress() {
-        return homeAdress;
-    }
-
-    public void setHomeAdress(String homeAdress) {
-        this.homeAdress = homeAdress;
-    }
-
+   
     public String getTopic() {
         return topic;
     }

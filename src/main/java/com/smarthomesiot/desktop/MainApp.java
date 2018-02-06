@@ -7,9 +7,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -21,16 +25,38 @@ public class MainApp extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
         
         Scene scene = new Scene(root);
+        Screen screen = Screen.getPrimary();
+        javafx.geometry.Rectangle2D bounds = screen.getVisualBounds();
+    
+        stage.setX(bounds.getMinX());
+        stage.setY(bounds.getMinY());
+        stage.setWidth(bounds.getWidth());
+        stage.setHeight(bounds.getHeight());
+        stage.setScene(scene);
         scene.getStylesheets().add("/styles/Styles.css");
 
         stage.setScene(scene);
         stage.setResizable(false);
         stage.initStyle(StageStyle.UNDECORATED);
+        
+        
         stage.show();
         
-        //UsersService us = UsersService.getInstance();
-        
-        //System.out.println((User) us.login("omarmok@live.com", "hello123").get("response"));
+        scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>
+        () {
+
+              @Override
+              public void handle(KeyEvent t) {
+                if(t.getCode()==KeyCode.ESCAPE)
+                {
+                    try {
+                       System.exit(0);
+                    } catch (Exception ex) {
+                        Logger.getLogger(MainApp.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+              }
+          });
         
     }
 
@@ -43,8 +69,9 @@ public class MainApp extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        launch(args);
         //System.out.println(DatabaseManager.connect());
-        DatabaseManager.constructDatabase();
+        //DatabaseManager.constructDatabase();
         /*ResultSet rs = DatabaseManager.executeQuery("select * from User");
         try {
             rs.next();

@@ -21,7 +21,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import models.User;
 
 /**
  * FXML Controller class
@@ -37,7 +41,10 @@ public class FXMLLoginController implements Initializable {
     @FXML
     private Label errorMessage;
     @FXML
-    private JFXButton loginButton;
+    private VBox vBox;
+    
+    @FXML
+    private ImageView imageView;
     
     @FXML
     private void login(ActionEvent event) throws IOException 
@@ -50,10 +57,12 @@ public class FXMLLoginController implements Initializable {
             errorMessage.setText(response.get("error").toString());
             return;
         }
-        System.out.print(response);
+        User.setLoggedUser((User)response.get("response"));
+        System.out.print(User.getLoggedUser());
+
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AllHomes.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -65,7 +74,9 @@ public class FXMLLoginController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        imageView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
+        imageView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
+        vBox.setPrefSize(Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight());
     }    
     
 }
