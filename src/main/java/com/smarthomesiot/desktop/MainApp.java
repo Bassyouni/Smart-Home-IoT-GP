@@ -43,7 +43,7 @@ public class MainApp extends Application {
      */
     public static void main(String[] args) {
         //System.out.println(DatabaseManager.connect());
-        //DatabaseManager.constructDatabase();
+        DatabaseManager.constructDatabase();
         /*ResultSet rs = DatabaseManager.executeQuery("select * from User");
         try {
             rs.next();
@@ -55,7 +55,7 @@ public class MainApp extends Application {
         DatabaseManager.closeConnection();
         
 */
-        launch(args);
+        
     }
 
 }
