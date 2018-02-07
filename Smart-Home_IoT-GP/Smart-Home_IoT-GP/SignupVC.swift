@@ -157,13 +157,13 @@ class SignupVC: UIViewController {
     private func goToHomeVC()
     {
         view.endEditing(true)
-        let delegate = UIApplication.shared.delegate as? AppDelegate
+
         let mainVCNav = storyboard?.instantiateViewController(withIdentifier: "HomeVC")
         let sideMenuVC = storyboard?.instantiateViewController(withIdentifier: "SideVC")
         
         let containerVC = MFSideMenuContainerViewController.container(withCenter: mainVCNav , leftMenuViewController: sideMenuVC, rightMenuViewController: nil)
         
-        delegate?.window?.rootViewController = containerVC
+        self.present(containerVC, animated: true, completion: nil)
     }
     
     

@@ -79,7 +79,7 @@ class LoginVC: UIViewController  {
     @IBAction func loginPressed(_ sender: Any)
     {
         
-        //goToHomeVC()
+        goToHomeVC()
         
         if emailTextField.text == "" || passwordTextField.text == ""
         {
@@ -126,13 +126,15 @@ class LoginVC: UIViewController  {
     private func goToHomeVC()
     {
         view.endEditing(true)
-        let delegate = UIApplication.shared.delegate as? AppDelegate
+        
         let mainVCNav = storyboard?.instantiateViewController(withIdentifier: "HomeVC")
         let sideMenuVC = storyboard?.instantiateViewController(withIdentifier: "SideVC")
         
         let containerVC = MFSideMenuContainerViewController.container(withCenter: mainVCNav , leftMenuViewController: sideMenuVC, rightMenuViewController: nil)
         
-        delegate?.window?.rootViewController = containerVC
+        self.present(containerVC!, animated: true, completion: nil)
+        
+
     }
 
 }

@@ -34,6 +34,10 @@ class SideMenuVC: UIViewController , UITableViewDelegate , UITableViewDataSource
       
         
     }
+    
+    deinit {
+        print("SideVC closed")
+    }
 
     
     //MARK: - table
@@ -94,23 +98,16 @@ class SideMenuVC: UIViewController , UITableViewDelegate , UITableViewDataSource
             UserDefaults.standard.removeObject(forKey: userName)
             UserDefaults.standard.removeObject(forKey: userBirthDate)
             
-            let delegate = UIApplication.shared.delegate as? AppDelegate
+
             let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC")
-            delegate?.window?.rootViewController = loginVC
+//            delegate?.window?.rootViewController = loginVC
+            self.present(loginVC!, animated: true, completion: nil)
         }
         
         self.menuContainerViewController.toggleLeftSideMenuCompletion(nil)
         
     }
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

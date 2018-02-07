@@ -11,9 +11,9 @@ import Foundation
 class LogParser : JsonParserWarapper
 {
     static func getOneObject<T>(dictionary: Dictionary<String, AnyObject>) -> T {
-        let user = User()
+        let log = Log()
         
-        return user as! T
+        return log as! T
         
     }
     
@@ -22,7 +22,7 @@ class LogParser : JsonParserWarapper
         
         for object in array
         {
-            var log = Log()
+            let log = Log()
             
             if let dictionary = object as? Dictionary<String , AnyObject>
             {

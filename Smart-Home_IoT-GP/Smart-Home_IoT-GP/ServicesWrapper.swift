@@ -15,4 +15,5 @@ class ServicesWrapper
     public typealias DownloadCompletedForUser = (String , User) -> ()
     public typealias DownloadCompletedForHome = (String , Home) -> ()
     public typealias DownloadCompletedForHomes = (String , [Home]) -> ()
+    public typealias DownloadCompletedForLogs = (String, [Log]) -> ()
 }
