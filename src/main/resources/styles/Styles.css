@@ -1,6 +1,20 @@
-Button
+JFXButton
 {
     -fx-background-color: #03A9F4;
+}
+
+.drawerButton
+{
+    -fx-background-color: #ededed;
+    -fx-background-radius: 0 !important; 
+    -fx-padding: 10px;
+
+}
+
+.drawerButton:hover
+{
+    -fx-background-color: #03A9F4;
+        -fx-text-fill: white;
 }
 
 JFXTextField

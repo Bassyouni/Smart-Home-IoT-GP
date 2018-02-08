@@ -5,7 +5,10 @@
  */
 package parsers;
 
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import models.Device;
 import models.Log;
 
 /**
@@ -25,7 +28,9 @@ public class LogParser implements JSONParser{
 
     @Override
     public ArrayList<Log> getArrayOfObjects(String jsonText) {
-        ArrayList<Log> logs = new ArrayList<>();
+        Type listType = new TypeToken<ArrayList<Log>>(){}.getType();
+        ArrayList<Log> logs;
+        logs = gson.fromJson(jsonText, listType);
         return logs;
     }
 

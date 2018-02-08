@@ -30,8 +30,8 @@ public class DeviceParameterStringBuilder {
             parameterMap.put(TYPE, device.getType());
         else if(device.getDescription() != null)
             parameterMap.put(DESCRIPTION, device.getDescription());
-        else if(device.getPinNumber() != null)
-            parameterMap.put(PIN_NUMBER, device.getPinNumber());
+        else if(device.getPinNumber() != -1)
+            parameterMap.put(PIN_NUMBER, Integer.toString(device.getPinNumber()));
         
         return parameterMap;
     }

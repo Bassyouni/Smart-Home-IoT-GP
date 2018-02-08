@@ -7,7 +7,11 @@ package parsers;
 
 import models.User;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import models.Log;
+import static parsers.JSONParser.gson;
 
 /**
  *
@@ -30,7 +34,10 @@ public class UserParser implements JSONParser<User>
     @Override
     public ArrayList<User> getArrayOfObjects(String jsonText) 
     {
-        return null;
+        Type listType = new TypeToken<ArrayList<User>>(){}.getType();
+        ArrayList<User> users;
+        users = gson.fromJson(jsonText, listType);
+        return users;
         
     }
 

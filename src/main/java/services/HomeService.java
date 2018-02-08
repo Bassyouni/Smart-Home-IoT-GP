@@ -15,15 +15,26 @@ import models.Device;
  * @author cdc
  */
 public class HomeService extends ServiceSkeleton{
-    private static final String BASE_URL = "http://localhost:8000/api/homes";
+    private static final String BASE_URL = "http://197.52.8.114:4444/api/homes";
     
-    public HashMap<String, Object> getAllHomesAttachedToUser(String targetUserId, String homeName, String homeAddress){
+    private static HomeService _homeService;
+    
+    private HomeService(){}
+    
+    public static HomeService getInstance()
+    {
+        if(_homeService == null)
+        {
+            _homeService = new HomeService();
+        }
+        return _homeService;
+    }
+    
+    public HashMap<String, Object> getAllHomesAttachedToUser(String targetUserId){
         final String PATH = BASE_URL + "/get/" + targetUserId;
         final String REQUEST_METHOD = REQUEST_METHOD_GET;
         final int PARSE_AS = 3;// as HomeList
-        HashMap<String, String> requestParameters;
-        requestParameters =  HomeParameterStringBuilder.setupAddHomeRequestParameters(homeName, homeAddress);
-        return fetchData(PATH, REQUEST_METHOD, requestParameters, PARSE_AS);
+        return fetchData(PATH, REQUEST_METHOD, PARSE_AS);
     }
     // fix issue
     public HashMap<String, Object> updateHome(String targetHomeId, String homeName, String homeAddress){
@@ -90,6 +101,13 @@ public class HomeService extends ServiceSkeleton{
         //same result is needed but should be redon into function overload
         requestParameters =  new HashMap<>();
         return fetchData(PATH, REQUEST_METHOD, requestParameters, PARSE_AS);
+    }
+    
+       public HashMap<String, Object> getDevicesAttachedToHome(String targetHomeId){
+        final String PATH = BASE_URL + "/get-devices/" + targetHomeId;
+        final String REQUEST_METHOD = REQUEST_METHOD_GET;
+        final int PARSE_AS = 6;// as list of devices -> implemented
+        return fetchData(PATH, REQUEST_METHOD,  PARSE_AS);
     }
     
 }

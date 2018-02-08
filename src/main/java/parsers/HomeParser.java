@@ -5,7 +5,8 @@
  */
 package parsers;
 
-import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import models.Home;
 
@@ -29,8 +30,9 @@ public class HomeParser implements JSONParser<Home>{
     @Override
     public ArrayList<Home> getArrayOfObjects(String jsonText) {
         
-        ArrayList<Home> homes = new ArrayList<>();
-        homes = gson.fromJson(jsonText, homes.getClass());
+        Type listType = new TypeToken<ArrayList<Home>>(){}.getType();
+        ArrayList<Home> homes;
+        homes = gson.fromJson(jsonText, listType);
         return homes;
     }
 

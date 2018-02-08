@@ -7,39 +7,44 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.FXMLLoginController">
    <children>
-      <ImageView fitHeight="508.0" fitWidth="750.0" layoutY="-1.0" pickOnBounds="true">
+      <ImageView fx:id="imageView" fitHeight="508.0" fitWidth="750.0" layoutY="-1.0" pickOnBounds="true">
          <image>
             <Image url="@../styles/19402_home_interior_modern_home_interior.jpg" />
          </image>
       </ImageView>
-      <JFXTextField fx:id="emailTextField" focusColor="#03a9f4" labelFloat="true" layoutX="237.0" layoutY="229.0" prefHeight="25.0" prefWidth="312.0" promptText="Email" unFocusColor="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </JFXTextField>
-      <JFXPasswordField id="passwordTextField" fx:id="passwordTextField" focusColor="#03a9f4" labelFloat="true" layoutX="238.0" layoutY="282.0" prefHeight="25.0" prefWidth="312.0" promptText="Password" unFocusColor="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </JFXPasswordField>
-      <JFXButton fx:id="loginButton" buttonType="RAISED" layoutX="325.0" layoutY="350.0" onAction="#login" prefHeight="49.0" prefWidth="101.0" style="-fx-background-color: #03A9F4;" stylesheets="@../styles/Styles.css" text="Login" textFill="#f8f4f4">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </JFXButton>
-      <Label layoutX="290.0" layoutY="78.0" text="Login" textFill="#03a9f4">
-         <font>
-            <Font name="System Bold" size="65.0" />
-         </font>
-      </Label>
-      <Label id="errorMessageLabel" fx:id="errorMessage" layoutX="234.0" layoutY="176.0" prefHeight="39.0" prefWidth="312.0" text="Label" textFill="#f20505">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
+      <VBox fx:id="vBox" alignment="CENTER" fillWidth="false" layoutY="-4.0" prefHeight="500.0" prefWidth="752.0" spacing="20.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="94.0" prefWidth="750.0" text="Login" textFill="#03a9f4">
+               <font>
+                  <Font name="System Bold" size="65.0" />
+               </font>
+            </Label>
+            <Label id="errorMessageLabel" fx:id="errorMessage" prefHeight="39.0" prefWidth="312.0" textFill="#f20505">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="emailTextField" focusColor="#03a9f4" labelFloat="true" prefHeight="25.0" prefWidth="312.0" promptText="Email" stylesheets="@../styles/Styles.css" unFocusColor="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField id="passwordTextField" fx:id="passwordTextField" focusColor="#03a9f4" labelFloat="true" prefHeight="31.0" prefWidth="315.0" promptText="Password" stylesheets="@../styles/Styles.css" unFocusColor="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXButton fx:id="loginButton" buttonType="RAISED" onAction="#login" prefHeight="49.0" prefWidth="101.0" style="-fx-background-color: #03A9F4;" stylesheets="@../styles/Styles.css" text="Login" textFill="#f8f4f4">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
