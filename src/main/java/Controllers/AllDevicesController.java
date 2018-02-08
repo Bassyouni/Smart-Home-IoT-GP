@@ -113,8 +113,8 @@ public class AllDevicesController extends ParentController implements Initializa
         
         for(int i = 0; i < devices.size(); i++)
         {
-            System.out.println(gpio.getPinFromIndex(devices.get(i).getPinNumber()));
-            gpio.setPinOutputMode(gpio.getPinFromIndex(devices.get(i).getPinNumber()), devices.get(i).getId());
+            //System.out.println(gpio.getPinFromIndex(devices.get(i).getPinNumber()));
+            //gpio.setPinOutputMode(gpio.getPinFromIndex(devices.get(i).getPinNumber()), devices.get(i).getId());
         }
     }
     
@@ -199,11 +199,11 @@ public class AllDevicesController extends ParentController implements Initializa
                                 device = Home.getChosenHome().searchForDevice(m.getDeviceId());
                                if(m.getCommand().equalsIgnoreCase("on"))
                                {
-                                    gpio.switchOn(gpio.getPinFromIndex(device.getPinNumber()), device.getId());
+                                    //gpio.switchOn(gpio.getPinFromIndex(device.getPinNumber()), device.getId());
                                }
                                else if(m.getCommand().equalsIgnoreCase("off"))
                                {
-                                    gpio.switchOff(gpio.getPinFromIndex(device.getPinNumber()), device.getId());
+                                    //gpio.switchOff(gpio.getPinFromIndex(device.getPinNumber()), device.getId());
                                }
                                 
                                

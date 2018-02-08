@@ -4,7 +4,10 @@ Controllers\AllDevicesController$1.class
 services\UsersService.class
 builders\UserParameterStringBuilder.class
 Controllers\DashboardController.class
+<<<<<<< HEAD
 Controllers\EditDeviceController.class
+=======
+>>>>>>> 3e382b212e5a68fb30ded022e6e0b246b5f53427
 parsers\DeviceParser.class
 com\smarthomesiot\desktop\MainApp$1.class
 parsers\MessageParser.class
@@ -13,12 +16,18 @@ parsers\UserParser$1.class
 services\HomeService.class
 Controllers\AllHomesController$1.class
 parsers\DeviceParser$1.class
+<<<<<<< HEAD
 Controllers\ParentController$2.class
 Controllers\FXMLLoginController.class
 Controllers\AllDevicesController$2$1.class
 parsers\LogParser.class
 Controllers\FXMLLoginController$2.class
 Controllers\ParentController$1.class
+=======
+Controllers\FXMLLoginController.class
+parsers\LogParser.class
+Controllers\AllDevicesController$3.class
+>>>>>>> 3e382b212e5a68fb30ded022e6e0b246b5f53427
 models\Home.class
 parsers\HomeParser.class
 builders\DeviceParameterStringBuilder.class
@@ -26,6 +35,7 @@ Controllers\ParentController.class
 parsers\LogParser$1.class
 models\User.class
 com\smarthomesiot\desktop\MQTTHandler.class
+Controllers\LoginController.class
 parsers\JSONParser.class
 models\Device.class
 Controllers\FXMLLoginController$1.class
@@ -39,5 +49,11 @@ models\Log.class
 builders\HomeParameterStringBuilder.class
 Controllers\HomeController.class
 models\Message.class
+<<<<<<< HEAD
 com\smarthomesiot\desktop\MainApp.class
+=======
+Controllers\AllHomesController$3.class
+com\smarthomesiot\desktop\MainApp.class
+Controllers\AllDevicesController$3$1.class
+>>>>>>> 3e382b212e5a68fb30ded022e6e0b246b5f53427
 services\ServiceSkeleton.class
