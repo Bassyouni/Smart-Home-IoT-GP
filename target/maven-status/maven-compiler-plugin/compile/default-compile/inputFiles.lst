@@ -18,9 +18,11 @@ E:\Coding\SmartHomesIoT\Desktop\src\main\java\models\Home.java
 E:\Coding\SmartHomesIoT\Desktop\src\main\java\Controllers\AllDevicesController.java
 E:\Coding\SmartHomesIoT\Desktop\src\main\java\Controllers\HomeController.java
 E:\Coding\SmartHomesIoT\Desktop\src\main\java\com\smarthomesiot\desktop\MainApp.java
+E:\Coding\SmartHomesIoT\Desktop\src\main\java\Controllers\ParentController.java
 E:\Coding\SmartHomesIoT\Desktop\src\main\java\models\Device.java
 E:\Coding\SmartHomesIoT\Desktop\src\main\java\Controllers\DashboardController.java
 E:\Coding\SmartHomesIoT\Desktop\src\main\java\parsers\LogParser.java
 E:\Coding\SmartHomesIoT\Desktop\src\main\java\database\DatabaseManager.java
+E:\Coding\SmartHomesIoT\Desktop\src\main\java\Controllers\EditDeviceController.java
 E:\Coding\SmartHomesIoT\Desktop\src\main\java\parsers\HomeParser.java
 E:\Coding\SmartHomesIoT\Desktop\src\main\java\parsers\JSONParser.java

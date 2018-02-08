@@ -24,7 +24,7 @@ public class Device {
 
     @Override
     public String toString() {
-        return "Device{" + "_id=" + _id + ", name=" + name + ", description=" + description + ", type=" + type + ", pinNumber=" + pinNumber + '}';
+        return this.name;
     }
 
     public Device() {

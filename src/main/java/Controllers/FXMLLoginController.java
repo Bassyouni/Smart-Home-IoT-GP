@@ -13,7 +13,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -46,31 +51,74 @@ public class FXMLLoginController implements Initializable {
     @FXML
     private ImageView imageView;
     
+    private  boolean canLogin = false;
+    
     @FXML
-    private void login(ActionEvent event) throws IOException 
+    private void login(final ActionEvent event) throws IOException 
     {
-        
-        UsersService userService = UsersService.getInstance();
-        HashMap<String, Object> response = userService.login(emailTextField.getText(), passwordTextField.getText());
-        if(response.get("status").equals("failure"))
+       
+        Task task = new Task<Void>() 
         {
-            errorMessage.setText(response.get("error").toString());
-            return;
-        }
-        User.setLoggedUser((User)response.get("response"));
-        System.out.print(User.getLoggedUser());
-
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            @Override 
+            public Void call() 
+            {
+                executeLogin();
+                return null;
+            }
+            
+            
+            
+        };
         
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AllHomes.fxml"));
+        task.setOnSucceeded(new EventHandler(){
+            @Override
+            public void handle(Event e) 
+            {
+                if(canLogin)
+                {
+                    try {
+                        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                        
+                        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AllHomes.fxml"));
+                        
+                        Scene scene = new Scene(root);
+                        
+                        stage.setScene(scene);
+                    } catch (IOException ex) {
+                        Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
         
-        Scene scene = new Scene(root);
         
-        stage.setScene(scene);
+        });
+        
+       Thread thread = new Thread(task);
+       thread.start();
+       
         
         
         
     }
+    
+    
+    private void executeLogin()
+    {
+        
+            UsersService userService = UsersService.getInstance();
+            HashMap<String, Object> response = userService.login(emailTextField.getText(), passwordTextField.getText());
+            if(response.get("status").equals("failure"))
+            {
+                errorMessage.setText(response.get("error").toString());
+                return;
+            }
+            User.setLoggedUser((User)response.get("response"));
+            System.out.print(User.getLoggedUser());
+            canLogin = true;
+           
+        
+    }
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

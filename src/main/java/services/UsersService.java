@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class UsersService  extends ServiceSkeleton
 {    
-    private static final String BASE_URL = "http://197.52.8.114:4444/api/users";
+    private static final String BASE_URL = "http://197.52.233.145:4444/api/users";
     private static UsersService _usersService;
 
     private UsersService() 

@@ -38,7 +38,7 @@ import services.HomeService;
  *
  * @author Mahmoud Mokhtar
  */
-public class AllHomesController implements Initializable {
+public class AllHomesController extends ParentController implements Initializable {
 
     @FXML
     private AnchorPane anchorPane;
@@ -62,15 +62,9 @@ public class AllHomesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) 
     {
         inflateComponents();
-        setupSideMenu();
+        setupSideMenu(drawer, hamburger);
         fetchComponentsData();
-        setupListView();
-       
-        
-       
-        
-       
-        
+        setupListView();        
     }    
     
     private void fetchComponentsData()
@@ -82,36 +76,24 @@ public class AllHomesController implements Initializable {
             if(response.get("status").equals("failure"))
             {
                 return;
-            }
-            
-            ArrayList<Home> homes = (ArrayList<Home>) response.get("response");
-
-            
+            }      
+            ArrayList<Home> homes = (ArrayList<Home>) response.get("response");     
             homesList.getItems().addAll(homes);
-            
-            
-            
         }
     }
     
-    private void inflateComponents()
+    @Override
+    protected void inflateComponents()
     {
-        try 
-        {
+
             double height = Screen.getPrimary().getVisualBounds().getHeight();
             double width = Screen.getPrimary().getVisualBounds().getWidth();
-            VBox box = FXMLLoader.load(getClass().getResource("/fxml/DrawerContent.fxml"));
-            box.setPrefHeight(height);
+           
             homesList.setPrefWidth(200);
             hbox.setPrefWidth(width - 60);
-            drawer.setPrefHeight(height);
-            drawer.setSidePane(box);
-            drawer.toFront();
             homesList.setExpanded(true);
             homesList.setDepth(1);
-        } catch (IOException ex) {
-            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }
     
     
@@ -156,54 +138,7 @@ public class AllHomesController implements Initializable {
         
     }
     
-    private void setupSideMenu()
-    {
-         final HamburgerBackArrowBasicTransition burgerTask = new HamburgerBackArrowBasicTransition(hamburger);
-        burgerTask.setRate(-1);
-        
-        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-                               
-            @Override
-            public void handle(MouseEvent event)         
-            {
-                burgerTask.setRate(burgerTask.getRate() * -1);
-                burgerTask.play();
-        
-                if(drawer.isShown())
-                {
-                    drawer.close();
-                }
-                else
-                {
-                    drawer.open();
-                }
-            }    
-        });
-    }
-    
-    
-    private void goToDevicesView(MouseEvent event) throws IOException
-    {
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AllDevices.fxml"));
-        
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-    }
-    
-    private void goToDevicesView(KeyEvent event) throws IOException
-    {
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AllDevices.fxml"));
-        
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-    }
-    
+
     
     
 }

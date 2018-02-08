@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXListView;
@@ -31,6 +32,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -56,7 +58,7 @@ import services.HomeService;
  *
  * @author Mahmoud Mokhtar
  */
-public class AllDevicesController implements Initializable {
+public class AllDevicesController extends ParentController implements Initializable  {
 
     @FXML
     private JFXHamburger hamburger;
@@ -68,30 +70,40 @@ public class AllDevicesController implements Initializable {
     private HBox hbox;
     
     @FXML
-    private Label debugLabel;
-
+    private VBox centralContainer;
+    
+    @FXML
+    private Label myDevicesLabel;
+    
+    @FXML
+    private JFXButton editDeviceButton;
+    
     @FXML
     private JFXListView<Device> devicesList;
+
     
     private GPIOHandler gpio; 
+    
+    private Device selectedDevice;
     
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        gpio = GPIOHandler.getInstance();
+        try
+        {
+            //gpio = GPIOHandler.getInstance();
+        }
+        catch(Exception e)
+        {
+            System.err.println("Not Raspberry Pi");
+        }
+
         inflateComponents();
-        setupSideMenu();
+        setupSideMenu(drawer, hamburger);
         fetchComponentsData();
         setupListView();
         setupMqttSubscription();
-        
-        
-        
 
-            
-
-               
-        
     }    
     
     
@@ -121,7 +133,7 @@ public class AllDevicesController implements Initializable {
 
                 ArrayList<Device> devices = (ArrayList<Device>) response.get("response");
                 Home.getChosenHome().setDevices(devices);
-                initializePins(devices);
+                //initializePins(devices);
 
                 devicesList.getItems().addAll(devices);
             } 
@@ -129,30 +141,23 @@ public class AllDevicesController implements Initializable {
         }
     }
     
-    private void inflateComponents()
+    @Override
+    protected void inflateComponents()
     {
-        try 
-        {
+
             double height = Screen.getPrimary().getVisualBounds().getHeight();
             double width = Screen.getPrimary().getVisualBounds().getWidth();
-            VBox box = FXMLLoader.load(getClass().getResource("/fxml/DrawerContent.fxml"));
-            box.setPrefHeight(height);
-            devicesList.setPrefWidth(200);
+            
+            devicesList.setPrefWidth(250);
             hbox.setPrefWidth(width - 60);
-            drawer.setPrefHeight(height);
-            drawer.setSidePane(box);
-            drawer.toFront();
-            devicesList.setExpanded(true);
-            devicesList.setDepth(1);
+            centralContainer.setPrefHeight(height);
+            centralContainer.setPrefWidth(width - 60);
+            myDevicesLabel.setPrefWidth(250);
+            editDeviceButton.setPrefWidth(250);
+            devicesList.setExpanded(false);
+            devicesList.setDepth(4);
             
-            
-            
-            
-            
-            
-        } catch (IOException ex) {
-            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }
     
     
@@ -164,36 +169,14 @@ public class AllDevicesController implements Initializable {
             public void handle(MouseEvent event)
             {
                 System.out.println(devicesList.getSelectionModel().getSelectedItem());
+                selectedDevice = devicesList.getSelectionModel().getSelectedItem();
             }
         
         
         });
     }
     
-    private void setupSideMenu()
-    {
-         final HamburgerBackArrowBasicTransition burgerTask = new HamburgerBackArrowBasicTransition(hamburger);
-        burgerTask.setRate(-1);
-        
-        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-                               
-            @Override
-            public void handle(MouseEvent event)         
-            {
-                burgerTask.setRate(burgerTask.getRate() * -1);
-                burgerTask.play();
-        
-                if(drawer.isShown())
-                {
-                    drawer.close();
-                }
-                else
-                {
-                    drawer.open();
-                }
-            }    
-        });
-    }
+  
     
     private void setupMqttSubscription()
     {
@@ -244,7 +227,7 @@ public class AllDevicesController implements Initializable {
                     
                             @Override
                             public void run() {
-                               debugLabel.setText(deviceName + " - " + commandName);
+                               
                             }
                         });
                        
@@ -258,6 +241,30 @@ public class AllDevicesController implements Initializable {
         }
     }
 
+    
+    
+     @FXML
+    private void editDevice(ActionEvent event) throws IOException 
+    {
+        
+      
+        EditDeviceController controller = new EditDeviceController(selectedDevice);
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EditDevice.fxml"));
+        
+        loader.setController(controller);
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        
+       Parent root =  (Parent) loader.load();
+        
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        
+        
+    }
+    
+    
     
     
     

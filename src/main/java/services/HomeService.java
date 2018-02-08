@@ -15,7 +15,7 @@ import models.Device;
  * @author cdc
  */
 public class HomeService extends ServiceSkeleton{
-    private static final String BASE_URL = "http://197.52.8.114:4444/api/homes";
+    private static final String BASE_URL = "http://197.52.233.145:4444/api/homes";
     
     private static HomeService _homeService;
     
