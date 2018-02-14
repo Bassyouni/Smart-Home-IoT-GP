@@ -180,6 +180,11 @@ public abstract class ServiceSkeleton {
             ArrayList<Device> devices = DeviceParser.getInstance().getArrayOfObjects( jsonResponse.get("response").getAsJsonArray().toString() );
             responseMap.put("response", devices);
         }
+        else if(parseAs == 7)// as ArrayList<User>
+        {
+            ArrayList<User> users = UserParser.getInstance().getArrayOfObjects( jsonResponse.get("response").getAsJsonArray().toString() );
+            responseMap.put("response", users);
+        }
         return responseMap;
     }
     protected static HashMap<String, Object> fetchData(String path, String requestMethod, HashMap<String, String> requestParameters, int parseAs){

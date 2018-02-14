@@ -27,42 +27,42 @@ public class GPIOHandler
         return handler;
     }
     
-    public void setPinOutputMode(Pin pinNumber, String name)
+    public void setPinOutputMode(Pin pinNumber, String id)
     {
         
-        pins.put(name, _gpio.provisionDigitalOutputPin(pinNumber, name));
+        pins.put(id, _gpio.provisionDigitalOutputPin(pinNumber, id));
     }
     
-    public void setPinInputMode(Pin pinNumber, String name)
+    public void setPinInputMode(Pin pinNumber, String id)
     {
 
-        pins.put(name, _gpio.provisionDigitalInputPin(pinNumber, name));
+        pins.put(id, _gpio.provisionDigitalInputPin(pinNumber, id));
     }
     
-    public void switchOn(Pin pinNumber, String name)
+    public void switchOn(Pin pinNumber, String id)
     {
-        if(pins.containsKey(name))
+        if(pins.containsKey(id))
         {
 
-                GpioPinDigitalOutput pin = (GpioPinDigitalOutput)pins.get(name);
+                GpioPinDigitalOutput pin = (GpioPinDigitalOutput)pins.get(id);
                 pin.high();
             
         }
         else
         {
-            setPinOutputMode(pinNumber, name);
-            GpioPinDigitalOutput pin = (GpioPinDigitalOutput)pins.get(name);
+            setPinOutputMode(pinNumber, id);
+            GpioPinDigitalOutput pin = (GpioPinDigitalOutput)pins.get(id);
                 pin.high();
         }
         
     }
     
-    public void switchOff(Pin pinNumber, String name)
+    public void switchOff(Pin pinNumber, String id)
     {
-        if(pins.containsKey(name))
+        if(pins.containsKey(id))
         {
 
-                GpioPinDigitalOutput pin = (GpioPinDigitalOutput)pins.get(name);
+                GpioPinDigitalOutput pin = (GpioPinDigitalOutput)pins.get(id);
                 pin.low();
             
 
@@ -70,8 +70,8 @@ public class GPIOHandler
         
         else
         {
-            setPinOutputMode(pinNumber, name);
-            GpioPinDigitalOutput pin = (GpioPinDigitalOutput)pins.get(name);
+            setPinOutputMode(pinNumber, id);
+            GpioPinDigitalOutput pin = (GpioPinDigitalOutput)pins.get(id);
                 pin.low();
         }
         

@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class UsersService  extends ServiceSkeleton
 {    
-    private static final String BASE_URL = "http://197.52.233.145:4444/api/users";
+    private static final String BASE_URL = "http://197.52.108.54:4444/api/users";
     private static UsersService _usersService;
 
     private UsersService() 
@@ -62,8 +62,8 @@ public class UsersService  extends ServiceSkeleton
     }
     
     
-      public HashMap<String, Object> addHomeToUser(String id, String homeId){
-        final String PATH = BASE_URL + "/add-home/" + id + "/" + homeId;
+      public HashMap<String, Object> addHomeToUser(String userId, String homeId){
+        final String PATH = BASE_URL + "/add-home/" + homeId + "/" + userId;
         final String REQUEST_METHOD = REQUEST_METHOD_POST;
         final int PARSE_AS = 2;// as Home
         return fetchData(PATH, REQUEST_METHOD, PARSE_AS);

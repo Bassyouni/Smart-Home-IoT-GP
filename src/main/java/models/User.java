@@ -102,7 +102,7 @@ public class User
 
     @Override
     public String toString() {
-        return "User{" + "_id=" + _id + ", name=" + name + ", birthDate=" + birthDate + '}';
+        return this.name;
     }
     
     

@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -69,17 +70,35 @@ public class AllHomesController extends ParentController implements Initializabl
     
     private void fetchComponentsData()
     {
-        if(User.isLoggedIn())
+        
+        Task task = new Task<Void>() 
         {
-            HomeService homeService = HomeService.getInstance();
-            HashMap<String, Object> response = homeService.getAllHomesAttachedToUser(User.getLoggedUser().getId());
-            if(response.get("status").equals("failure"))
+            @Override 
+            public Void call() 
             {
-                return;
-            }      
-            ArrayList<Home> homes = (ArrayList<Home>) response.get("response");     
-            homesList.getItems().addAll(homes);
-        }
+                if(User.isLoggedIn())
+                {
+                    System.err.println(User.getLoggedUser().getName() + " - " + User.getLoggedUser().getId());
+                    HomeService homeService = HomeService.getInstance();
+                    HashMap<String, Object> response = homeService.getAllHomesAttachedToUser(User.getLoggedUser().getId());
+                    if(response.get("status").equals("failure"))
+                    {
+                        return null;
+                    }      
+                    ArrayList<Home> homes = (ArrayList<Home>) response.get("response");     
+                    homesList.getItems().addAll(homes);
+                }
+                return null;
+            }
+            
+            
+            
+        };
+       Thread thread = new Thread(task);
+       thread.start();
+        
+        
+        
     }
     
     @Override

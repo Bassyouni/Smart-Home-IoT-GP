@@ -15,7 +15,7 @@ import models.Device;
  * @author cdc
  */
 public class HomeService extends ServiceSkeleton{
-    private static final String BASE_URL = "http://197.52.233.145:4444/api/homes";
+    private static final String BASE_URL = "http://197.52.108.54:4444/api/homes";
     
     private static HomeService _homeService;
     
@@ -103,10 +103,25 @@ public class HomeService extends ServiceSkeleton{
         return fetchData(PATH, REQUEST_METHOD, requestParameters, PARSE_AS);
     }
     
-       public HashMap<String, Object> getDevicesAttachedToHome(String targetHomeId){
+    public HashMap<String, Object> getDevicesAttachedToHome(String targetHomeId){
         final String PATH = BASE_URL + "/get-devices/" + targetHomeId;
         final String REQUEST_METHOD = REQUEST_METHOD_GET;
         final int PARSE_AS = 6;// as list of devices -> implemented
+        return fetchData(PATH, REQUEST_METHOD,  PARSE_AS);
+    }
+    
+    
+    public HashMap<String, Object> getUsersAttachedToHome(String targetHomeId){
+        final String PATH = BASE_URL + "/get-users/" + targetHomeId;
+        final String REQUEST_METHOD = REQUEST_METHOD_GET;
+        final int PARSE_AS = 7;// as list of devices -> implemented
+        return fetchData(PATH, REQUEST_METHOD,  PARSE_AS);
+    }
+    
+    public HashMap<String, Object> addUserToHomeByEmail(String targetHomeId, String userEmail){
+        final String PATH = BASE_URL + "/add-user-by-email/" + targetHomeId + "/" + userEmail;
+        final String REQUEST_METHOD = REQUEST_METHOD_GET;
+        final int PARSE_AS = 0;
         return fetchData(PATH, REQUEST_METHOD,  PARSE_AS);
     }
     

@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -102,7 +103,6 @@ public class AllDevicesController extends ParentController implements Initializa
         setupSideMenu(drawer, hamburger);
         fetchComponentsData();
         setupListView();
-        setupMqttSubscription();
 
     }    
     
@@ -120,25 +120,40 @@ public class AllDevicesController extends ParentController implements Initializa
     
     private void fetchComponentsData()
     {
-        if(User.isLoggedIn())
+        Task task = new Task<Void>() 
         {
-            HomeService homeService = HomeService.getInstance();
-            if(Home.isHomeChosen())
+            @Override 
+            public Void call() 
             {
-                 HashMap<String, Object> response = homeService.getDevicesAttachedToHome(Home.getChosenHome().getId());
-                if(response.get("status").equals("failure"))
+                if(User.isLoggedIn())
                 {
-                    return;
+                    HomeService homeService = HomeService.getInstance();
+                    if(Home.isHomeChosen())
+                    {
+                         HashMap<String, Object> response = homeService.getDevicesAttachedToHome(Home.getChosenHome().getId());
+                        if(response.get("status").equals("failure"))
+                        {
+                            return null;
+                        }
+
+                        ArrayList<Device> devices = (ArrayList<Device>) response.get("response");
+                        Home.getChosenHome().setDevices(devices);
+                        //initializePins(devices);
+
+                        devicesList.getItems().addAll(devices);
+                    } 
+
                 }
-
-                ArrayList<Device> devices = (ArrayList<Device>) response.get("response");
-                Home.getChosenHome().setDevices(devices);
-                //initializePins(devices);
-
-                devicesList.getItems().addAll(devices);
-            } 
-            
-        }
+                
+                setupMqttSubscription();
+                
+                return null;
+            }
+  
+        };
+       Thread thread = new Thread(task);
+       thread.start();
+        
     }
     
     @Override
@@ -178,72 +193,10 @@ public class AllDevicesController extends ParentController implements Initializa
     
   
     
-    private void setupMqttSubscription()
-    {
-        try {
-            MQTTHandler handler = MQTTHandler.getInstance();
-            if(Home.isHomeChosen())
-            {
-                handler.subscribe(Home.getChosenHome().getTopic(), new IMqttMessageListener() {
-                    @Override
-                    public void messageArrived(String topic, final MqttMessage message) throws Exception {
-                        System.out.println(topic + "  ---  " + message.toString());
-                         Message m = MessageParser.getInstance().getObject(message.toString()); 
-                         
-                        Device device = new Device();
-                      
-                        if(m.getDeviceId() != null)
-                        {
-                            try
-                            {
-                                device = Home.getChosenHome().searchForDevice(m.getDeviceId());
-                               if(m.getCommand().equalsIgnoreCase("on"))
-                               {
-                                    //gpio.switchOn(gpio.getPinFromIndex(device.getPinNumber()), device.getId());
-                               }
-                               else if(m.getCommand().equalsIgnoreCase("off"))
-                               {
-                                    //gpio.switchOff(gpio.getPinFromIndex(device.getPinNumber()), device.getId());
-                               }
-                                
-                               
-
-
-                               
-                            }
-                            catch(Exception e)
-                            {
-                                System.out.println(e);
-                            }
-                                
-
-
-
-                        }
-                        final String deviceName, commandName;
-                        deviceName = device.getName();
-                        commandName = m.getCommand();
-                         Platform.runLater(new Runnable(){
-                    
-                            @Override
-                            public void run() {
-                               
-                            }
-                        });
-                       
-                        
-                    }
-                } );
-            }
-            
-        } catch (MqttException ex) {
-            Logger.getLogger(AllDevicesController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     
     
-     @FXML
+    @FXML
     private void editDevice(ActionEvent event) throws IOException 
     {
         

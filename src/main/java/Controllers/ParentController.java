@@ -8,9 +8,13 @@ package Controllers;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+import com.smarthomesiot.desktop.GPIOHandler;
+import com.smarthomesiot.desktop.MQTTHandler;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -21,6 +25,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import models.Device;
+import models.Home;
+import models.Message;
+import org.eclipse.paho.client.mqttv3.IMqttMessageListener;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+import parsers.MessageParser;
 
 
 public class ParentController 
@@ -50,11 +61,123 @@ public class ParentController
         stage.setScene(scene);
     }
     
-    
-    protected void inflateComponents()
+    protected void goToUsersView(Object event) throws IOException
     {
-       
+        KeyEvent keyE;
+        MouseEvent mouseE;
+        Stage stage;
+        ActionEvent actionE;
+        if(event instanceof KeyEvent)
+        {
+            keyE = (KeyEvent) event;
+            stage = (Stage) ((Node)keyE.getSource()).getScene().getWindow();
+        }
+        else if(event instanceof MouseEvent)
+        {
+            mouseE = (MouseEvent) event;
+            stage = (Stage) ((Node)mouseE.getSource()).getScene().getWindow();
+        }
+        else
+        {
+            actionE = (ActionEvent) event;
+            stage = (Stage) ((Node)actionE.getSource()).getScene().getWindow();
+        }
+ 
+ 
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Users.fxml"));
+        
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
     }
+    
+    protected void goToHomesView(Object event) throws IOException
+    {
+        KeyEvent keyE;
+        MouseEvent mouseE;
+        ActionEvent actionE;
+        Stage stage;
+        if(event instanceof KeyEvent)
+        {
+            keyE = (KeyEvent) event;
+            stage = (Stage) ((Node)keyE.getSource()).getScene().getWindow();
+        }
+        else if(event instanceof MouseEvent)
+        {
+            mouseE = (MouseEvent) event;
+            stage = (Stage) ((Node)mouseE.getSource()).getScene().getWindow();
+        }
+        else
+        {
+            actionE = (ActionEvent) event;
+            stage = (Stage) ((Node)actionE.getSource()).getScene().getWindow();
+        }
+ 
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AllHomes.fxml"));
+        
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+    }
+    
+    
+    
+    protected void goToAddUserView(Object event) throws IOException
+    {
+        KeyEvent keyE;
+        MouseEvent mouseE;
+        Stage stage;
+        ActionEvent actionE;
+        if(event instanceof KeyEvent)
+        {
+            keyE = (KeyEvent) event;
+            stage = (Stage) ((Node)keyE.getSource()).getScene().getWindow();
+        }
+        else if(event instanceof MouseEvent)
+        {
+            mouseE = (MouseEvent) event;
+            stage = (Stage) ((Node)mouseE.getSource()).getScene().getWindow();
+        }
+        else
+        {
+            actionE = (ActionEvent) event;
+            stage = (Stage) ((Node)actionE.getSource()).getScene().getWindow();
+        }
+ 
+ 
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AllDevices.fxml"));
+        
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+    }
+    
+    
+    protected void goToSettingsView(Object event) throws IOException
+    {
+        KeyEvent keyE;
+        MouseEvent mouseE;
+        Stage stage;
+        if(event instanceof KeyEvent)
+        {
+            keyE = (KeyEvent) event;
+            stage = (Stage) ((Node)keyE.getSource()).getScene().getWindow();
+        }
+        else
+        {
+            mouseE = (MouseEvent) event;
+            stage = (Stage) ((Node)mouseE.getSource()).getScene().getWindow();
+        }
+ 
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Settings.fxml"));
+        
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+    }
+    
+    
+    protected void inflateComponents(){}
     
     
   
@@ -89,8 +212,29 @@ public class ParentController
                                     }
                                     break;
                                 }
-                                case "users": break;
-                                case "logout": break;
+                                case "users":
+                                {
+                                    try 
+                                    {
+                                        goToUsersView(event);
+                                        break;
+                                    } catch (IOException ex) 
+                                    {
+                                        Logger.getLogger(ParentController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                                case "settings":
+                                {
+                                  try 
+                                    {
+                                        goToSettingsView(event);
+                                        break;
+                                    } catch (IOException ex) 
+                                    {
+                                        Logger.getLogger(ParentController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }  
+                                }
+                                    
                             }
                         }
                     });
@@ -127,6 +271,63 @@ public class ParentController
     }
     
     
-    
+    protected void setupMqttSubscription()
+    {
+        try {
+            MQTTHandler handler = MQTTHandler.getInstance();
+            if(Home.isHomeChosen())
+            {
+                handler.subscribe(Home.getChosenHome().getTopic(), new IMqttMessageListener() {
+                    @Override
+                    public void messageArrived(String topic, final MqttMessage message) throws Exception {
+                        System.out.println(topic + "  ---  " + message.toString());
+                         Message m = MessageParser.getInstance().getObject(message.toString()); 
+                         
+                        Device device = new Device();
+                      
+                        if(m.getDeviceId() != null)
+                        {
+                            try
+                            {
+                                //GPIOHandler gpio = GPIOHandler.getInstance();
+                                device = Home.getChosenHome().searchForDevice(m.getDeviceId());
+                               if(m.getCommand().equalsIgnoreCase("on"))
+                               {
+                                   // gpio.switchOn(gpio.getPinFromIndex(device.getPinNumber()), device.getId());
+                                   System.out.println("GPIO HANDLER: Simulate ON");
+                               }
+                               else if(m.getCommand().equalsIgnoreCase("off"))
+                               {
+                                    //gpio.switchOff(gpio.getPinFromIndex(device.getPinNumber()), device.getId());
+                                   System.out.println("GPIO HANDLER: Simulate OFF");
+                               }
+
+                            }
+                            catch(Exception e)
+                            {
+                                System.out.println(e);
+                            }
+                        }
+                        final String deviceName, commandName;
+                        deviceName = device.getName();
+                        commandName = m.getCommand();
+                         Platform.runLater(new Runnable(){
+                    
+                            @Override
+                            public void run() {
+                               
+                            }
+                        });
+                       
+                        
+                    }
+                } );
+            }
+            
+        } catch (MqttException ex) {
+            Logger.getLogger(AllDevicesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     
 }

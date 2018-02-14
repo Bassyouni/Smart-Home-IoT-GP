@@ -82,7 +82,6 @@ public class FXMLLoginController implements Initializable {
                         Parent root = FXMLLoader.load(getClass().getResource("/fxml/AllHomes.fxml"));
                         
                         Scene scene = new Scene(root);
-                        
                         stage.setScene(scene);
                     } catch (IOException ex) {
                         Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);

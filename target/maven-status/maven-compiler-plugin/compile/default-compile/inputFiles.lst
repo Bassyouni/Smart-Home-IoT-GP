@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 E:\Coding\SmartHomesIoT\Desktop\src\main\java\com\smarthomesiot\desktop\MQTTHandler.java
 E:\Coding\SmartHomesIoT\Desktop\src\main\java\Controllers\AllHomesController.java
 E:\Coding\SmartHomesIoT\Desktop\src\main\java\models\Log.java
@@ -8,6 +7,8 @@ E:\Coding\SmartHomesIoT\Desktop\src\main\java\models\User.java
 E:\Coding\SmartHomesIoT\Desktop\src\main\java\Controllers\FXMLLoginController.java
 E:\Coding\SmartHomesIoT\Desktop\src\main\java\services\HomeService.java
 E:\Coding\SmartHomesIoT\Desktop\src\main\java\com\smarthomesiot\desktop\GPIOHandler.java
+E:\Coding\SmartHomesIoT\Desktop\src\main\java\Controllers\LoginController.java
+E:\Coding\SmartHomesIoT\Desktop\src\main\java\Controllers\UsersController.java
 E:\Coding\SmartHomesIoT\Desktop\src\main\java\parsers\MessageParser.java
 E:\Coding\SmartHomesIoT\Desktop\src\main\java\services\UsersService.java
 E:\Coding\SmartHomesIoT\Desktop\src\main\java\builders\UserParameterStringBuilder.java
@@ -26,33 +27,5 @@ E:\Coding\SmartHomesIoT\Desktop\src\main\java\parsers\LogParser.java
 E:\Coding\SmartHomesIoT\Desktop\src\main\java\database\DatabaseManager.java
 E:\Coding\SmartHomesIoT\Desktop\src\main\java\Controllers\EditDeviceController.java
 E:\Coding\SmartHomesIoT\Desktop\src\main\java\parsers\HomeParser.java
+E:\Coding\SmartHomesIoT\Desktop\src\main\java\Controllers\SettingsController.java
 E:\Coding\SmartHomesIoT\Desktop\src\main\java\parsers\JSONParser.java
-=======
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\database\DatabaseManager.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\com\smarthomesiot\desktop\MainApp.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\Controllers\FXMLLoginController.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\Controllers\DashboardController.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\models\Home.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\parsers\DeviceParser.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\parsers\HomeParser.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\services\HomeService.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\models\User.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\models\Message.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\Controllers\AllDevicesController.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\com\smarthomesiot\desktop\MQTTHandler.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\com\smarthomesiot\desktop\GPIOHandler.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\builders\HomeParameterStringBuilder.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\Controllers\HomeController.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\models\Log.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\parsers\UserParser.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\services\UsersService.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\parsers\LogParser.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\builders\DeviceParameterStringBuilder.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\Controllers\LoginController.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\parsers\JSONParser.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\parsers\MessageParser.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\builders\UserParameterStringBuilder.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\Controllers\AllHomesController.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\models\Device.java
-C:\Users\cdc\Desktop\Smart-Home-IoT-GP\src\main\java\services\ServiceSkeleton.java
->>>>>>> 3e382b212e5a68fb30ded022e6e0b246b5f53427
