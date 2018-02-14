@@ -39,6 +39,28 @@ class HomesController extends Controller
       return $home;
     }
 
+    public function getHomeUsers($homeId)
+    {
+      try
+      {
+          $home = Home::findOrFail($homeId);
+          $users = array();
+          foreach($home->users as $userId)
+          {
+            $user = User::findOrFail($userId);
+            array_push($users, $user);
+          }
+
+          return response()->json(["response" => $users, "status" => "success"]);
+
+      }
+      catch (ModelNotFoundException $e)
+      {
+        return response()->json(["status" => "failure", "error" =>  "Can't find Home with given id"]);
+      }
+    }
+
+
     public function addDevice($homeId, Request $request)
     {
       try
@@ -170,6 +192,30 @@ class HomesController extends Controller
 
     }
 
+
+    public function addUserByEmail($homeId, $userEmail)
+    {
+      try
+      {
+        $home = Home::findOrFail($homeId);
+        $user = User::where("email", "=", $userEmail)->get()->first();
+        if(!$user)
+        {
+          throw 99;
+        }
+        $user->homes()->attach($home);
+        $user->save();
+        return response()->json(["status" => "success"]);
+
+      }
+      catch (ModelNotFoundException $e)
+      {
+        return response()->json(["status" => "failure", "error" =>  "Can't find Home/User with given id/email"]);
+      }
+
+    }
+
+
     public function removeUser($homeId, $userId)
     {
       try
@@ -250,6 +296,21 @@ class HomesController extends Controller
     }
 
 
+
+    public function getDevicesByHome($homeId)
+    {
+      try
+      {
+        $home = Home::findOrFail($homeId);
+
+        return response()->json(["response" => $home->devices()->get(), "status" => "success"]);
+
+      }
+      catch (ModelNotFoundException $e)
+      {
+        return response()->json(["status" => "failure", "error" =>  "Can't find Home with given id"]);
+      }
+    }
 
 
 

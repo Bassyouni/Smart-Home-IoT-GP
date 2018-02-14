@@ -44,6 +44,7 @@ class UsersController extends Controller
         {
           if(Hash::check($request->password, $user->password))
           {
+            //$user = $user->homes;
             return response()->json(["response" => $user, "status" => "success"]);
           }
         }
@@ -63,7 +64,7 @@ class UsersController extends Controller
       return response()->json(["response" => $user, "status" => "success"]);
     }
 
-    public function addHome($userId, Request $request)
+    public function addNewHome($userId, Request $request)
     {
         try
         {
@@ -85,6 +86,25 @@ class UsersController extends Controller
         {
           return response()->json(["status" => "failure", "error" => "Can't find User with given id"]);
         }
+    }
+
+    public function addHome($userId, $homeId)
+    {
+      try
+      {
+          $user = User::findOrFail($userId);
+          $home = Home::findOrFail($homeId);
+          $user->homes()->attach($homeId);
+
+          return response()->json(["response" => $home, "status" => "success"]);
+        
+        return response()->json(["status" => "failure", "error" => "Parameters are missing or Invalid Parameter names."]);
+      }
+      catch (ModelNotFoundException $e)
+      {
+        return response()->json(["status" => "failure", "error" => "Can't find User with given id"]);
+      }
+
     }
 
 
