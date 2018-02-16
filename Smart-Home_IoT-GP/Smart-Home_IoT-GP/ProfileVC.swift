@@ -112,7 +112,7 @@ class ProfileVC: ParentViewController {
         }
     }
     
-    func handleTap()
+    @objc func handleTap()
     {
         self.view.endEditing(true)
     }

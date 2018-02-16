@@ -59,6 +59,11 @@ class User : NSObject
         return _homes
     }
     
+    public func updateHome(homeIndex: Int , home: Home)
+    {
+        self._homes[homeIndex] = home
+    }
+    
     
     
     //MARK:- public varibles

@@ -55,4 +55,48 @@ class HomeServices: ServicesWrapper
             downloadCompleted(returnStatment,homes)
         }
     }
+
+    public static func updateHome(for home: Home, downloadCompleted: @escaping DownloadCompletedForHome)
+    {
+        let url = URL(string: "\(baseURL)/api/homes/update/\(home.id)")
+        let paramters = ["homeName": home.name , "homeAddress": home.address]
+        
+        var home = Home()
+        
+        Alamofire.request(url!, method: .post , parameters: paramters).responseJSON { response in
+            var returnStatment = "failure"
+            
+            if let dic = response.result.value as? Dictionary<String , AnyObject>
+            {
+                if let status =  dic["status"] as? String
+                {
+                    if status == "failure"
+                    {
+                        if let error = dic["error"] as? String
+                        {
+                            returnStatment = error
+                        }
+                        
+                    }
+                    else
+                    {
+                        returnStatment = "success"
+                        if let returnedDataDic = dic["response"] as? Dictionary<String, AnyObject>
+                        {
+                            let parsedHome: Home = HomeParser.getOneObject(dictionary: returnedDataDic)
+                            home = parsedHome
+                        }
+                    }
+                    
+                }
+            }
+            else
+            {
+                print(response.error.debugDescription)
+            }
+            
+            downloadCompleted(returnStatment,home)
+        }
+        
+    }
 }

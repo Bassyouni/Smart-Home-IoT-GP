@@ -11,6 +11,7 @@
 		5239BE4020248B1C002F7582 /* MqttTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239BE3F20248B1C002F7582 /* MqttTestVC.swift */; };
 		5239BE422024A22A002F7582 /* DevicesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239BE412024A22A002F7582 /* DevicesVC.swift */; };
 		5239BE442024ACEC002F7582 /* DeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239BE432024ACEC002F7582 /* DeviceTableViewCell.swift */; };
+		528B049120362DD1007FDEB1 /* HomeSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528B049020362DD1007FDEB1 /* HomeSettingVC.swift */; };
 		52D1F95A20237CAA007E5F0F /* MFSideMenuContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D1F95620237CAA007E5F0F /* MFSideMenuContainerViewController.m */; };
 		52D1F95B20237CAA007E5F0F /* MFSideMenuShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D1F95720237CAA007E5F0F /* MFSideMenuShadow.m */; };
 		52D1F95C20237CAA007E5F0F /* UIViewController+MFSideMenuAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D1F95920237CAA007E5F0F /* UIViewController+MFSideMenuAdditions.m */; };
@@ -54,6 +55,7 @@
 		5239BE3F20248B1C002F7582 /* MqttTestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MqttTestVC.swift; sourceTree = "<group>"; };
 		5239BE412024A22A002F7582 /* DevicesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesVC.swift; sourceTree = "<group>"; };
 		5239BE432024ACEC002F7582 /* DeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTableViewCell.swift; sourceTree = "<group>"; };
+		528B049020362DD1007FDEB1 /* HomeSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSettingVC.swift; sourceTree = "<group>"; };
 		52D1F95220237CA9007E5F0F /* Smart-Home_IoT-GP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Smart-Home_IoT-GP-Bridging-Header.h"; sourceTree = "<group>"; };
 		52D1F95320237CAA007E5F0F /* MFSideMenuShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSideMenuShadow.h; sourceTree = "<group>"; };
 		52D1F95420237CAA007E5F0F /* MFSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSideMenu.h; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				5239BE412024A22A002F7582 /* DevicesVC.swift */,
 				52D7D25220273CD7000E02E3 /* DeviceSettingsVC.swift */,
 				52D7D254202754CE000E02E3 /* ProfileVC.swift */,
+				528B049020362DD1007FDEB1 /* HomeSettingVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -317,13 +320,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = Bassyouni;
 				TargetAttributes = {
 					B8D0A0A22010FE25003778CB = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = WED766W23U;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -450,6 +453,7 @@
 				52D1F96520237E66007E5F0F /* SideMenuVC.swift in Sources */,
 				52D1F95C20237CAA007E5F0F /* UIViewController+MFSideMenuAdditions.m in Sources */,
 				B84E30112018BC650095B74F /* LogServices.swift in Sources */,
+				528B049120362DD1007FDEB1 /* HomeSettingVC.swift in Sources */,
 				B82BBAF4201119350090BBE3 /* Home.swift in Sources */,
 				B84E300B2018BC230095B74F /* DeviceServices.swift in Sources */,
 				52D1F95B20237CAA007E5F0F /* MFSideMenuShadow.m in Sources */,
@@ -494,7 +498,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -502,7 +508,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -545,7 +555,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -553,7 +565,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -593,8 +609,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Smart-Home_IoT-GP/Smart-Home_IoT-GP-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -611,8 +627,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Smart-Home-IoT-GP";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Smart-Home_IoT-GP/Smart-Home_IoT-GP-Bridging-Header.h";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

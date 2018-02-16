@@ -10,10 +10,11 @@ import Foundation
 
 class ServicesWrapper
 {
-    public static let baseURL = "http://197.52.203.121:4444"
+    public static let baseURL = "http://197.52.108.54:4444"
     
     public typealias DownloadCompletedForUser = (String , User) -> ()
     public typealias DownloadCompletedForHome = (String , Home) -> ()
     public typealias DownloadCompletedForHomes = (String , [Home]) -> ()
     public typealias DownloadCompletedForLogs = (String, [Log]) -> ()
+    public typealias DownloadCompletedForDevice = (_ status: String) -> ()
 }

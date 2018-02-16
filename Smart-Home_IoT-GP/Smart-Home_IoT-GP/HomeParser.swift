@@ -55,6 +55,7 @@ class HomeParser : JsonParserWarapper
                     for device in devices
                     {
                         let retrurnedDevice: Device = DeviceParser.getOneObject(dictionary: device)
+                        retrurnedDevice.home = home
                         home.addDevice(device: retrurnedDevice)
                     }
                 }

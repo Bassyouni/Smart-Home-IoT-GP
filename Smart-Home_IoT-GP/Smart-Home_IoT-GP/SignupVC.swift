@@ -120,7 +120,7 @@ class SignupVC: UIViewController {
     {
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy"
+        dateFormatter.dateFormat = "dd-MM-yyyy"               
         let selectedDate = dateFormatter.string(from: datePicker.date)
         print(selectedDate)
         
@@ -163,7 +163,7 @@ class SignupVC: UIViewController {
         
         let containerVC = MFSideMenuContainerViewController.container(withCenter: mainVCNav , leftMenuViewController: sideMenuVC, rightMenuViewController: nil)
         
-        self.present(containerVC, animated: true, completion: nil)
+        self.present(containerVC!, animated: true, completion: nil)
     }
     
     

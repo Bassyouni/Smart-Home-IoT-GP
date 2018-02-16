@@ -58,7 +58,7 @@ extension MqttTestVC: CocoaMQTTDelegate
     }
     func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16 )
     {
-        print("recived message: \(message.string! ?? message.topic) , topic: \(message.topic)")
+        print("recived message: \(message.string! ) , topic: \(message.topic)")
     }
     func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopic topic: String)
     {

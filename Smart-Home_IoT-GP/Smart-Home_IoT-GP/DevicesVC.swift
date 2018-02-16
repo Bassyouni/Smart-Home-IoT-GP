@@ -57,20 +57,29 @@ class DevicesVC: UIViewController {
         }
     }
     
-    func switchToggled(_ sender: UISwitch)
+    @objc func switchToggled(_ sender: UISwitch)
     {
         print("toggle tag: \(sender.tag)")
-        let device = devices?[sender.tag]
-        
-        if let topic = home?.topic
-        {
-            if sender.isOn
+       if let device = devices?[sender.tag]
+       {
+            if let home = home
             {
-                mqtt.publish(deviceId:(device?.id)! , command: "on", topic: topic)
-            }
-            else
-            {
-                mqtt.publish(deviceId:(device?.id)! , command: "off", topic: topic)
+                let command: String!
+                if sender.isOn
+                {
+                    command = "on"
+                    mqtt.publish(deviceId:device.id , command: command, topic: home.topic)
+                }
+                else
+                {
+                    command = "off"
+                    mqtt.publish(deviceId:device.id , command: command, topic: home.topic)
+                }
+                
+                DeviceServices.addLogTo(deviceId: device.id, homeId: home.id, command: command, downloadCompleted: { (status) in
+                    print(status)
+                })
+                
             }
         }
         
