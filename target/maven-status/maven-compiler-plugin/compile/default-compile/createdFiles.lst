@@ -14,6 +14,7 @@ parsers\UserParser.class
 parsers\UserParser$1.class
 services\HomeService.class
 Controllers\UsersController.class
+Controllers\AddUserController.class
 Controllers\AllHomesController$1.class
 Controllers\ParentController$3$1.class
 parsers\DeviceParser$1.class
@@ -26,6 +27,7 @@ Controllers\FXMLLoginController$2.class
 Controllers\ParentController$1.class
 models\Home.class
 parsers\HomeParser.class
+Controllers\AddUserController$1.class
 builders\DeviceParameterStringBuilder.class
 Controllers\ParentController.class
 parsers\LogParser$1.class
@@ -35,6 +37,7 @@ Controllers\LoginController.class
 parsers\JSONParser.class
 models\Device.class
 Controllers\FXMLLoginController$1.class
+Controllers\UsersController$3.class
 com\smarthomesiot\desktop\GPIOHandler.class
 Controllers\AllDevicesController$2.class
 Controllers\AllHomesController.class

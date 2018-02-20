@@ -34,10 +34,56 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import parsers.MessageParser;
 
 
-public class ParentController 
-{
+public class ParentController {
     
+    protected static final int PREF_WIDTH = 250;
+    protected static final String STATUS = "status";
+    protected static final String STATUS_FAIL = "failure";
+    protected static final String RESPONSE = "response";
      
+    protected static final String ALL_DEVICES_URL = "/fxml/AllDevices.fxml";
+    protected static final String USERS_URL = "/fxml/Users.fxml";
+    protected static final String ALL_HOMES_URL = "/fxml/AllHomes.fxml";
+    protected static final String PROFILE_URL = "/fxml/Proile.fxml";
+    protected static final String EDIT_PROFILE_URL = "/fxml/EditProfile.fxml";
+
+     
+     
+    protected void goToPage(KeyEvent event, String pageUrl){
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getResource(pageUrl));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+        } catch (IOException ex) {
+            Logger.getLogger(ParentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     
+    protected void goToPage(MouseEvent event, String pageUrl){
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getResource(pageUrl));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+        } catch (IOException ex) {
+            Logger.getLogger(ParentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    protected void goToPage(ActionEvent event, String pageUrl){
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getResource(pageUrl));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+        } catch (IOException ex) {
+            Logger.getLogger(ParentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     protected void goToDevicesView(MouseEvent event) throws IOException
     {

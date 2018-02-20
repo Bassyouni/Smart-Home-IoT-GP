@@ -6,6 +6,7 @@
 package builders;
 
 import java.util.HashMap;
+import models.User;
 
 /**
  *
@@ -37,13 +38,13 @@ public class UserParameterStringBuilder {
         return parameters;
     }
     
-    public static  HashMap<String, String> setupUserUpdateRequestParameters(String name, String birthDate, String password, String passwordConfirmation){
+    public static  HashMap<String, String> setupUserUpdateRequestParameters(User user){
         // Create a map of paramters, keys must match the APIs documentation.
         HashMap<String, String> parameters = new HashMap<>();
-        parameters.put(PASSWORD, password);
-        parameters.put(NAME, name);
-        parameters.put(BIRTH_DATE, birthDate);
-        parameters.put(PASSWORD_CONFIRMATION, passwordConfirmation);
+        parameters.put(PASSWORD, user.getPassword());
+        parameters.put(NAME, user.getName());
+        parameters.put(BIRTH_DATE, user.getBirthDate());
+        parameters.put(PASSWORD_CONFIRMATION, user.getPassword());
         return parameters;
     }
 }

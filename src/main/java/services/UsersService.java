@@ -3,6 +3,8 @@ package services;
 import builders.HomeParameterStringBuilder;
 import builders.UserParameterStringBuilder;
 import java.util.HashMap;
+import models.Home;
+import models.User;
 
 
 public class UsersService  extends ServiceSkeleton
@@ -43,21 +45,21 @@ public class UsersService  extends ServiceSkeleton
         return fetchData(PATH, REQUEST_METHOD, requestParameters, PARSE_AS);
     }
     
-    public HashMap<String, Object> updateUser(String id, String name, String email, String birthDate, String password, String passwordConfirmation){
-        final String PATH = BASE_URL + "/update/" + id;
+    public HashMap<String, Object> updateUser(User user){
+        final String PATH = BASE_URL + "/update/" + user.getId();
         final String REQUEST_METHOD = REQUEST_METHOD_POST;
         final int PARSE_AS = 1;//as user
         HashMap<String, String> requestParameters;
-        requestParameters = UserParameterStringBuilder.setupUserUpdateRequestParameters(name, birthDate, password, passwordConfirmation);
+        requestParameters = UserParameterStringBuilder.setupUserUpdateRequestParameters(user);
         return fetchData(PATH, REQUEST_METHOD, requestParameters, PARSE_AS);
     }
     //****must put Home attributes in both Home and HomeParameterStringBuilder 0classes 
-    public HashMap<String, Object> addHomeToUser(String id, String homeName, String homeAddress){
-        final String PATH = BASE_URL + "/add-home/" + id;
+    public HashMap<String, Object> addHomeToUser(String userId, Home home){
+        final String PATH = BASE_URL + "/add-home/" + userId;
         final String REQUEST_METHOD = REQUEST_METHOD_POST;
         final int PARSE_AS = 2;// as Home
         HashMap<String, String> requestParameters;
-        requestParameters =  HomeParameterStringBuilder.setupAddHomeRequestParameters(homeName, homeAddress);
+        requestParameters =  HomeParameterStringBuilder.setupAddHomeRequestParameters(home.getName(), home.getAddress());
         return fetchData(PATH, REQUEST_METHOD, requestParameters, PARSE_AS);
     }
     

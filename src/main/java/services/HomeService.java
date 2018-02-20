@@ -9,6 +9,7 @@ import builders.DeviceParameterStringBuilder;
 import builders.HomeParameterStringBuilder;
 import java.util.HashMap;
 import models.Device;
+import models.Home;
 
 /**
  *
@@ -37,13 +38,13 @@ public class HomeService extends ServiceSkeleton{
         return fetchData(PATH, REQUEST_METHOD, PARSE_AS);
     }
     // fix issue
-    public HashMap<String, Object> updateHome(String targetHomeId, String homeName, String homeAddress){
-        final String PATH = BASE_URL + "/update/" + targetHomeId;
+    public HashMap<String, Object> updateHome(Home home){
+        final String PATH = BASE_URL + "/update/" + home.getId();
         final String REQUEST_METHOD = REQUEST_METHOD_POST;
         final int PARSE_AS = 2;// as Home
         HashMap<String, String> requestParameters;
         //same result is needed but should be redon into function overload
-        requestParameters =  HomeParameterStringBuilder.setupAddHomeRequestParameters(homeName, homeAddress);
+        requestParameters =  HomeParameterStringBuilder.setupAddHomeRequestParameters(home.getName(), home.getAddress());
         return fetchData(PATH, REQUEST_METHOD, requestParameters, PARSE_AS);
     }
     
