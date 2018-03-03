@@ -1,11 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddHomeController">
-    
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddDeviceController">
+   <stylesheets>
+      <URL value="@/styles/adddevice.css" />
+   </stylesheets>
+   <children>
+      <JFXHamburger fx:id="hamburger" layoutX="698.0" layoutY="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="190.0" layoutY="24.0" prefHeight="500.0" prefWidth="100.0" />
+      <VBox fx:id="centralContainer" alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" spacing="40.0">
+         <children>
+            <HBox fx:id="hbox1" alignment="CENTER" prefHeight="80.0" prefWidth="262.0" spacing="30.0">
+               <children>
+                  <Label fx:id="addHomeLabel" prefHeight="35.0" prefWidth="175.0" text="Add Home" textAlignment="CENTER" textFill="#03a9f4">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="hbox2" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+               <children>
+                  <JFXTextField fx:id="name" />
+               </children>
+            </HBox>
+            <HBox fx:id="hbox3" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+               <children>
+                  <JFXTextField fx:id="address" />
+               </children>
+            </HBox>
+            <HBox fx:id="hbox6" alignment="CENTER" prefHeight="80.0" prefWidth="262.0" spacing="30.0">
+               <children>
+                  <JFXButton fx:id="addHomeButton" onAction="#addHome" prefHeight="37.0" prefWidth="188.0" style="-fx-padding: 10px;" stylesheets="@../styles/Styles.css" text="Add" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>
