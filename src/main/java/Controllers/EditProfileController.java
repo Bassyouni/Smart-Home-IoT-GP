@@ -10,6 +10,7 @@ import static Controllers.ParentController.PROFILE_URL;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -39,9 +40,9 @@ public class EditProfileController extends ParentController implements Initializ
     @FXML
     private JFXDrawer drawer;
     @FXML
-    private TextField name;
+    private JFXTextField name;
     @FXML
-    private TextField email;
+    private JFXTextField email;
     @FXML
     private JFXPasswordField password;
     @FXML

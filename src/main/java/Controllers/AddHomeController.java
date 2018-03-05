@@ -20,6 +20,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import models.Home;
 import models.User;
@@ -44,6 +46,18 @@ public class AddHomeController extends ParentController implements Initializable
     @FXML
     private Label error;
     
+    @FXML
+    private VBox centralContainer;
+    @FXML
+    private HBox hbox1;
+    @FXML
+    private HBox hbox2;
+    @FXML
+    private HBox hbox3;
+    @FXML
+    private HBox hbox6;
+    
+    
     HashMap<String, Object> response;
     ActionEvent actionEvent;
     @Override
@@ -56,6 +70,14 @@ public class AddHomeController extends ParentController implements Initializable
     protected void inflateComponents() {
         double height = Screen.getPrimary().getVisualBounds().getHeight();
         double width = Screen.getPrimary().getVisualBounds().getWidth();
+        
+        hbox1.setPrefWidth(width - 60);
+        hbox2.setPrefWidth(width - 60);
+        hbox3.setPrefWidth(width - 60);
+        hbox6.setPrefWidth(width - 60);
+        centralContainer.setPrefHeight(height);
+        centralContainer.setPrefWidth(width - 60);
+
         name.setPrefWidth(PREF_WIDTH);
         address.setPrefWidth(PREF_WIDTH);
         error.setVisible(false);
