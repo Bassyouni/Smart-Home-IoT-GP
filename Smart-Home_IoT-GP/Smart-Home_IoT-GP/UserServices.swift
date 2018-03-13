@@ -71,6 +71,8 @@ class UserServices: ServicesWrapper
     public static func signUp(name: String, email: String, password: String, confirmPassword: String, dateOfBirth:String,downloadCompleated: @escaping DownloadCompletedForUser)
     {
         let url = URL(string: "\(baseURL)/api/users/auth/signup")!
+        print("\n")
+        print(url.absoluteString)
         
         let parameters: Dictionary<String ,String> = ["name": name , "email": email ,"birthDate": dateOfBirth , "password": password , "confirmPassword": confirmPassword ]
         var user = User()

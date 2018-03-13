@@ -29,14 +29,14 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="VpG-E2-UOe" secondAttribute="trailing" id="4Pu-PU-QBG"/>
                             <constraint firstItem="VpG-E2-UOe" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="KEr-Qg-kAf"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="VpG-E2-UOe" secondAttribute="bottom" id="Tas-Ta-Pek"/>
                             <constraint firstItem="VpG-E2-UOe" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="eNF-e7-kg7"/>
+                            <constraint firstAttribute="bottom" secondItem="VpG-E2-UOe" secondAttribute="bottom" id="mXY-co-QLq"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+            <point key="canvasLocation" x="52" y="374.6305418719212"/>
         </scene>
     </scenes>
     <resources>

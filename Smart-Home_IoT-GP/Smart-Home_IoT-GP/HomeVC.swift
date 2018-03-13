@@ -30,7 +30,7 @@ class HomeVC: ParentViewController {
         tableView.dataSource = self
         self.tableView.addSubview(refreshControl)
         
-        let testDevice = Device(id: "123", name: "lamp", pinNumber: 12, description: "boom")
+        let testDevice = Device(id: "123", name: "My Fucking Lamp", pinNumber: 12, description: "boom")
         
         
         let testHome = Home(id: "123", name: "Sa2r", address: "Sa2r el krosih", users: [], devices: [])
@@ -145,6 +145,7 @@ class HomeVC: ParentViewController {
 
 }
 
+//MARK:- Table
 extension HomeVC: UITableViewDelegate , UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -174,6 +175,10 @@ extension HomeVC: UITableViewDelegate , UITableViewDataSource
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool
     {
         return false
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)

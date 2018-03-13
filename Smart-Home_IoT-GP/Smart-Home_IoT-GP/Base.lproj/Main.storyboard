@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ih2-Pj-tiM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -75,7 +75,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Hsm-en-Ahl" firstAttribute="top" secondItem="zhi-ut-JWT" secondAttribute="bottom" id="NeF-xy-O77"/>
+                            <constraint firstAttribute="bottom" secondItem="zhi-ut-JWT" secondAttribute="bottom" id="9Jf-3x-Rlt"/>
                             <constraint firstItem="zhi-ut-JWT" firstAttribute="top" secondItem="Gfr-Nb-mD1" secondAttribute="top" id="VY1-Vk-72B"/>
                             <constraint firstItem="zhi-ut-JWT" firstAttribute="leading" secondItem="Gfr-Nb-mD1" secondAttribute="leading" id="mzN-fw-FJf"/>
                             <constraint firstAttribute="trailing" secondItem="zhi-ut-JWT" secondAttribute="trailing" id="r7h-KH-bUs"/>
@@ -95,7 +95,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J43-JZ-AyV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2581.5999999999999" y="172.26386806596702"/>
+            <point key="canvasLocation" x="2581.5999999999999" y="172.16748768472908"/>
         </scene>
         <!--DevicesVC-->
         <scene sceneID="PmN-ed-b2g">
@@ -120,22 +120,26 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="126.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="700" text="Device 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="cZ1-ry-44k">
-                                                    <rect key="frame" x="15" y="39.5" width="266" height="48"/>
-                                                    <fontDescription key="fontDescription" name="SavoyeLetPlain" family="Savoye LET" pointSize="40"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="800" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="TZL-TN-KZY">
-                                                    <rect key="frame" x="291" y="48" width="51" height="31"/>
-                                                </switch>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ywZ-Hj-84O">
+                                                    <rect key="frame" x="15" y="11" width="345" height="105"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="700" text="My Fucking Lamp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cZ1-ry-44k">
+                                                            <rect key="frame" x="0.0" y="28.5" width="207" height="48"/>
+                                                            <fontDescription key="fontDescription" name="SavoyeLetPlain" family="Savoye LET" pointSize="40"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="800" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="TZL-TN-KZY">
+                                                            <rect key="frame" x="296" y="37" width="51" height="31"/>
+                                                        </switch>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="TZL-TN-KZY" firstAttribute="leading" secondItem="cZ1-ry-44k" secondAttribute="trailing" constant="10" id="0iJ-cx-Eid"/>
-                                                <constraint firstItem="cZ1-ry-44k" firstAttribute="leading" secondItem="JrC-vh-Y8p" secondAttribute="leading" constant="15" id="1Sn-Gi-8mx"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="TZL-TN-KZY" secondAttribute="trailing" constant="20" id="OCn-JB-ubm"/>
-                                                <constraint firstItem="cZ1-ry-44k" firstAttribute="centerY" secondItem="JrC-vh-Y8p" secondAttribute="centerY" id="UxF-bL-B5a"/>
-                                                <constraint firstItem="TZL-TN-KZY" firstAttribute="centerY" secondItem="JrC-vh-Y8p" secondAttribute="centerY" id="quv-5H-rTC"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ywZ-Hj-84O" secondAttribute="bottom" id="JSq-54-40V"/>
+                                                <constraint firstItem="ywZ-Hj-84O" firstAttribute="leading" secondItem="JrC-vh-Y8p" secondAttribute="leading" constant="15" id="gCb-kn-4af"/>
+                                                <constraint firstItem="ywZ-Hj-84O" firstAttribute="top" secondItem="JrC-vh-Y8p" secondAttribute="topMargin" id="juc-aO-J4z"/>
+                                                <constraint firstAttribute="trailing" secondItem="ywZ-Hj-84O" secondAttribute="trailing" constant="15" id="la1-gh-rjO"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -149,9 +153,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="nKD-FJ-pg9" firstAttribute="leading" secondItem="0Jj-CE-sb9" secondAttribute="leading" id="EOm-e6-3TE"/>
-                            <constraint firstItem="9Ei-mu-cXq" firstAttribute="top" secondItem="nKD-FJ-pg9" secondAttribute="bottom" id="Ell-oB-Dvg"/>
                             <constraint firstAttribute="trailing" secondItem="nKD-FJ-pg9" secondAttribute="trailing" id="P8h-Fp-rWA"/>
                             <constraint firstItem="nKD-FJ-pg9" firstAttribute="top" secondItem="0Jj-CE-sb9" secondAttribute="top" id="dyW-CK-NWt"/>
+                            <constraint firstAttribute="bottom" secondItem="nKD-FJ-pg9" secondAttribute="bottom" id="rJc-y9-bzs"/>
                         </constraints>
                     </view>
                     <connections>
@@ -160,7 +164,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Stk-QG-tOM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3461.5999999999999" y="145.27736131934034"/>
+            <point key="canvasLocation" x="3461.5999999999999" y="144.82758620689657"/>
         </scene>
         <!--Home SettingVC-->
         <scene sceneID="TA3-Rc-hs4">
@@ -466,7 +470,7 @@
                             <constraint firstItem="GED-3f-HeB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Gij-FG-kDb"/>
                             <constraint firstItem="GED-3f-HeB" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="J0X-dp-TXO"/>
                             <constraint firstItem="pJV-ag-H8n" firstAttribute="top" secondItem="BzC-bQ-iWn" secondAttribute="bottom" constant="-30" id="J8Q-C0-K5H"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="yIF-7w-PMc" secondAttribute="bottom" id="Kak-13-rGI"/>
+                            <constraint firstAttribute="bottom" secondItem="yIF-7w-PMc" secondAttribute="bottom" id="LxW-rw-c6J"/>
                             <constraint firstItem="GED-3f-HeB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="P0h-Zl-Vux"/>
                             <constraint firstItem="GED-3f-HeB" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="YtJ-86-Eg4"/>
                             <constraint firstItem="GED-3f-HeB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aGV-mI-tWp"/>
@@ -485,7 +489,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-158" y="122"/>
+            <point key="canvasLocation" x="-159.19999999999999" y="121.92118226600985"/>
         </scene>
         <!--SignupVC-->
         <scene sceneID="YCf-s5-W5L">
@@ -499,7 +503,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Welcome" translatesAutoresizingMaskIntoConstraints="NO" id="oVt-qh-KRQ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="Welcome" translatesAutoresizingMaskIntoConstraints="NO" id="oVt-qh-KRQ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="znJ-xB-7HV">
@@ -514,7 +518,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cdC-H5-bu6">
-                                <rect key="frame" x="20" y="207" width="335" height="254"/>
+                                <rect key="frame" x="20" y="206.5" width="335" height="254"/>
                                 <subviews>
                                     <view alpha="0.64999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N5M-3Y-pOo">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
@@ -703,7 +707,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nRL-lq-sac">
-                                <rect key="frame" x="105" y="487" width="166" height="70"/>
+                                <rect key="frame" x="105" y="486.5" width="166" height="70"/>
                                 <fontDescription key="fontDescription" name="Rick_and_Morty" family="Rick_and_Morty" pointSize="65"/>
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" red="0.031404290350000003" green="0.63689678910000003" blue="0.81644409890000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -713,13 +717,13 @@
                                 </connections>
                             </button>
                             <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="jOk-xB-q1Z">
-                                <rect key="frame" x="50" y="411" width="305" height="216"/>
+                                <rect key="frame" x="50" y="410.5" width="305" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="538516004.84436703">
                                     <!--2018-01-24 19:46:44 +0000-->
                                 </date>
                             </datePicker>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MiH-Lz-eE0">
-                                <rect key="frame" x="23" y="404" width="49" height="38"/>
+                                <rect key="frame" x="23" y="403.5" width="49" height="38"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="19"/>
                                 <state key="normal" title="Done"/>
                                 <connections>
@@ -732,7 +736,7 @@
                             <constraint firstItem="cdC-H5-bu6" firstAttribute="leading" secondItem="fiI-xf-XFb" secondAttribute="leading" constant="20" id="3od-wT-bg3"/>
                             <constraint firstItem="cdC-H5-bu6" firstAttribute="centerY" secondItem="fiI-xf-XFb" secondAttribute="centerY" id="9XU-pu-B6l"/>
                             <constraint firstItem="oVt-qh-KRQ" firstAttribute="leading" secondItem="fiI-xf-XFb" secondAttribute="leading" id="Cyj-de-FUZ"/>
-                            <constraint firstItem="TPY-24-UZs" firstAttribute="top" secondItem="oVt-qh-KRQ" secondAttribute="bottom" id="Kfr-fn-G99"/>
+                            <constraint firstAttribute="bottom" secondItem="oVt-qh-KRQ" secondAttribute="bottom" id="NZ0-RJ-S2l"/>
                             <constraint firstItem="cdC-H5-bu6" firstAttribute="centerX" secondItem="fiI-xf-XFb" secondAttribute="centerX" id="YXM-PE-n2C"/>
                             <constraint firstItem="jOk-xB-q1Z" firstAttribute="top" secondItem="MiH-Lz-eE0" secondAttribute="bottom" constant="-31" id="ddR-Hh-GpD"/>
                             <constraint firstItem="nRL-lq-sac" firstAttribute="top" secondItem="cdC-H5-bu6" secondAttribute="bottom" constant="26.5" id="e8l-cy-akF"/>
@@ -767,7 +771,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iOX-23-gCn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="768.79999999999995" y="121.88905547226388"/>
+            <point key="canvasLocation" x="768.79999999999995" y="121.18226600985223"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qPH-fz-M00">
@@ -981,7 +985,6 @@
                         <constraints>
                             <constraint firstItem="cxU-Hq-gFG" firstAttribute="top" secondItem="rnq-DU-V6f" secondAttribute="bottom" constant="40" id="9Bk-Oi-nH2"/>
                             <constraint firstItem="ZaU-VB-IIp" firstAttribute="bottom" secondItem="cxU-Hq-gFG" secondAttribute="bottom" id="9Fj-MM-Fyi"/>
-                            <constraint firstItem="2Ra-uK-4mO" firstAttribute="top" secondItem="Tnm-Ft-WMG" secondAttribute="bottom" id="AOU-Jt-BJs"/>
                             <constraint firstAttribute="trailing" secondItem="Tnm-Ft-WMG" secondAttribute="trailing" id="E8h-S5-NMO"/>
                             <constraint firstItem="Tnm-Ft-WMG" firstAttribute="leading" secondItem="BQc-kA-QT1" secondAttribute="leading" id="Lcn-mg-yam"/>
                             <constraint firstItem="2ce-hp-tkV" firstAttribute="top" secondItem="cxU-Hq-gFG" secondAttribute="top" id="PIa-TN-okG"/>
@@ -992,6 +995,7 @@
                             <constraint firstItem="ZaU-VB-IIp" firstAttribute="top" secondItem="2ce-hp-tkV" secondAttribute="bottom" constant="8" id="thv-y4-aOT"/>
                             <constraint firstItem="Tnm-Ft-WMG" firstAttribute="top" secondItem="ZaU-VB-IIp" secondAttribute="bottom" constant="50" id="tmB-em-h3i"/>
                             <constraint firstAttribute="trailing" secondItem="2ce-hp-tkV" secondAttribute="trailing" constant="8" id="ubM-kZ-VWK"/>
+                            <constraint firstAttribute="bottom" secondItem="Tnm-Ft-WMG" secondAttribute="bottom" id="yH9-5X-aiP"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1002,7 +1006,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9de-pV-A2K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-159" y="-575"/>
+            <point key="canvasLocation" x="-159.19999999999999" y="-575.61576354679801"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aLD-H3-WUg">

@@ -121,6 +121,10 @@ extension DevicesVC: UITableViewDelegate , UITableViewDataSource
         return true
     }
     
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
     {
         if var devices = devices

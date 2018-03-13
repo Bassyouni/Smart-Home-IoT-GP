@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class LoginVC: UIViewController  {
+class LoginVC: ParentViewController  {
     
     //MARK:- variables
     var isEmailEditingFirstTime = true
@@ -77,8 +77,8 @@ class LoginVC: UIViewController  {
     //MARK:- ibactions
     @IBAction func loginPressed(_ sender: Any)
     {
-        
-        goToHomeVC()
+        showLoading()
+//        goToHomeVC()
         
         if emailTextField.text == "" || passwordTextField.text == ""
         {
@@ -112,7 +112,7 @@ class LoginVC: UIViewController  {
             
         }
         
-        
+        hideLoading()
     }
 
     
