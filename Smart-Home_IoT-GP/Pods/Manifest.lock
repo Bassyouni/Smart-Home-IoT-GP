@@ -4,18 +4,21 @@ PODS:
   - CocoaMQTT (1.1.1):
     - CocoaAsyncSocket (~> 7.6.1)
     - SwiftyTimer (~> 2.0.0)
+  - SkyFloatingLabelTextField (3.4.0)
   - SwiftyTimer (2.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
   - CocoaMQTT
+  - SkyFloatingLabelTextField (~> 3.0)
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   CocoaAsyncSocket: 3541e024f48c54b251638ef72d51dd42808de932
   CocoaMQTT: 3a01a51d534e0419b950d32236d4da389f074de8
+  SkyFloatingLabelTextField: 703aa1420b697392b1e7dba25571180dde018477
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
 
-PODFILE CHECKSUM: a23474aefb4eb7b3b226e3c6c3b107eb3834b2ea
+PODFILE CHECKSUM: 6456f2efb4b1bc55a138f893dfa6aece3917abff
 
 COCOAPODS: 1.4.0

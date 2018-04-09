@@ -8,18 +8,17 @@
 
 import UIKit
 import Alamofire
+import SkyFloatingLabelTextField
 
 class LoginVC: ParentViewController  {
     
     //MARK:- variables
-    var isEmailEditingFirstTime = true
-    var isPasswordEditingFirstTime = true
+    
     
     //MARK:- iboutlets
-    @IBOutlet weak var passwordView: UIView!
-    @IBOutlet weak var emailView: UIView!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+
+    @IBOutlet weak var emailTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var passwordTextField: SkyFloatingLabelTextField!
     
     //MARK:- variables
     var isFirstTime: Bool = true
@@ -40,36 +39,36 @@ class LoginVC: ParentViewController  {
     }
     
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if isFirstTime
-        {
-            emailView.center.y -= view.bounds.height
-            passwordView.center.y += view.bounds.height
-            
-            emailTextField.center.x += view.bounds.width
-            passwordTextField.center.x += view.bounds.width
-            
-
-            
-            UIView.animate(withDuration: 1.0) {
-                
-                self.emailView.center.y += self.view.bounds.height
-                self.passwordView.center.y -= self.view.bounds.height
-                
-            }
-            
-            UIView.animate(withDuration: 2.0, delay: 0.5, options: [], animations: {
-                
-                self.emailTextField.center.x -= self.view.bounds.width
-                self.passwordTextField.center.x -= self.view.bounds.width
-                
-            }, completion: nil)
-            isFirstTime = false
-        }
-        
-        
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        if isFirstTime
+//        {
+//            emailView.center.y -= view.bounds.height
+//            passwordView.center.y += view.bounds.height
+//            
+//            emailTextField.center.x += view.bounds.width
+//            passwordTextField.center.x += view.bounds.width
+//            
+//
+//            
+//            UIView.animate(withDuration: 1.0) {
+//                
+//                self.emailView.center.y += self.view.bounds.height
+//                self.passwordView.center.y -= self.view.bounds.height
+//                
+//            }
+//            
+//            UIView.animate(withDuration: 2.0, delay: 0.5, options: [], animations: {
+//                
+//                self.emailTextField.center.x -= self.view.bounds.width
+//                self.passwordTextField.center.x -= self.view.bounds.width
+//                
+//            }, completion: nil)
+//            isFirstTime = false
+//        }
+//        
+//        
+//    }
     
     
 
@@ -80,12 +79,18 @@ class LoginVC: ParentViewController  {
         showLoading()
 //        goToHomeVC()
         
-        if emailTextField.text == "" || passwordTextField.text == ""
+        emailTextField.errorMessage = ""
+        passwordTextField.errorMessage = ""
+        
+        if emailTextField.text == ""
         {
-            let alert = UIAlertController(title: "Error", message: "please Fill Both Fields", preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            alert.addAction(cancelAction)
-            self.present(alert, animated: true, completion: nil)
+            emailTextField.errorMessage = "Please Enter Email"
+            hideLoading()
+            return
+        }
+        if passwordTextField.text == ""
+        {
+            passwordTextField.errorMessage = "Please Enter Password"
         }
         else if let email = emailTextField.text , let password = passwordTextField.text
         {
@@ -145,20 +150,6 @@ extension LoginVC: UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return true
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField.tag == 1 && isEmailEditingFirstTime
-        {
-            textField.text = ""
-            isEmailEditingFirstTime = false
-        }
-        else if textField.tag == 2 && isPasswordEditingFirstTime
-        {
-            textField.text = ""
-            isPasswordEditingFirstTime = false
-        }
-        
     }
 }
 
