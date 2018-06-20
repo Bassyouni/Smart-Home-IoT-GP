@@ -11,6 +11,8 @@
 		5239BE4020248B1C002F7582 /* MqttTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239BE3F20248B1C002F7582 /* MqttTestVC.swift */; };
 		5239BE422024A22A002F7582 /* DevicesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239BE412024A22A002F7582 /* DevicesVC.swift */; };
 		5239BE442024ACEC002F7582 /* DeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239BE432024ACEC002F7582 /* DeviceTableViewCell.swift */; };
+		5244A5D020DA4733002E530F /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5244A5CE20DA4733002E530F /* LineChart.swift */; };
+		5244A5D120DA4733002E530F /* StatisticsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5244A5CF20DA4733002E530F /* StatisticsVC.swift */; };
 		528B049120362DD1007FDEB1 /* HomeSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528B049020362DD1007FDEB1 /* HomeSettingVC.swift */; };
 		52D1F95A20237CAA007E5F0F /* MFSideMenuContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D1F95620237CAA007E5F0F /* MFSideMenuContainerViewController.m */; };
 		52D1F95B20237CAA007E5F0F /* MFSideMenuShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D1F95720237CAA007E5F0F /* MFSideMenuShadow.m */; };
@@ -55,6 +57,8 @@
 		5239BE3F20248B1C002F7582 /* MqttTestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MqttTestVC.swift; sourceTree = "<group>"; };
 		5239BE412024A22A002F7582 /* DevicesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesVC.swift; sourceTree = "<group>"; };
 		5239BE432024ACEC002F7582 /* DeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTableViewCell.swift; sourceTree = "<group>"; };
+		5244A5CE20DA4733002E530F /* LineChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
+		5244A5CF20DA4733002E530F /* StatisticsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsVC.swift; sourceTree = "<group>"; };
 		528B049020362DD1007FDEB1 /* HomeSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSettingVC.swift; sourceTree = "<group>"; };
 		52D1F95220237CA9007E5F0F /* Smart-Home_IoT-GP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Smart-Home_IoT-GP-Bridging-Header.h"; sourceTree = "<group>"; };
 		52D1F95320237CAA007E5F0F /* MFSideMenuShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSideMenuShadow.h; sourceTree = "<group>"; };
@@ -114,6 +118,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5244A5CD20DA471A002E530F /* LineChart */ = {
+			isa = PBXGroup;
+			children = (
+				5244A5CE20DA4733002E530F /* LineChart.swift */,
+			);
+			name = LineChart;
+			sourceTree = "<group>";
+		};
 		52D1F95D20237CB5007E5F0F /* MFSideMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +265,7 @@
 				52D7D25220273CD7000E02E3 /* DeviceSettingsVC.swift */,
 				52D7D254202754CE000E02E3 /* ProfileVC.swift */,
 				528B049020362DD1007FDEB1 /* HomeSettingVC.swift */,
+				5244A5CF20DA4733002E530F /* StatisticsVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -283,6 +296,7 @@
 			children = (
 				52D1F96B2023CAE1007E5F0F /* Constants.swift */,
 				52D1F95220237CA9007E5F0F /* Smart-Home_IoT-GP-Bridging-Header.h */,
+				5244A5CD20DA471A002E530F /* LineChart */,
 				52D1F95E20237D5D007E5F0F /* Progress HUD */,
 				52D1F95D20237CB5007E5F0F /* MFSideMenu */,
 				B83250C52013581600A0FD0E /* Fonts */,
@@ -435,6 +449,7 @@
 				B84E301B2018BCC30095B74F /* LogParser.swift in Sources */,
 				52D1F96220237D78007E5F0F /* MBProgressHUD.m in Sources */,
 				B82BBAF02011191F0090BBE3 /* User.swift in Sources */,
+				5244A5D020DA4733002E530F /* LineChart.swift in Sources */,
 				B84E30172018BCA00095B74F /* HomeParser.swift in Sources */,
 				B84E300D2018BC3A0095B74F /* HomeServices.swift in Sources */,
 				B84E64482017AE6A009198EE /* HomeVC.swift in Sources */,
@@ -445,6 +460,7 @@
 				52D1F95A20237CAA007E5F0F /* MFSideMenuContainerViewController.m in Sources */,
 				52D7D25320273CD7000E02E3 /* DeviceSettingsVC.swift in Sources */,
 				52D1F96C2023CAE1007E5F0F /* Constants.swift in Sources */,
+				5244A5D120DA4733002E530F /* StatisticsVC.swift in Sources */,
 				5239BE422024A22A002F7582 /* DevicesVC.swift in Sources */,
 				52D1F96720237E73007E5F0F /* SideMenuTableViewCell.swift in Sources */,
 				5239BE4020248B1C002F7582 /* MqttTestVC.swift in Sources */,
@@ -612,7 +628,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Smart-Home_IoT-GP/Smart-Home_IoT-GP-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -630,7 +646,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Smart-Home_IoT-GP/Smart-Home_IoT-GP-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

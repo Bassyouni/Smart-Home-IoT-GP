@@ -33,6 +33,11 @@ class DevicesVC: UIViewController {
         mqtt.delegate = self
         mqtt.connect()
         
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPress(longPressGestureRecognizer:)) )
+        longPressRecognizer.minimumPressDuration = 1.0 // 1 second press
+        longPressRecognizer.delegate = self as? UIGestureRecognizerDelegate
+        self.tableView.addGestureRecognizer(longPressRecognizer)
+        
     
     }
     
@@ -56,6 +61,28 @@ class DevicesVC: UIViewController {
             self.editButtonItem.title = "Reorder"
         }
     }
+    
+    //Called, when long press occurred
+    @objc func longPress(longPressGestureRecognizer: UILongPressGestureRecognizer) {
+        
+        if longPressGestureRecognizer.state == UIGestureRecognizerState.began {
+            
+            let touchPoint = longPressGestureRecognizer.location(in: self.view)
+            if let indexPath = tableView.indexPathForRow(at: touchPoint)
+            {
+                if let devices = devices
+                {
+                    if let deviceSettingVC = storyboard?.instantiateViewController(withIdentifier: "DeviceSettingsVC") as? DeviceSettingsVC
+                    {
+                        deviceSettingVC.title = "Name"
+                        deviceSettingVC.device = devices[indexPath.row]
+                        self.navigationController?.pushViewController(deviceSettingVC, animated: true)
+                    }
+                }
+            }
+        }
+    }
+
     
     @objc func switchToggled(_ sender: UISwitch)
     {
@@ -150,12 +177,13 @@ extension DevicesVC: UITableViewDelegate , UITableViewDataSource
         tableView.deselectRow(at: indexPath, animated: true)
         if let devices = devices
         {
-            if let deviceSettingVC = storyboard?.instantiateViewController(withIdentifier: "DeviceSettingsVC") as? DeviceSettingsVC
-            {
-                deviceSettingVC.title = "Name"
-                deviceSettingVC.device = devices[indexPath.row]
-                self.navigationController?.pushViewController(deviceSettingVC, animated: true)
-            }
+            let statVC = StatisticsVC()
+            statVC.device = devices[indexPath.row]
+            statVC.view.backgroundColor = UIColor.white
+            self.navigationController?.pushViewController(statVC, animated: true)
+            
+            // rotate device to landscape
+            UIDevice.current.setValue(Int(UIInterfaceOrientation.landscapeLeft.rawValue), forKey: "orientation")
         }
     }
     
