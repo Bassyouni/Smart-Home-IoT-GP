@@ -2,7 +2,7 @@
 import UIKit
 import QuartzCore
 
-class StatisticsVC: UIViewController, LineChartDelegate {
+class StatisticsVC: ParentViewController, LineChartDelegate {
 
     
     
@@ -14,6 +14,27 @@ class StatisticsVC: UIViewController, LineChartDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showLoading()
+        
+        LogServices.getDeviceLogs(homeId: device.home.id, deviceId: device.id) { (status, logs) in
+            if status == "success"
+            {
+                if self.device.getAllLogs().count > 0
+                {
+                    self.device.removeAllLogs()
+                }
+                self.device.addLogs(logs: logs)
+                self.chartSetup()
+            }
+            else
+            {
+                let alert = UIAlertController(title: "Error", message: status, preferredStyle: .alert)
+                let action = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
+            }
+         self.hideLoading()
+        }
         
         var views: [String: AnyObject] = [:]
         
@@ -52,8 +73,6 @@ class StatisticsVC: UIViewController, LineChartDelegate {
         lineChart.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
         lineChart.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
     
-
-        print(device.name)
     }
     
     
@@ -63,12 +82,59 @@ class StatisticsVC: UIViewController, LineChartDelegate {
         
         if (self.isMovingFromParentViewController)
         {
-            UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
+//            UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    func chartSetup()
+    {
+        var views: [String: AnyObject] = [:]
+        
+        label.text = "..."
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = NSTextAlignment.center
+        self.view.addSubview(label)
+        views["label"] = label
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[label]-|", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-80-[label]", options: [], metrics: nil, views: views))
+
+        var deviceLogs = device.getAllLogs()
+        var logsTimeStamps = [String]()
+        var upTimeForDevice = [CGFloat]()
+        for log in deviceLogs
+        {
+            logsTimeStamps.append(log.timeStamp)
+        }
+        
+        for i in 0...deviceLogs.count
+        {
+            guard let time1 = NumberFormatter().number(from: deviceLogs[i+1].timeStamp) else { return }
+            guard let time2 = NumberFormatter().number(from: deviceLogs[i].timeStamp) else { return }
+            
+            let diffrecne:CGFloat = CGFloat(time1) - CGFloat(time2)
+            upTimeForDevice.append(diffrecne)
+        }
+        
+        
+        
+        lineChart = LineChart()
+        lineChart.animation.enabled = true
+        lineChart.area = true
+        lineChart.x.labels.visible = true
+        lineChart.x.grid.count = CGFloat(deviceLogs.count)
+        lineChart.y.grid.count = CGFloat(deviceLogs.count)
+        lineChart.x.labels.values = logsTimeStamps
+        lineChart.y.labels.visible = true
+        lineChart.addLine(upTimeForDevice)
+        
+        lineChart.translatesAutoresizingMaskIntoConstraints = false
+        lineChart.delegate = self
+        self.view.addSubview(lineChart)
+        views["chart"] = lineChart
+        lineChart.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        lineChart.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        lineChart.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        lineChart.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
     }
     
     func canRotate(){}

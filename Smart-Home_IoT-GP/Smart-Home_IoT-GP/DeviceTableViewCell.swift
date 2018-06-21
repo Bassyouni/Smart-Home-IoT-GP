@@ -19,9 +19,10 @@ class DeviceTableViewCell: UITableViewCell {
     
 
     
-    func confireCell(device: Device)
+    func confireCell(device: Device, isConnected: Bool)
     {
         deviceNameLabel.text = device.name
+        toggleSwitch.isHidden = !isConnected
     }
 
 }

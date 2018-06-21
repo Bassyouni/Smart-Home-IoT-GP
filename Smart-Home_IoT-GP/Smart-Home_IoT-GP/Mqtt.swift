@@ -38,7 +38,7 @@ class Mqtt
     
     init()
     {
-        let url = "54.191.93.4"
+        let url = "54.186.160.244"
         constructor(url: url, port: 1883)
     }
     

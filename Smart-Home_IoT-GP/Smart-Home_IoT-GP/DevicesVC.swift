@@ -18,20 +18,26 @@ class DevicesVC: UIViewController {
     var devices: [Device]?
     var home: Home?
     var mqtt: Mqtt!
+    var isConnected = false
+    
+    let impact = UIImpactFeedbackGenerator()
     
     //MARK:- view functions
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.tableFooterView = UIView()
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         self.editButtonItem.title = "Reorder"
         
+//        mqtt = Mqtt(url: "broker.hivemq.com")
         mqtt = Mqtt()
         mqtt.keepAlive = 60
         mqtt.cleanSession = true
         mqtt.delegate = self
         mqtt.connect()
+        
         
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPress(longPressGestureRecognizer:)) )
         longPressRecognizer.minimumPressDuration = 1.0 // 1 second press
@@ -48,6 +54,8 @@ class DevicesVC: UIViewController {
     }
     
     //MARK:- functions
+
+    
     override func setEditing(_ editing: Bool, animated: Bool)
     {
         super.setEditing(editing, animated: animated)
@@ -77,6 +85,7 @@ class DevicesVC: UIViewController {
                         deviceSettingVC.title = "Name"
                         deviceSettingVC.device = devices[indexPath.row]
                         self.navigationController?.pushViewController(deviceSettingVC, animated: true)
+                        impact.impactOccurred()
                     }
                 }
             }
@@ -102,10 +111,12 @@ class DevicesVC: UIViewController {
                     command = "off"
                     mqtt.publish(deviceId:device.id , command: command, topic: home.topic)
                 }
+                impact.impactOccurred()
                 
-                DeviceServices.addLogTo(deviceId: device.id, homeId: home.id, command: command, downloadCompleted: { (status) in
-                    print(status)
-                })
+                
+//                DeviceServices.addLogTo(deviceId: device.id, homeId: home.id, command: command, downloadCompleted: { (status) in
+//                    print(status)
+//                })
                 
             }
         }
@@ -135,7 +146,7 @@ extension DevicesVC: UITableViewDelegate , UITableViewDataSource
             {
                 cell.toggleSwitch.tag = indexPath.row
                 cell.toggleSwitch.addTarget(self, action: #selector(switchToggled(_:)), for: .valueChanged)
-                cell.confireCell(device: devices[indexPath.row])
+                cell.confireCell(device: devices[indexPath.row], isConnected: isConnected)
             }
             
             return cell
@@ -148,9 +159,7 @@ extension DevicesVC: UITableViewDelegate , UITableViewDataSource
         return true
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView()
-    }
+
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
     {
@@ -187,6 +196,19 @@ extension DevicesVC: UITableViewDelegate , UITableViewDataSource
         }
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if devices?.count == 0
+        {
+            return "\u{274C} No Devices Registered"
+        }
+        if isConnected
+        {
+            return "\u{1F535} Connected Devices"
+        }
+        return "\u{1F534} Disconnected Devices"
+
+    }
+    
 }
 
 //MARK:- MQTT
@@ -195,11 +217,15 @@ extension DevicesVC: CocoaMQTTDelegate
     func mqtt(_ mqtt: CocoaMQTT, didConnect host: String, port: Int)
     {
         print("connected to host: \(host) on port: \(port)")
+        isConnected = true
+        tableView.reloadData()
     }
     
     func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck)
     {
         print("connection ack")
+        isConnected = true
+        tableView.reloadData()
 //        self.mqtt.subscribe(toTopic: (home?.topic)!)
     }
     func mqtt(_ mqtt: CocoaMQTT, didPublishMessage message: CocoaMQTTMessage, id: UInt16)
@@ -234,6 +260,8 @@ extension DevicesVC: CocoaMQTTDelegate
     func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?)
     {
         print("disconnected: \(err.debugDescription)")
+        isConnected = false
+        tableView.reloadData()
         Timer.after(5.seconds) {
             _ = self.mqtt.connect()
         }

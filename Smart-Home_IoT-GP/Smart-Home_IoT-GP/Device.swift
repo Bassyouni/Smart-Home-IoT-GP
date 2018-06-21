@@ -101,6 +101,11 @@ class Device
         return _logs
     }
     
+    public func removeAllLogs()
+    {
+        _logs.removeAll()
+    }
+    
     
     //MARK:- public varibales
     public var id: String {

@@ -22,22 +22,32 @@ class HomeVC: ParentViewController {
         return refreshControl
     }()
     
+    let impact = UIImpactFeedbackGenerator()
+    
     //MARK:- viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.tableFooterView = UIView()
         self.tableView.addSubview(refreshControl)
         
         let testDevice = Device(id: "123", name: "My Fucking Lamp", pinNumber: 12, description: "boom")
+        let testDevice1 = Device(id: "124", name: "Takif 2odet EL Bwab", pinNumber: 13, description: "5ali 3enak 3aleh")
+        
         
         
         let testHome = Home(id: "123", name: "Sa2r", address: "Sa2r el krosih", users: [], devices: [])
+        testHome.topic = "ya Rab"
+        let testHome1 = Home(id: "124", name: "Maadi", address: "New Maadi", users: [], devices: [])
+        testHome.topic = "ya Rab bardo"
         
         testDevice.home = testHome
         testHome.addDevice(device: testDevice)
+        testHome.addDevice(device: testDevice1)
         self.homes.append(testHome)
+        self.homes.append(testHome1)
         
 //        callWebServiceForHomes()
         
@@ -89,8 +99,9 @@ class HomeVC: ParentViewController {
     //Called, when long press occurred
     @objc func longPress(longPressGestureRecognizer: UILongPressGestureRecognizer) {
         
+        
         if longPressGestureRecognizer.state == UIGestureRecognizerState.began {
-            
+    
             let touchPoint = longPressGestureRecognizer.location(in: self.view)
             if let indexPath = tableView.indexPathForRow(at: touchPoint) {
                 
@@ -100,6 +111,7 @@ class HomeVC: ParentViewController {
                     homeSettingVC.home = homes[indexPath.row]
                     homeSettingVC.delegate = self
                     self.navigationController?.pushViewController(homeSettingVC, animated: true)
+                    impact.impactOccurred()
                 }
             }
         }
@@ -176,10 +188,7 @@ extension HomeVC: UITableViewDelegate , UITableViewDataSource
     {
         return false
     }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView()
-    }
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {

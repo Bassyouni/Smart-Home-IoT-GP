@@ -67,12 +67,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if (rootViewController.responds(to: Selector(("canRotate"))))
             {
                 // Unlock landscape view orientations for this view controller
-                return .landscape ;
+                return .allButUpsideDown ;
             }
         }
         
         // Only allow portrait (standard behaviour)
-        return .portrait;
+        return .allButUpsideDown;
     }
     
     private func topViewControllerWithRootViewController(rootViewController: UIViewController!) -> UIViewController?
