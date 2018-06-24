@@ -30,6 +30,10 @@ class LogParser : JsonParserWarapper
                 {
                     log.command = command
                 }
+                if let dateCreated = dictionary["created_at"] as? String
+                {
+                    log.timeStamp = dateCreated
+                }
             }
             
             returnedArray.append(log)

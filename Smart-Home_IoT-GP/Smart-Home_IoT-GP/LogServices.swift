@@ -14,6 +14,7 @@ class LogServices: ServicesWrapper
     public static func getDeviceLogs(homeId: String , deviceId: String, downloadCompleted: @escaping DownloadCompletedForLogs)
     {
         let url = URL(string: "\(baseURL)/api/homes/get-device-logs/\(homeId)/\(deviceId)")!
+        print(url.absoluteString)
         var logs = [Log]()
         
         Alamofire.request(url, method: .get).responseJSON  { response in

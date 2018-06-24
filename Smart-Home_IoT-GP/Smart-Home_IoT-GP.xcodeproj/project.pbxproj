@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0D12F7A1E11317AA67970F01 /* Pods_Smart_Home_IoT_GP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B43EA72AFFC1471E5F2DF18A /* Pods_Smart_Home_IoT_GP.framework */; };
+		52380CBC20DCCB0700F66ECA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52380CB920DCCB0700F66ECA /* LoginView.swift */; };
+		52380CBD20DCCB0700F66ECA /* RoundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52380CBA20DCCB0700F66ECA /* RoundImage.swift */; };
+		52380CBE20DCCB0700F66ECA /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52380CBB20DCCB0700F66ECA /* LoginButton.swift */; };
 		5239BE4020248B1C002F7582 /* MqttTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239BE3F20248B1C002F7582 /* MqttTestVC.swift */; };
 		5239BE422024A22A002F7582 /* DevicesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239BE412024A22A002F7582 /* DevicesVC.swift */; };
 		5239BE442024ACEC002F7582 /* DeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239BE432024ACEC002F7582 /* DeviceTableViewCell.swift */; };
@@ -54,6 +57,9 @@
 /* Begin PBXFileReference section */
 		2DD9C0D1489294849D2647FB /* Pods-Smart-Home_IoT-GP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smart-Home_IoT-GP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Smart-Home_IoT-GP/Pods-Smart-Home_IoT-GP.debug.xcconfig"; sourceTree = "<group>"; };
 		3AA2A727148146D47C7C289A /* Pods-Smart-Home_IoT-GP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smart-Home_IoT-GP.release.xcconfig"; path = "Pods/Target Support Files/Pods-Smart-Home_IoT-GP/Pods-Smart-Home_IoT-GP.release.xcconfig"; sourceTree = "<group>"; };
+		52380CB920DCCB0700F66ECA /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		52380CBA20DCCB0700F66ECA /* RoundImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundImage.swift; sourceTree = "<group>"; };
+		52380CBB20DCCB0700F66ECA /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		5239BE3F20248B1C002F7582 /* MqttTestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MqttTestVC.swift; sourceTree = "<group>"; };
 		5239BE412024A22A002F7582 /* DevicesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesVC.swift; sourceTree = "<group>"; };
 		5239BE432024ACEC002F7582 /* DeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTableViewCell.swift; sourceTree = "<group>"; };
@@ -276,6 +282,9 @@
 				52D1F96620237E73007E5F0F /* SideMenuTableViewCell.swift */,
 				52D1F9692023C463007E5F0F /* HomeVCTableViewCell.swift */,
 				5239BE432024ACEC002F7582 /* DeviceTableViewCell.swift */,
+				52380CB920DCCB0700F66ECA /* LoginView.swift */,
+				52380CBA20DCCB0700F66ECA /* RoundImage.swift */,
+				52380CBB20DCCB0700F66ECA /* LoginButton.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -458,6 +467,7 @@
 				52D7D255202754CE000E02E3 /* ProfileVC.swift in Sources */,
 				B8D0A0BE2010FF2D003778CB /* Mqtt.swift in Sources */,
 				52D1F95A20237CAA007E5F0F /* MFSideMenuContainerViewController.m in Sources */,
+				52380CBC20DCCB0700F66ECA /* LoginView.swift in Sources */,
 				52D7D25320273CD7000E02E3 /* DeviceSettingsVC.swift in Sources */,
 				52D1F96C2023CAE1007E5F0F /* Constants.swift in Sources */,
 				5244A5D120DA4733002E530F /* StatisticsVC.swift in Sources */,
@@ -469,6 +479,7 @@
 				B84E30092018BC090095B74F /* ServicesWrapper.swift in Sources */,
 				52D1F96320237D78007E5F0F /* ParentViewController.swift in Sources */,
 				52D1F96520237E66007E5F0F /* SideMenuVC.swift in Sources */,
+				52380CBE20DCCB0700F66ECA /* LoginButton.swift in Sources */,
 				52D1F95C20237CAA007E5F0F /* UIViewController+MFSideMenuAdditions.m in Sources */,
 				B84E30112018BC650095B74F /* LogServices.swift in Sources */,
 				528B049120362DD1007FDEB1 /* HomeSettingVC.swift in Sources */,
@@ -478,6 +489,7 @@
 				B84E301F20190D3B0095B74F /* SignupVC.swift in Sources */,
 				52D1F96A2023C463007E5F0F /* HomeVCTableViewCell.swift in Sources */,
 				B84E30152018BC8F0095B74F /* DeviceParser.swift in Sources */,
+				52380CBD20DCCB0700F66ECA /* RoundImage.swift in Sources */,
 				B84E30072018BB400095B74F /* Log.swift in Sources */,
 				5239BE442024ACEC002F7582 /* DeviceTableViewCell.swift in Sources */,
 				B82BBAF2201119350090BBE3 /* Device.swift in Sources */,

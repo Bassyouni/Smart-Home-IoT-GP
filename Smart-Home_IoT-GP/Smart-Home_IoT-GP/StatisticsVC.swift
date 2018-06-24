@@ -4,14 +4,13 @@ import QuartzCore
 
 class StatisticsVC: ParentViewController, LineChartDelegate {
 
-    
-    
+    //MARK:- varibales
     var label = UILabel()
     var lineChart: LineChart!
     
     var device: Device!
     
-    
+    //MARK:- view methods
     override func viewDidLoad() {
         super.viewDidLoad()
         showLoading()
@@ -36,42 +35,7 @@ class StatisticsVC: ParentViewController, LineChartDelegate {
          self.hideLoading()
         }
         
-        var views: [String: AnyObject] = [:]
-        
-        label.text = "..."
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = NSTextAlignment.center
-        self.view.addSubview(label)
-        views["label"] = label
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[label]-|", options: [], metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-80-[label]", options: [], metrics: nil, views: views))
-        
-        // simple arrays
-        let data: [CGFloat] = [3, 4, -2, 11, 13, 15]
-        let data2: [CGFloat] = [1, 3, 5, 13, 17, 20]
-        
-        // simple line with custom x axis labels
-        let xLabels: [String] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
-        
-        lineChart = LineChart()
-        lineChart.animation.enabled = true
-        lineChart.area = true
-        lineChart.x.labels.visible = true
-        lineChart.x.grid.count = 5
-        lineChart.y.grid.count = 5
-        lineChart.x.labels.values = xLabels
-        lineChart.y.labels.visible = true
-        lineChart.addLine(data)
-        lineChart.addLine(data2)
-        
-        lineChart.translatesAutoresizingMaskIntoConstraints = false
-        lineChart.delegate = self
-        self.view.addSubview(lineChart)
-        views["chart"] = lineChart
-        lineChart.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        lineChart.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        lineChart.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
-        lineChart.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
+
     
     }
     
@@ -82,10 +46,11 @@ class StatisticsVC: ParentViewController, LineChartDelegate {
         
         if (self.isMovingFromParentViewController)
         {
-//            UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
+            UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
         }
     }
     
+    //MARK:- methods
     func chartSetup()
     {
         var views: [String: AnyObject] = [:]
@@ -101,19 +66,35 @@ class StatisticsVC: ParentViewController, LineChartDelegate {
         var deviceLogs = device.getAllLogs()
         var logsTimeStamps = [String]()
         var upTimeForDevice = [CGFloat]()
-        for log in deviceLogs
+        
+        var i = 0
+        while i < deviceLogs.count
         {
-            logsTimeStamps.append(log.timeStamp)
+            if !(i >= deviceLogs.count - 1)
+            {
+                
+                let serverDateFormatter: DateFormatter = {
+                    let result = DateFormatter()
+                    result.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                    result.timeZone = NSTimeZone(forSecondsFromGMT: 0) as TimeZone!
+                    return result
+                }()
+                
+                let earlierDate = serverDateFormatter.date(from: deviceLogs[i].timeStamp)!
+                
+                let laterDate = serverDateFormatter.date(from: deviceLogs[i+1].timeStamp)!
+                let interval = laterDate.timeIntervalSince(earlierDate)
+                upTimeForDevice.append(CGFloat(interval))
+                
+                let formatter = DateFormatter()
+                formatter.dateFormat = "mm:ss"
+                logsTimeStamps.append(formatter.string(from: laterDate))
+                
+            }
+            i += 2
         }
         
-        for i in 0...deviceLogs.count
-        {
-            guard let time1 = NumberFormatter().number(from: deviceLogs[i+1].timeStamp) else { return }
-            guard let time2 = NumberFormatter().number(from: deviceLogs[i].timeStamp) else { return }
-            
-            let diffrecne:CGFloat = CGFloat(time1) - CGFloat(time2)
-            upTimeForDevice.append(diffrecne)
-        }
+        
         
         
         
@@ -121,8 +102,8 @@ class StatisticsVC: ParentViewController, LineChartDelegate {
         lineChart.animation.enabled = true
         lineChart.area = true
         lineChart.x.labels.visible = true
-        lineChart.x.grid.count = CGFloat(deviceLogs.count)
-        lineChart.y.grid.count = CGFloat(deviceLogs.count)
+        lineChart.x.grid.count = CGFloat(upTimeForDevice.count)
+        lineChart.y.grid.count = CGFloat(upTimeForDevice.count)
         lineChart.x.labels.values = logsTimeStamps
         lineChart.y.labels.visible = true
         lineChart.addLine(upTimeForDevice)
@@ -139,20 +120,12 @@ class StatisticsVC: ParentViewController, LineChartDelegate {
     
     func canRotate(){}
     
-    
-    
-    /**
-     * Line chart delegate method.
-     */
+    //MARK:- Line chart delegate method.
     func didSelectDataPoint(_ x: CGFloat, yValues: Array<CGFloat>) {
         label.text = "x: \(x)     y: \(yValues)"
     }
     
-    
-    
-    /**
-     * Redraw chart on device rotation.
-     */
+     //MARK:- Redraw chart on device rotation.
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
         if let chart = lineChart {
             chart.setNeedsDisplay()

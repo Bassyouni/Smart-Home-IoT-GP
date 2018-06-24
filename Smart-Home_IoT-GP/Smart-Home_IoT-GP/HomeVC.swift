@@ -33,23 +33,25 @@ class HomeVC: ParentViewController {
         tableView.tableFooterView = UIView()
         self.tableView.addSubview(refreshControl)
         
-        let testDevice = Device(id: "123", name: "My Fucking Lamp", pinNumber: 12, description: "boom")
-        let testDevice1 = Device(id: "124", name: "Takif 2odet EL Bwab", pinNumber: 13, description: "5ali 3enak 3aleh")
+        //TODO: Remove test code
+//        let testDevice = Device(id: "123", name: "My Fucking Lamp", pinNumber: 12, description: "boom")
+//        let testDevice1 = Device(id: "124", name: "Takif 2odet EL Bwab", pinNumber: 13, description: "5ali 3enak 3aleh")
+//        
+//        
+//        
+//        let testHome = Home(id: "123", name: "Sa2r", address: "Sa2r el krosih", users: [], devices: [])
+//        testHome.topic = "ya Rab"
+//        let testHome1 = Home(id: "124", name: "Maadi", address: "New Maadi", users: [], devices: [])
+//        testHome.topic = "ya Rab bardo"
+//        
+//        testDevice.home = testHome
+//        testHome.addDevice(device: testDevice)
+//        testHome.addDevice(device: testDevice1)
+//        self.homes.append(testHome)
+//        self.homes.append(testHome1)
+            //end of test code
         
-        
-        
-        let testHome = Home(id: "123", name: "Sa2r", address: "Sa2r el krosih", users: [], devices: [])
-        testHome.topic = "ya Rab"
-        let testHome1 = Home(id: "124", name: "Maadi", address: "New Maadi", users: [], devices: [])
-        testHome.topic = "ya Rab bardo"
-        
-        testDevice.home = testHome
-        testHome.addDevice(device: testDevice)
-        testHome.addDevice(device: testDevice1)
-        self.homes.append(testHome)
-        self.homes.append(testHome1)
-        
-//        callWebServiceForHomes()
+        callWebServiceForHomes()
         
         // tapRecognizer, placed in viewDidLoad
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPress(longPressGestureRecognizer:)) )

@@ -114,9 +114,9 @@ class DevicesVC: UIViewController {
                 impact.impactOccurred()
                 
                 
-//                DeviceServices.addLogTo(deviceId: device.id, homeId: home.id, command: command, downloadCompleted: { (status) in
-//                    print(status)
-//                })
+                DeviceServices.addLogTo(deviceId: device.id, homeId: home.id, command: command, downloadCompleted: { (status) in
+                    print(status)
+                })
                 
             }
         }
