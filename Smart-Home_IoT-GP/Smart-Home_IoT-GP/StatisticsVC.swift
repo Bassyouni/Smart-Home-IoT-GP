@@ -13,27 +13,29 @@ class StatisticsVC: ParentViewController, LineChartDelegate {
     //MARK:- view methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        showLoading()
+//        showLoading()
         
-        LogServices.getDeviceLogs(homeId: device.home.id, deviceId: device.id) { (status, logs) in
-            if status == "success"
-            {
-                if self.device.getAllLogs().count > 0
-                {
-                    self.device.removeAllLogs()
-                }
-                self.device.addLogs(logs: logs)
-                self.chartSetup()
-            }
-            else
-            {
-                let alert = UIAlertController(title: "Error", message: status, preferredStyle: .alert)
-                let action = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
-                alert.addAction(action)
-                self.present(alert, animated: true, completion: nil)
-            }
-         self.hideLoading()
-        }
+//        LogServices.getDeviceLogs(homeId: device.home.id, deviceId: device.id) { (status, logs) in
+//            if status == "success"
+//            {
+//                if self.device.getAllLogs().count > 0
+//                {
+//                    self.device.removeAllLogs()
+//                }
+//                self.device.addLogs(logs: logs)
+//                self.chartSetup()
+//            }
+//            else
+//            {
+//                let alert = UIAlertController(title: "Error", message: status, preferredStyle: .alert)
+//                let action = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+//                alert.addAction(action)
+//                self.present(alert, animated: true, completion: nil)
+//            }
+//         self.hideLoading()
+//        }
+        
+        chartSetup()
         
 
     
@@ -46,7 +48,7 @@ class StatisticsVC: ParentViewController, LineChartDelegate {
         
         if (self.isMovingFromParentViewController)
         {
-            UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
+//            UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
         }
     }
     

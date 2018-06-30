@@ -24,6 +24,8 @@ class HomeVC: ParentViewController {
     
     let impact = UIImpactFeedbackGenerator()
     
+    var isFirstTime:Bool = true
+    
     //MARK:- viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +64,15 @@ class HomeVC: ParentViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if !isFirstTime
+        {
+            callWebServiceForHomes()
+        }
+        isFirstTime = false
+    }
+    
     fileprivate func callWebServiceForHomes() {
         showLoading()
         HomeServices.getAllHomes(for: currentUser)
@@ -72,6 +83,38 @@ class HomeVC: ParentViewController {
                 self.homes = homes
                 currentUser.addHomes(homes: homes)
                 self.tableView.reloadData()
+                if self.refreshControl.isRefreshing
+                {
+                    self.refreshControl.endRefreshing()
+                }
+                
+                //getting logs
+                for home in homes
+                {
+                    for device in home.getAllDevices()
+                    {
+                        LogServices.getDeviceLogs(homeId: home.id, deviceId: device.id) { (status, logs) in
+                            if status == "success"
+                            {
+                                if device.getAllLogs().count > 0
+                                {
+                                    device.removeAllLogs()
+                                }
+                                device.addLogs(logs: logs)
+                                device.state = logs.last?.command
+                                
+                            }
+                            else
+                            {
+                                let alert = UIAlertController(title: "Error", message: status, preferredStyle: .alert)
+                                let action = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+                                alert.addAction(action)
+                                self.present(alert, animated: true, completion: nil)
+                            }
+                            self.hideLoading()
+                        }
+                    }
+                }
             }
             else
             {
@@ -136,25 +179,7 @@ class HomeVC: ParentViewController {
     
     @objc func handleRefresh(refreshControl: UIRefreshControl) {
 
-        HomeServices.getAllHomes(for: currentUser)
-        { (status, homes) in
-            
-            if status == "success"
-            {
-                self.homes = homes
-                currentUser.addHomes(homes: homes)
-            }
-            else
-            {
-                let alert = UIAlertController(title: "Error", message: status, preferredStyle: .alert)
-                let action = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
-                alert.addAction(action)
-                self.present(alert, animated: true, completion: nil)
-            }
-            self.tableView.reloadData()
-            refreshControl.endRefreshing()
-        }
-
+        callWebServiceForHomes()
     }
 
 }
@@ -246,7 +271,6 @@ extension HomeVC: UpdateHomeVCDelegate
             self.hideLoading()
         }
     }
-    
     
 }
 

@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SkyFloatingLabelTextField
+import IHKeyboardAvoiding
 
 class LoginVC: ParentViewController  {
     
@@ -19,6 +20,7 @@ class LoginVC: ParentViewController  {
 
     @IBOutlet weak var emailTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var passwordTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var loginView: LoginView!
     
     //MARK:- variables
     var isFirstTime: Bool = true
@@ -35,7 +37,7 @@ class LoginVC: ParentViewController  {
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         self.view.addGestureRecognizer(tap)
         
-        
+        KeyboardAvoiding.avoidingView = loginView
     }
     
     

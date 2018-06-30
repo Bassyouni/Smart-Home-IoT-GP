@@ -16,6 +16,7 @@
 		5239BE442024ACEC002F7582 /* DeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239BE432024ACEC002F7582 /* DeviceTableViewCell.swift */; };
 		5244A5D020DA4733002E530F /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5244A5CE20DA4733002E530F /* LineChart.swift */; };
 		5244A5D120DA4733002E530F /* StatisticsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5244A5CF20DA4733002E530F /* StatisticsVC.swift */; };
+		525698A920E672A500287587 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525698A820E672A500287587 /* ShadowView.swift */; };
 		528B049120362DD1007FDEB1 /* HomeSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528B049020362DD1007FDEB1 /* HomeSettingVC.swift */; };
 		52D1F95A20237CAA007E5F0F /* MFSideMenuContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D1F95620237CAA007E5F0F /* MFSideMenuContainerViewController.m */; };
 		52D1F95B20237CAA007E5F0F /* MFSideMenuShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D1F95720237CAA007E5F0F /* MFSideMenuShadow.m */; };
@@ -65,6 +66,7 @@
 		5239BE432024ACEC002F7582 /* DeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTableViewCell.swift; sourceTree = "<group>"; };
 		5244A5CE20DA4733002E530F /* LineChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
 		5244A5CF20DA4733002E530F /* StatisticsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsVC.swift; sourceTree = "<group>"; };
+		525698A820E672A500287587 /* ShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		528B049020362DD1007FDEB1 /* HomeSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSettingVC.swift; sourceTree = "<group>"; };
 		52D1F95220237CA9007E5F0F /* Smart-Home_IoT-GP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Smart-Home_IoT-GP-Bridging-Header.h"; sourceTree = "<group>"; };
 		52D1F95320237CAA007E5F0F /* MFSideMenuShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSideMenuShadow.h; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				52D1F9692023C463007E5F0F /* HomeVCTableViewCell.swift */,
 				5239BE432024ACEC002F7582 /* DeviceTableViewCell.swift */,
 				52380CB920DCCB0700F66ECA /* LoginView.swift */,
+				525698A820E672A500287587 /* ShadowView.swift */,
 				52380CBA20DCCB0700F66ECA /* RoundImage.swift */,
 				52380CBB20DCCB0700F66ECA /* LoginButton.swift */,
 			);
@@ -325,7 +328,6 @@
 				B8D0A0A02010FE25003778CB /* Frameworks */,
 				B8D0A0A12010FE25003778CB /* Resources */,
 				4CD827D6F7EB389C77E29A3D /* [CP] Embed Pods Frameworks */,
-				E84AD0AD315E34E09120CF41 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -398,6 +400,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaMQTT/CocoaMQTT.framework",
+				"${BUILT_PRODUCTS_DIR}/IHKeyboardAvoiding/IHKeyboardAvoiding.framework",
 				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyTimer/SwiftyTimer.framework",
 			);
@@ -406,6 +409,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaMQTT.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IHKeyboardAvoiding.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyTimer.framework",
 			);
@@ -432,21 +436,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E84AD0AD315E34E09120CF41 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Smart-Home_IoT-GP/Pods-Smart-Home_IoT-GP-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -458,6 +447,7 @@
 				B84E301B2018BCC30095B74F /* LogParser.swift in Sources */,
 				52D1F96220237D78007E5F0F /* MBProgressHUD.m in Sources */,
 				B82BBAF02011191F0090BBE3 /* User.swift in Sources */,
+				525698A920E672A500287587 /* ShadowView.swift in Sources */,
 				5244A5D020DA4733002E530F /* LineChart.swift in Sources */,
 				B84E30172018BCA00095B74F /* HomeParser.swift in Sources */,
 				B84E300D2018BC3A0095B74F /* HomeServices.swift in Sources */,

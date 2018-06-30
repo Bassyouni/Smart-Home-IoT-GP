@@ -13,7 +13,7 @@ class DeviceServices: ServicesWrapper
 {
     public static func addLogTo(deviceId: String, homeId: String, command: String, downloadCompleted: @escaping DownloadCompletedForDevice )
     {
-        let url = URL(string: "\(baseURL)/api/homes/add-log-to-device/\(homeId)/\(deviceId)/command")!
+        let url = URL(string: "\(baseURL)/api/homes/add-log-to-device/\(homeId)/\(deviceId)/\(command)")!
         
         Alamofire.request(url, method: .get).responseJSON { response in
             var returnStatment = "failure"

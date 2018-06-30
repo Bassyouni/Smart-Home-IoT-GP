@@ -9,5 +9,6 @@ target 'Smart-Home_IoT-GP' do
     pod 'Alamofire', '~> 4.5'
     pod 'CocoaMQTT'  
     pod 'SkyFloatingLabelTextField', '~> 3.0'
+    pod 'IHKeyboardAvoiding'
 
 end

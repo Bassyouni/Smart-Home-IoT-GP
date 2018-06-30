@@ -103,12 +103,12 @@ class DevicesVC: UIViewController {
                 let command: String!
                 if sender.isOn
                 {
-                    command = "on"
+                    command = "ON"
                     mqtt.publish(deviceId:device.id , command: command, topic: home.topic)
                 }
                 else
                 {
-                    command = "off"
+                    command = "OFF"
                     mqtt.publish(deviceId:device.id , command: command, topic: home.topic)
                 }
                 impact.impactOccurred()
@@ -121,6 +121,17 @@ class DevicesVC: UIViewController {
             }
         }
         
+    }
+    
+    func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
     }
     
 
@@ -192,7 +203,7 @@ extension DevicesVC: UITableViewDelegate , UITableViewDataSource
             self.navigationController?.pushViewController(statVC, animated: true)
             
             // rotate device to landscape
-            UIDevice.current.setValue(Int(UIInterfaceOrientation.landscapeLeft.rawValue), forKey: "orientation")
+//            UIDevice.current.setValue(Int(UIInterfaceOrientation.landscapeLeft.rawValue), forKey: "orientation")
         }
     }
     
@@ -226,7 +237,7 @@ extension DevicesVC: CocoaMQTTDelegate
         print("connection ack")
         isConnected = true
         tableView.reloadData()
-//        self.mqtt.subscribe(toTopic: (home?.topic)!)
+        self.mqtt.subscribe(toTopic: (home?.topic)!)
     }
     func mqtt(_ mqtt: CocoaMQTT, didPublishMessage message: CocoaMQTTMessage, id: UInt16)
     {
@@ -239,7 +250,42 @@ extension DevicesVC: CocoaMQTTDelegate
     func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16 )
     {
         print("recived message: \(message.string ?? message.topic)")
-
+        
+        if let message = message.string
+        {
+            let dict = convertToDictionary(text: message)
+            
+            if let dict = dict
+            {
+                if let deviceId = dict["deviceId"] as? String
+                {
+                    if let command = dict["command"] as? String
+                    {
+                       if let index = devices?.index(where: { (device) -> Bool in
+                            return device.id == deviceId
+                        })
+                        {
+                            devices?[index].state = command
+                            
+                            if let platfrom = dict["platform"] as? String
+                            {
+                                if platfrom != "ios"
+                                {
+                                    tableView.reloadData()
+                                    impact.impactOccurred()
+                                }
+                                
+                            }
+                        
+    
+                        }
+                        
+                        
+    
+                    }
+                }
+            }
+        }
     }
     func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopic topic: String)
     {

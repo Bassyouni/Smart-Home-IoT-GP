@@ -26,6 +26,7 @@ class Device
     private var _type :DeviceType!
     private var _home: Home!
     private var _logs: [Log]!
+    private var _state: String?
     
     
     //MARK:- Constructors
@@ -136,6 +137,11 @@ class Device
     public var home: Home {
         set {_home = newValue}
         get {return _home}
+    }
+    
+    public var state:String? {
+        set {_state = newValue }
+        get {return _state }
     }
     
 }

@@ -23,6 +23,15 @@ class DeviceTableViewCell: UITableViewCell {
     {
         deviceNameLabel.text = device.name
         toggleSwitch.isHidden = !isConnected
+        
+        if device.state == "ON"
+        {
+            toggleSwitch.setOn(true, animated: true)
+        }
+        else
+        {
+            toggleSwitch.setOn(false, animated: true)
+        }
     }
 
 }

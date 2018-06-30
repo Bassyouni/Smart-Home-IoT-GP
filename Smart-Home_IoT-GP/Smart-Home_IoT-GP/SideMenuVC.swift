@@ -29,7 +29,7 @@ class SideMenuVC: UIViewController , UITableViewDelegate , UITableViewDataSource
         // Do any additional setup after loading the view.
         
         // set name
-        self.lblWelcome.text = NSLocalizedString("welcome", comment: "")
+        self.lblWelcome.text = NSLocalizedString("Welcome", comment: "")
         self.lblName.text = currentUser.name.capitalized
       
         
@@ -55,7 +55,7 @@ class SideMenuVC: UIViewController , UITableViewDelegate , UITableViewDataSource
         if (self.indexSelected == indexPath.row)
         {
             UIView.animate(withDuration: 0.5, animations: {
-                cell.viewMenu.backgroundColor = UIColor.blue
+                cell.viewMenu.backgroundColor = customBlueColor
             })
         }
         else
@@ -88,8 +88,10 @@ class SideMenuVC: UIViewController , UITableViewDelegate , UITableViewDataSource
         }
         else if indexPath.row == 2
         {
-            let helpVC = self.storyboard?.instantiateViewController(withIdentifier: "HelpVC")
-            menuContainerViewController.centerViewController = helpVC
+            self.present(showAlert(message: "Call 911"), animated: true, completion: nil)
+            
+//            let helpVC = self.storyboard?.instantiateViewController(withIdentifier: "HelpVC")
+//            menuContainerViewController.centerViewController = helpVC
         }
         else if indexPath.row == 3
         {
