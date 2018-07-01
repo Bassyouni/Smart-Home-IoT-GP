@@ -7,38 +7,14 @@ class StatisticsVC: ParentViewController, LineChartDelegate {
     //MARK:- varibales
     var label = UILabel()
     var lineChart: LineChart!
-    
     var device: Device!
     
     //MARK:- view methods
     override func viewDidLoad() {
         super.viewDidLoad()
-//        showLoading()
-        
-//        LogServices.getDeviceLogs(homeId: device.home.id, deviceId: device.id) { (status, logs) in
-//            if status == "success"
-//            {
-//                if self.device.getAllLogs().count > 0
-//                {
-//                    self.device.removeAllLogs()
-//                }
-//                self.device.addLogs(logs: logs)
-//                self.chartSetup()
-//            }
-//            else
-//            {
-//                let alert = UIAlertController(title: "Error", message: status, preferredStyle: .alert)
-//                let action = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
-//                alert.addAction(action)
-//                self.present(alert, animated: true, completion: nil)
-//            }
-//         self.hideLoading()
-//        }
         
         chartSetup()
         
-
-    
     }
     
     

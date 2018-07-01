@@ -100,16 +100,20 @@ class DevicesVC: UIViewController {
        {
             if let home = home
             {
-                let command: String!
+                var command: String!
+                //TODO:circuit is reverse
+                //reverse because of circuit
                 if sender.isOn
-                {
-                    command = "ON"
-                    mqtt.publish(deviceId:device.id , command: command, topic: home.topic)
-                }
-                else
                 {
                     command = "OFF"
                     mqtt.publish(deviceId:device.id , command: command, topic: home.topic)
+                    command = "ON"
+                }
+                else
+                {
+                    command = "ON"
+                    mqtt.publish(deviceId:device.id , command: command, topic: home.topic)
+                    command = "OFF"
                 }
                 impact.impactOccurred()
                 

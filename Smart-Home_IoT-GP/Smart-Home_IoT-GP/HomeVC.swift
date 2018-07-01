@@ -101,7 +101,15 @@ class HomeVC: ParentViewController {
                                     device.removeAllLogs()
                                 }
                                 device.addLogs(logs: logs)
-                                device.state = logs.last?.command
+                                if logs.last?.command == "ON"
+                                {
+                                    device.state = "OFF"
+                                }
+                                else
+                                {
+                                    device.state = "ON"
+                                }
+//                                device.state = logs.last?.command
                                 
                             }
                             else

@@ -23,14 +23,15 @@ class DeviceTableViewCell: UITableViewCell {
     {
         deviceNameLabel.text = device.name
         toggleSwitch.isHidden = !isConnected
-        
+        //TODO:circuit is reverse
         if device.state == "ON"
         {
-            toggleSwitch.setOn(true, animated: true)
+            // reverse because of circut
+            toggleSwitch.setOn(false, animated: true)
         }
         else
         {
-            toggleSwitch.setOn(false, animated: true)
+            toggleSwitch.setOn(true, animated: true)
         }
     }
 
